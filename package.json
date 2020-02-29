@@ -15,19 +15,24 @@
     "start:sdk": "tsc -w -p ./config/tsconfig.sdk.json",
     "start:e2e": "ts-node src/node-e2e/app.ts",
     "build": "npm run clean:build && ./scripts/build.sh",
+    "test": "npm run clean:test-artifacts && ./scripts/test.sh",
+    "lint": "eslint --fix src/**/*.ts",
     "clean": "npm-run-all -s clean:*",
+    "clean:test-artifacts": "rimraf coverage && rimraf .nyc_output",
     "clean:build": "rimraf dist",
-    "clean_node_modules": "rimraf node_modules",
-    "lint": "tslint --fix ."
+    "clean_node_modules": "rimraf node_modules"
   },
   "devDependencies": {
     "@ikscodes/eslint-config": "^6.2.0",
     "@ikscodes/prettier-config": "^1.0.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/eth-sig-util": "^2.1.0",
     "@types/express": "^4.17.2",
     "@types/node": "^13.1.2",
     "@types/node-fetch": "^2.5.4",
+    "@types/sinon": "^7.5.2",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "ava": "^3.4.0",
     "eslint": "^6.7.2",
     "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.18.2",
@@ -35,9 +40,13 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.15.1",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "npm-run-all": "~4.1.5",
+    "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "rimraf": "~3.0.0",
+    "sinon": "^9.0.0",
     "ts-node": "~8.5.2",
     "tslint": "~5.20.1",
     "typescript": "~3.7.2"
@@ -55,5 +64,31 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --fix"
+  },
+  "ava": {
+    "require": [
+      "ts-node/register"
+    ],
+    "files": [
+      "test/**/*.spec.ts"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "verbose": true
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": false,
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99,
+    "reporter": [
+      "html",
+      "lcov"
+    ]
   }
 }

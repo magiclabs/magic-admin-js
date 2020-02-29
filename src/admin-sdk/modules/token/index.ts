@@ -53,7 +53,7 @@ export class TokenModule extends BaseModule {
   public getPublicAddress(DIDToken: string): string {
     const decodedDIDToken = this.decode(DIDToken);
     const claimJSONObject = JSON.parse(decodedDIDToken[1]) as Claim;
-    const claimedIssuer = claimJSONObject?.iss.split(':')[2];
+    const claimedIssuer = claimJSONObject.iss.split(':')[2];
     return claimedIssuer;
   }
 }

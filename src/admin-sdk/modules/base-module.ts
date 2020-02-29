@@ -1,5 +1,5 @@
 import { MagicAdminSDK } from '../core/sdk';
 
-export class BaseModule {
+export abstract class BaseModule {
   constructor(protected readonly sdk: MagicAdminSDK) {}
 }

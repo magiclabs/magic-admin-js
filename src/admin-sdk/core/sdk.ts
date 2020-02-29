@@ -1,9 +1,10 @@
 import { MiddlewaresModule } from '../modules/middlewares';
 import { TokenModule } from '../modules/token';
 import { UsersModule } from '../modules/users';
+import { MagicAdminSDKAdditionalConfiguration } from '../types';
 
 export class MagicAdminSDK {
-  public readonly apiBaseUrl = 'https://api.fortmatic.com';
+  public readonly apiBaseUrl: string;
 
   /**
    * Contains token validation middlewares for various NodeJS server frameworks.
@@ -22,7 +23,10 @@ export class MagicAdminSDK {
    */
   public readonly users: UsersModule;
 
-  constructor(public readonly secretApiKey: string) {
+  constructor(public readonly secretApiKey: string, options?: MagicAdminSDKAdditionalConfiguration) {
+    const endpoint = options?.endpoint ?? 'https://api.fortmatic.com';
+    this.apiBaseUrl = endpoint.replace(/\/+$/, '');
+
     // Assign API Modules
     this.middlewares = new MiddlewaresModule(this);
     this.token = new TokenModule(this);
