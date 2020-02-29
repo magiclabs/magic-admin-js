@@ -1,13 +1,19 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /dist
 
-# misc
+# Misc
+/.idea
+.DS_Store
 npm-debug.log*
 yarn-error.log*
 .DS_Store
 
 # Use Yarn!
 package-lock.json
+
+# Test artifacts
+/coverage
+/.nyc_output
