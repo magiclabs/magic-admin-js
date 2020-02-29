@@ -4,11 +4,10 @@ import { createApiKeyMissingError } from '../../core/sdk-exceptions';
 
 export class UsersModule extends BaseModule {
   public async logoutByPublicAddress(publicAddress: string) {
-    if (!this.sdk.secretApiKey) {
-      throw createApiKeyMissingError();
-    }
+    if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
 
     const body = JSON.stringify({ publicaddress: publicAddress });
+
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
       headers: { 'X-Fortmatic-Secret-key': this.sdk.secretApiKey },
@@ -17,9 +16,11 @@ export class UsersModule extends BaseModule {
   }
 
   public async logoutByToken(DIDToken: string) {
-    const publicAddress = this.sdk.token.getPublicAddress(DIDToken);
+    if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
 
+    const publicAddress = this.sdk.token.getPublicAddress(DIDToken);
     const body = JSON.stringify({ publicaddress: publicAddress });
+
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
       headers: { 'X-Fortmatic-Secret-key': this.sdk.secretApiKey },
