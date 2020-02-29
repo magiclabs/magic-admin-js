@@ -1,12 +1,10 @@
-/* eslint-disable no-new */
-
 import test from 'ava';
 import { MagicAdminSDK } from '../../../../src/admin-sdk/core/sdk';
 import { BaseModule } from '../../../../src/admin-sdk/modules/base-module';
-import { API_KEY } from '../../../lib/constants';
+import { createMagicAdminSDK } from '../../../lib/factories';
 
 test.serial('#01: Initializes `BaseModule`', t => {
-  const sdk = new MagicAdminSDK(API_KEY);
+  const sdk = createMagicAdminSDK();
 
   const baseModule: any = new (BaseModule as any)(sdk);
 

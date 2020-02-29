@@ -30,6 +30,7 @@
     "@types/express": "^4.17.2",
     "@types/node": "^13.1.2",
     "@types/node-fetch": "^2.5.4",
+    "@types/sinon": "^7.5.2",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "ava": "^3.4.0",
     "eslint": "^6.7.2",
@@ -43,6 +44,7 @@
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "rimraf": "~3.0.0",
+    "sinon": "^9.0.0",
     "ts-node": "~8.5.2",
     "tslint": "~5.20.1",
     "typescript": "~3.7.2"
@@ -62,9 +64,15 @@
     "*.{ts,tsx}": "eslint --fix"
   },
   "ava": {
-    "require": ["ts-node/register"],
-    "files": ["test/**/*.spec.ts"],
-    "extensions": ["ts"],
+    "require": [
+      "ts-node/register"
+    ],
+    "files": [
+      "test/**/*.spec.ts"
+    ],
+    "extensions": [
+      "ts"
+    ],
     "verbose": true
   },
   "nyc": {
