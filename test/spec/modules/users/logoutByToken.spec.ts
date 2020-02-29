@@ -28,7 +28,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
   ]);
 });
 
-test('#01: Fails POST if API key is missing', async t => {
+test('#02: Fails POST if API key is missing', async t => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getPublicAddressStub = sinon.stub();
