@@ -2,12 +2,13 @@ import test from 'ava';
 import sinon from 'sinon';
 import { recoverPersonalSignature } from 'eth-sig-util';
 import { createMagicAdminSDK } from '../../../lib/factories';
-import { VALID_DIDT, INVALID_SIGNER_DIDT, EXPIRED_DIDT } from '../../../lib/constants';
+import { VALID_DIDT, INVALID_SIGNER_DIDT, EXPIRED_DIDT, INVALID_DIDT_MALFORMED_CLAIM } from '../../../lib/constants';
 import {
   createIncorrectSignerAddressError,
   MagicAdminSDKError,
   createTokenExpiredError,
   createFailedRecoveringProofError,
+  createMalformedTokenError,
 } from '../../../../src/admin-sdk/core/sdk-exceptions';
 
 test('#01: Successfully validates DIDT', async t => {
@@ -38,6 +39,17 @@ test('#04: Fails if signature recovery rejects', async t => {
   const sdk = createMagicAdminSDK();
   const expectedError = createFailedRecoveringProofError();
   const error: MagicAdminSDKError = await t.throwsAsync(sdk.token.validate(VALID_DIDT));
+  t.is(error.code, expectedError.code);
+  t.is(error.message, expectedError.message);
+});
+
+test('#05: Fails if decoding token fails', async t => {
+  const recoverStub = sinon.stub().throws();
+  (recoverPersonalSignature as any) = recoverStub;
+
+  const sdk = createMagicAdminSDK();
+  const expectedError = createMalformedTokenError();
+  const error: MagicAdminSDKError = await t.throwsAsync(sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM));
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
 });

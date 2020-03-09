@@ -10,7 +10,7 @@ export class UsersModule extends BaseModule {
 
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
-      headers: { 'X-Fortmatic-Secret-key': this.sdk.secretApiKey },
+      headers: { 'X-Magic-Secret-key': this.sdk.secretApiKey },
       body,
     });
   }
@@ -23,7 +23,7 @@ export class UsersModule extends BaseModule {
 
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
-      headers: { 'X-Fortmatic-Secret-key': this.sdk.secretApiKey },
+      headers: { 'X-Magic-Secret-key': this.sdk.secretApiKey },
       body,
     });
   }
