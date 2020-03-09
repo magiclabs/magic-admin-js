@@ -6,24 +6,30 @@ import {
   createFailedRecoveringProofError,
   createIncorrectSignerAddressError,
   createTokenExpiredError,
+  createMalformedTokenError,
 } from '../../core/sdk-exceptions';
+import { isDIDTClaim } from '../../utils/type-guards';
 
 export class TokenModule extends BaseModule {
   public async validate(DIDToken: string) {
     let recoveredSignerAddress = '';
     let claimedIssuer = '';
-    let claimJSONObject;
+    let proof: string;
+    let claim: string;
+    let parsedClaim;
 
     try {
-      /* Decoded DIDToken: [proof, claim] */
-      const decodedDIDToken = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary'));
-      const proof = decodedDIDToken[0] as string;
-      const claim = decodedDIDToken[1] as string;
-      claimJSONObject = JSON.parse(claim) as Claim;
+      [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
+      parsedClaim = JSON.parse(claim) as Claim;
+      if (!isDIDTClaim(parsedClaim)) throw new Error();
+    } catch {
+      throw createMalformedTokenError();
+    }
 
+    try {
       /**
        * Use ecRecover on the Proof, to validate if it recovers to the expected
-       * Claim, and expected Signer Address
+       * Claim, and expected Signer Address.
        */
       const ecRecoverMsgParams = {
         data: ethUtil.bufferToHex(Buffer.from(claim, 'utf8')),
@@ -32,8 +38,8 @@ export class TokenModule extends BaseModule {
       recoveredSignerAddress = ethSigUtil.recoverPersonalSignature(ecRecoverMsgParams);
 
       // eslint-disable-next-line prefer-destructuring
-      claimedIssuer = claimJSONObject.iss.split(':')[2];
-    } catch (err) {
+      claimedIssuer = parsedClaim.iss.split(':')[2];
+    } catch {
       throw createFailedRecoveringProofError();
     }
 
@@ -41,19 +47,25 @@ export class TokenModule extends BaseModule {
       throw createIncorrectSignerAddressError();
     }
 
-    if (claimJSONObject.ext < Math.floor(Date.now() / 1000) - 30) {
+    if (parsedClaim.ext < Math.floor(Date.now() / 1000) - 30) {
       throw createTokenExpiredError();
     }
   }
 
-  public decode(DIDToken: string): any[] {
-    return JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as any[];
+  public decode(DIDToken: string): [string, Claim] {
+    try {
+      const [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
+      const parsedClaim = JSON.parse(claim) as Claim;
+      if (isDIDTClaim(parsedClaim)) return [proof, parsedClaim];
+      throw new Error();
+    } catch {
+      throw createMalformedTokenError();
+    }
   }
 
   public getPublicAddress(DIDToken: string): string {
-    const decodedDIDToken = this.decode(DIDToken);
-    const claimJSONObject = JSON.parse(decodedDIDToken[1]) as Claim;
-    const claimedIssuer = claimJSONObject.iss.split(':')[2];
+    const claim = this.decode(DIDToken)[1];
+    const claimedIssuer = claim.iss.split(':')[2];
     return claimedIssuer;
   }
 }

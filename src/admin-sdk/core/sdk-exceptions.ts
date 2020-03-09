@@ -44,3 +44,7 @@ export function createApiKeyMissingError() {
     'Please provide a secret Fortmatic API key that you acquired from the developer dashboard.',
   );
 }
+
+export function createMalformedTokenError() {
+  return new MagicAdminSDKError(ErrorCode.MalformedTokenError, 'The DID token is malformed or failed to parse.');
+}

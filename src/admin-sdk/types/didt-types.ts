@@ -6,5 +6,5 @@ export interface Claim {
   sub: string; // Subject
   aud: string; // Audience
   nbf: number; // Not Before Timestamp
-  tid: number; // DID Token ID
+  tid: string; // DID Token ID
 }

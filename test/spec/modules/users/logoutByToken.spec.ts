@@ -22,7 +22,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
     'https://example.com/v1/admin/auth/user/logout',
     {
       method: 'POST',
-      headers: { 'X-Fortmatic-Secret-key': API_KEY },
+      headers: { 'X-Magic-Secret-key': API_KEY },
       body: '{"publicaddress":"0x0123"}',
     },
   ]);
