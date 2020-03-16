@@ -3,7 +3,6 @@
 import test from 'ava';
 import { MagicAdminSDK } from '../../../../src/admin-sdk/core/sdk';
 import { API_FULL_URL, API_KEY } from '../../../lib/constants';
-import { MiddlewaresModule } from '../../../../src/admin-sdk/modules/middlewares';
 import { TokenModule } from '../../../../src/admin-sdk/modules/token';
 import { UsersModule } from '../../../../src/admin-sdk/modules/users';
 
@@ -12,7 +11,6 @@ test.serial('#01: Initialize `MagicAdminSDK`', t => {
 
   t.is(magic.secretApiKey, API_KEY);
   t.is(magic.apiBaseUrl, API_FULL_URL);
-  t.true(magic.middlewares instanceof MiddlewaresModule);
   t.true(magic.token instanceof TokenModule);
   t.true(magic.users instanceof UsersModule);
 });
@@ -22,7 +20,6 @@ test.serial('#02: Initialize `MagicAdminSDK` with custom endpoint', t => {
 
   t.is(magic.secretApiKey, API_KEY);
   t.is(magic.apiBaseUrl, 'https://example.com');
-  t.true(magic.middlewares instanceof MiddlewaresModule);
   t.true(magic.token instanceof TokenModule);
   t.true(magic.users instanceof UsersModule);
 });
