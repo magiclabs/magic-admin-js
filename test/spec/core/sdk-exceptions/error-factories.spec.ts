@@ -3,7 +3,6 @@
 import test, { ExecutionContext } from 'ava';
 import {
   MagicAdminSDKError,
-  createMissingAuthHeaderError,
   createTokenExpiredError,
   createIncorrectSignerAddressError,
   createFailedRecoveringProofError,
@@ -21,22 +20,12 @@ function errorAssertions<T extends ExecutionContext<any>>(
   t.is(error.message, `Magic Admin SDK Error: [${expectedCode}] ${expectedMessage}`);
 }
 
-test('#01: Creates `ERROR_MISSING_AUTH_HEADER` error', async t => {
-  const error = createMissingAuthHeaderError();
-  errorAssertions(
-    t,
-    error,
-    'ERROR_MISSING_AUTH_HEADER',
-    'Missing authorization header. Request failed authentication.',
-  );
-});
-
-test('#02: Creates `ERROR_DIDT_EXPIRED` error', async t => {
+test('#01: Creates `ERROR_DIDT_EXPIRED` error', async t => {
   const error = createTokenExpiredError();
   errorAssertions(t, error, 'ERROR_DIDT_EXPIRED', 'DID Token has expired. Request failed authentication.');
 });
 
-test('#03: Creates `ERROR_INCORRECT_SIGNER_ADDR` error', async t => {
+test('#02: Creates `ERROR_INCORRECT_SIGNER_ADDR` error', async t => {
   const error = createIncorrectSignerAddressError();
   errorAssertions(
     t,
@@ -46,12 +35,12 @@ test('#03: Creates `ERROR_INCORRECT_SIGNER_ADDR` error', async t => {
   );
 });
 
-test('#04: Creates `ERROR_FAILED_RECOVERING_PROOF` error', async t => {
+test('#03: Creates `ERROR_FAILED_RECOVERING_PROOF` error', async t => {
   const error = createFailedRecoveringProofError();
   errorAssertions(t, error, 'ERROR_FAILED_RECOVERING_PROOF', 'Failed to recover proof. Request failed authentication.');
 });
 
-test('#05: Creates `ERROR_SECRET_API_KEY_MISSING` error', async t => {
+test('#04: Creates `ERROR_SECRET_API_KEY_MISSING` error', async t => {
   const error = createApiKeyMissingError();
   errorAssertions(
     t,
