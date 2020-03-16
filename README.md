@@ -1,6 +1,6 @@
 # Magic Authentication Admin Javascript SDK
 
-The Magic Admin SDK lets developers secure endpoints in their Express-based NodeJS application via easy-to-use middleware.
+The Magic Admin SDK lets developers secure endpoints in their Express-based NodeJS application via easy-to-use utilities and middleware.
 
 ## Documentation
 
@@ -15,15 +15,10 @@ npm install --save @magic-sdk/admin
 ```
 
 ## Usage
-Sign up or log in to your [Developer Dashboard](https://dashboard.fortmatic.com) to receive API keys.
+Sign up or log in to your [Developer Dashboard](https://dashboard.magic.link) to receive API keys.
 
 
 ```jspx
-const Magic = require('@magic-sdk/admin');
-
-// Create the Admin SDK instance
+const { Magic } = require('@magic-sdk/admin');
 const magic = new Magic(‘YOUR_DEVELOPER_SECRET_KEY’);
-
-// Apply Express middleware
-app.use(magic.middlewares.express);
 ```
