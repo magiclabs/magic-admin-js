@@ -13,13 +13,6 @@ export class MagicAdminSDKError extends Error {
 
 // --- SDK error factories
 
-export function createMissingAuthHeaderError() {
-  return new MagicAdminSDKError(
-    ErrorCode.MissingAuthHeader,
-    'Missing authorization header. Request failed authentication.',
-  );
-}
-
 export function createTokenExpiredError() {
   return new MagicAdminSDKError(ErrorCode.TokenExpired, 'DID Token has expired. Request failed authentication.');
 }
