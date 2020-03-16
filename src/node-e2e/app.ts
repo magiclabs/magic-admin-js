@@ -1,6 +1,6 @@
 // Import controllers
 import express from 'express';
-import Magic from '../admin-sdk';
+import { Magic } from '../admin-sdk';
 import { CommentsController } from './controllers/comments/comments';
 import { LikesController } from './controllers/likes/likes';
 import { UsersController } from './controllers/users/users';
@@ -10,9 +10,6 @@ const port = 3101;
 
 /* Magic admin SDK instance */
 const magic = new Magic('sk_test_23820E8B30001B59');
-
-/* Entry point for middleWare */
-app.use(magic.middlewares.express);
 
 app.get('/', (req: any, res: any) => res.send('Hello World!'));
 
