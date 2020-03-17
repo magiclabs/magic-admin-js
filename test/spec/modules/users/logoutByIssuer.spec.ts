@@ -11,7 +11,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
   const fetchStub = sinon.stub();
   (fetch as any) = fetchStub;
 
-  await t.notThrowsAsync(sdk.users.logoutByPublicAddress('0x0123'));
+  await t.notThrowsAsync(sdk.users.logoutByIssuer('did:ethr:0x1234'));
 
   const fetchArguments = fetchStub.args[0];
   t.deepEqual(fetchArguments, [
@@ -19,7 +19,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
     {
       method: 'POST',
       headers: { 'X-Magic-Secret-key': API_KEY },
-      body: '{"publicaddress":"0x0123"}',
+      body: '{"publicaddress":"0x1234"}',
     },
   ]);
 });
@@ -34,7 +34,7 @@ test('#02: Fails POST if API key is missing', async t => {
 
   (sdk as any).secretApiKey = undefined;
 
-  const error: MagicAdminSDKError = await t.throwsAsync(sdk.users.logoutByPublicAddress('0x0123'));
+  const error: MagicAdminSDKError = await t.throwsAsync(sdk.users.logoutByIssuer('did:ethr:0x1234'));
 
   t.false(fetchStub.called);
   t.is(error.code, expectedError.code);
