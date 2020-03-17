@@ -1,7 +1,7 @@
 import test from 'ava';
 import { createMagicAdminSDK } from '../../../lib/factories';
 import { VALID_DIDT, VALID_DIDT_DECODED, INVALID_DIDT_MALFORMED_CLAIM } from '../../../lib/constants';
-import { MagicAdminSDKError, createMalformedTokenError } from '../../../../src/admin-sdk/core/sdk-exceptions';
+import { MagicAdminSDKError, createMalformedTokenError } from '../../../../src/core/sdk-exceptions';
 
 test('#01: Successfully decodes DIDT', async t => {
   const sdk = createMagicAdminSDK();

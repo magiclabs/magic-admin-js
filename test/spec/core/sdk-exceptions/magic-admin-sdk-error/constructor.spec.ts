@@ -1,5 +1,5 @@
 import test from 'ava';
-import { MagicAdminSDKError } from '../../../../../src/admin-sdk/core/sdk-exceptions';
+import { MagicAdminSDKError } from '../../../../../src/core/sdk-exceptions';
 
 test('#01: Instantiates `MagicAdminSDKError`', t => {
   const error = new MagicAdminSDKError('TEST_CODE' as any, 'test message');

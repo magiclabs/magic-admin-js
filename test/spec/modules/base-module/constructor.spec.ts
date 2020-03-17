@@ -1,6 +1,6 @@
 import test from 'ava';
-import { MagicAdminSDK } from '../../../../src/admin-sdk/core/sdk';
-import { BaseModule } from '../../../../src/admin-sdk/modules/base-module';
+import { MagicAdminSDK } from '../../../../src/core/sdk';
+import { BaseModule } from '../../../../src/modules/base-module';
 import { createMagicAdminSDK } from '../../../lib/factories';
 
 test.serial('#01: Initializes `BaseModule`', t => {

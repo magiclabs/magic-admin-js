@@ -1,10 +1,10 @@
 /* eslint-disable no-new */
 
 import test from 'ava';
-import { MagicAdminSDK } from '../../../../src/admin-sdk/core/sdk';
+import { MagicAdminSDK } from '../../../../src/core/sdk';
 import { API_FULL_URL, API_KEY } from '../../../lib/constants';
-import { TokenModule } from '../../../../src/admin-sdk/modules/token';
-import { UsersModule } from '../../../../src/admin-sdk/modules/users';
+import { TokenModule } from '../../../../src/modules/token';
+import { UsersModule } from '../../../../src/modules/users';
 
 test.serial('#01: Initialize `MagicAdminSDK`', t => {
   const magic = new MagicAdminSDK(API_KEY);

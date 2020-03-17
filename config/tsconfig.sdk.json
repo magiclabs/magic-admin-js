@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "../dist",
   },
-  "include": ["../src/admin-sdk"]
+  "include": ["../src/**/*.ts"]
 }

@@ -9,7 +9,7 @@ import {
   createTokenExpiredError,
   createFailedRecoveringProofError,
   createMalformedTokenError,
-} from '../../../../src/admin-sdk/core/sdk-exceptions';
+} from '../../../../src/core/sdk-exceptions';
 
 test('#01: Successfully validates DIDT', async t => {
   const sdk = createMagicAdminSDK();

@@ -12,8 +12,6 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "npm run clean:build && ./scripts/start.sh",
-    "start:sdk": "tsc -w -p ./config/tsconfig.sdk.json",
-    "start:e2e": "ts-node src/node-e2e/app.ts",
     "build": "npm run clean:build && ./scripts/build.sh",
     "test": "npm run clean:test-artifacts && ./scripts/test.sh",
     "lint": "eslint --fix src/**/*.ts",

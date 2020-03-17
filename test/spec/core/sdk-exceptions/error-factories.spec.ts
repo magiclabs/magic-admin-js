@@ -7,7 +7,7 @@ import {
   createIncorrectSignerAddressError,
   createFailedRecoveringProofError,
   createApiKeyMissingError,
-} from '../../../../src/admin-sdk/core/sdk-exceptions';
+} from '../../../../src/core/sdk-exceptions';
 
 function errorAssertions<T extends ExecutionContext<any>>(
   t: T,

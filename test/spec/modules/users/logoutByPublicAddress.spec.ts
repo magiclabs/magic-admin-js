@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import fetch from 'node-fetch';
 import { createMagicAdminSDK } from '../../../lib/factories';
 import { VALID_DIDT, API_KEY } from '../../../lib/constants';
-import { createApiKeyMissingError, MagicAdminSDKError } from '../../../../src/admin-sdk/core/sdk-exceptions';
+import { createApiKeyMissingError, MagicAdminSDKError } from '../../../../src/core/sdk-exceptions';
 
 test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
   const sdk = createMagicAdminSDK('https://example.com');

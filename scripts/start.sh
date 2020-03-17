@@ -9,4 +9,4 @@ export NODE_OPTIONS=--max_old_space_size=4096
 
 export NODE_ENV=development
 
-npx npm-run-all -p start:* -l
+npx tsc -w -p ./config/tsconfig.sdk.json

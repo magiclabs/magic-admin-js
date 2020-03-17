@@ -1,5 +1,5 @@
 import test from 'ava';
-import { isDIDTClaim } from '../../../../src/admin-sdk/utils/type-guards';
+import { isDIDTClaim } from '../../../../src/utils/type-guards';
 
 test('#01: Returns false given `undefined`', async t => {
   t.false(isDIDTClaim(undefined));
