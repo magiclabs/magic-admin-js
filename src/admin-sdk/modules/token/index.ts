@@ -68,4 +68,8 @@ export class TokenModule extends BaseModule {
     const claimedIssuer = claim.iss.split(':')[2];
     return claimedIssuer;
   }
+
+  public getIssuer(DIDToken: string): string {
+    return this.decode(DIDToken)[1].iss;
+  }
 }

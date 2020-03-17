@@ -27,4 +27,16 @@ export class UsersModule extends BaseModule {
       body,
     });
   }
+
+  public async logoutByIssuer(issuer: string) {
+    if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
+
+    const body = JSON.stringify({ publicaddress: issuer.split(':')[2] });
+
+    return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
+      method: 'POST',
+      headers: { 'X-Magic-Secret-key': this.sdk.secretApiKey },
+      body,
+    });
+  }
 }
