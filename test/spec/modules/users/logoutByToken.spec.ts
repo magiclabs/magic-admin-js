@@ -23,7 +23,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
     {
       method: 'POST',
       headers: { 'X-Magic-Secret-key': API_KEY },
-      body: '{"publicaddress":"0x0123"}',
+      body: '{"public_address":"0x0123"}',
     },
   ]);
 });

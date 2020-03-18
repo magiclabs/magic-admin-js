@@ -3,10 +3,10 @@ import { BaseModule } from '../base-module';
 import { createApiKeyMissingError } from '../../core/sdk-exceptions';
 
 export class UsersModule extends BaseModule {
-  public async logoutByPublicAddress(publicAddress: string) {
+  public async logoutByPublicAddress(public_address: string) {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
 
-    const body = JSON.stringify({ publicaddress: publicAddress });
+    const body = JSON.stringify({ public_address });
 
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
@@ -18,8 +18,8 @@ export class UsersModule extends BaseModule {
   public async logoutByToken(DIDToken: string) {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
 
-    const publicAddress = this.sdk.token.getPublicAddress(DIDToken);
-    const body = JSON.stringify({ publicaddress: publicAddress });
+    const public_address = this.sdk.token.getPublicAddress(DIDToken);
+    const body = JSON.stringify({ public_address });
 
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
@@ -31,7 +31,7 @@ export class UsersModule extends BaseModule {
   public async logoutByIssuer(issuer: string) {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
 
-    const body = JSON.stringify({ publicaddress: issuer.split(':')[2] });
+    const body = JSON.stringify({ public_address: issuer.split(':')[2] });
 
     return fetch(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, {
       method: 'POST',
