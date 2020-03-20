@@ -13,13 +13,13 @@ import {
 
 test('#01: Successfully validates DIDT', async t => {
   const sdk = createMagicAdminSDK();
-  await t.notThrowsAsync(sdk.token.validate(VALID_DIDT));
+  t.notThrows(() => sdk.token.validate(VALID_DIDT));
 });
 
 test('#02: Fails when signer address mismatches signature', async t => {
   const sdk = createMagicAdminSDK();
   const expectedError = createIncorrectSignerAddressError();
-  const error: MagicAdminSDKError = await t.throwsAsync(sdk.token.validate(INVALID_SIGNER_DIDT));
+  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(INVALID_SIGNER_DIDT));
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
 });
@@ -27,7 +27,7 @@ test('#02: Fails when signer address mismatches signature', async t => {
 test('#03: Fails when given expired token', async t => {
   const sdk = createMagicAdminSDK();
   const expectedError = createTokenExpiredError();
-  const error: MagicAdminSDKError = await t.throwsAsync(sdk.token.validate(EXPIRED_DIDT));
+  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(EXPIRED_DIDT));
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
 });
@@ -38,7 +38,7 @@ test('#04: Fails if signature recovery rejects', async t => {
 
   const sdk = createMagicAdminSDK();
   const expectedError = createFailedRecoveringProofError();
-  const error: MagicAdminSDKError = await t.throwsAsync(sdk.token.validate(VALID_DIDT));
+  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(VALID_DIDT));
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
 });
@@ -49,7 +49,7 @@ test('#05: Fails if decoding token fails', async t => {
 
   const sdk = createMagicAdminSDK();
   const expectedError = createMalformedTokenError();
-  const error: MagicAdminSDKError = await t.throwsAsync(sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM));
+  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM));
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
 });

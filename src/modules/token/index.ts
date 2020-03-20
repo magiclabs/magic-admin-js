@@ -9,44 +9,42 @@ import {
   createMalformedTokenError,
 } from '../../core/sdk-exceptions';
 import { isDIDTClaim } from '../../utils/type-guards';
+import { ecRecover } from '../../utils/ec-recover';
 
 export class TokenModule extends BaseModule {
-  public async validate(DIDToken: string) {
-    let recoveredSignerAddress = '';
+  public validate(DIDToken: string, attachment = 'none') {
+    let tokenSigner = '';
+    let attachmentSigner = '';
     let claimedIssuer = '';
+    let parsedClaim;
     let proof: string;
     let claim: string;
-    let parsedClaim;
 
     try {
       [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
       parsedClaim = JSON.parse(claim) as Claim;
+      claimedIssuer = parsedClaim.iss.split(':')[2].toLowerCase() ?? '';
       if (!isDIDTClaim(parsedClaim)) throw new Error();
     } catch {
       throw createMalformedTokenError();
     }
 
     try {
-      /**
-       * Use ecRecover on the Proof, to validate if it recovers to the expected
-       * Claim, and expected Signer Address.
-       */
-      const ecRecoverMsgParams = {
-        data: ethUtil.bufferToHex(Buffer.from(claim, 'utf8')),
-        sig: proof,
-      };
-      recoveredSignerAddress = ethSigUtil.recoverPersonalSignature(ecRecoverMsgParams);
+      // Recover the token signer
+      tokenSigner = ecRecover(claim, proof).toLowerCase();
 
-      // eslint-disable-next-line prefer-destructuring
-      claimedIssuer = parsedClaim.iss.split(':')[2];
+      // Recover the attachment signer
+      attachmentSigner = ecRecover(attachment, parsedClaim.add).toLowerCase();
     } catch {
       throw createFailedRecoveringProofError();
     }
 
-    if (claimedIssuer.toLowerCase() !== recoveredSignerAddress.toLowerCase()) {
+    // Assert the expected signer
+    if (claimedIssuer !== tokenSigner || claimedIssuer !== attachmentSigner) {
       throw createIncorrectSignerAddressError();
     }
 
+    // Assert the token is not expired
     if (parsedClaim.ext < Math.floor(Date.now() / 1000) - 30) {
       throw createTokenExpiredError();
     }

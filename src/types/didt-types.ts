@@ -7,4 +7,5 @@ export interface Claim {
   aud: string; // Audience
   nbf: number; // Not Before Timestamp
   tid: string; // DID Token ID
+  add: string; // Encrypted signature of arbitrary data
 }
