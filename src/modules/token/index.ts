@@ -24,7 +24,6 @@ export class TokenModule extends BaseModule {
       [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
       parsedClaim = JSON.parse(claim) as Claim;
       claimedIssuer = parsedClaim.iss.split(':')[2].toLowerCase() ?? '';
-      console.log('here');
       if (!isDIDTClaim(parsedClaim)) throw new Error();
     } catch {
       throw createMalformedTokenError();
