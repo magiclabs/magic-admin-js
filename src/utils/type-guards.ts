@@ -34,6 +34,7 @@ export function isDIDTClaim(value: any): value is Claim {
     !isNil(value.sub) &&
     !isNil(value.aud) &&
     !isNil(value.nbf) &&
-    !isNil(value.tid)
+    !isNil(value.tid) &&
+    !isNil(value.add)
   );
 }
