@@ -9,7 +9,7 @@ import {
 } from '../../core/sdk-exceptions';
 import { ecRecover } from '../../utils/ec-recover';
 import { parseDIDToken } from '../../utils/parse-didt';
-import { parsePublicAddressFromIssuer } from '../../utils/issuer-operations';
+import { parsePublicAddressFromIssuer } from '../../utils/issuer';
 
 export class TokenModule extends BaseModule {
   public validate(DIDToken: string, attachment = 'none') {

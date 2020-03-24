@@ -5,4 +5,5 @@ export enum ErrorCode {
   FailedRecoveryProof = 'ERROR_FAILED_RECOVERING_PROOF',
   ApiKeyMissing = 'ERROR_SECRET_API_KEY_MISSING',
   MalformedTokenError = 'ERROR_MALFORMED_TOKEN',
+  ServiceError = 'SERVICE_ERROR',
 }
