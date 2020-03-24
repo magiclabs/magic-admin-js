@@ -7,6 +7,7 @@ import {
   createIncorrectSignerAddressError,
   createFailedRecoveringProofError,
   createApiKeyMissingError,
+  createServiceError,
 } from '../../../../src/core/sdk-exceptions';
 
 function errorAssertions<T extends ExecutionContext<any>>(
@@ -14,10 +15,12 @@ function errorAssertions<T extends ExecutionContext<any>>(
   error: MagicAdminSDKError,
   expectedCode: string,
   expectedMessage: string,
+  expectedData: any[] = [],
 ) {
   t.true(error instanceof MagicAdminSDKError);
   t.is(error.code, expectedCode);
   t.is(error.message, `Magic Admin SDK Error: [${expectedCode}] ${expectedMessage}`);
+  t.deepEqual(error.data, expectedData);
 }
 
 test('#01: Creates `ERROR_DIDT_EXPIRED` error', async t => {
@@ -47,5 +50,26 @@ test('#04: Creates `ERROR_SECRET_API_KEY_MISSING` error', async t => {
     error,
     'ERROR_SECRET_API_KEY_MISSING',
     'Please provide a secret Fortmatic API key that you acquired from the developer dashboard.',
+  );
+});
+
+test('#05: Creates `SERVICE_ERROR` error with empty `data` property', async t => {
+  const error = createServiceError();
+  errorAssertions(
+    t,
+    error,
+    'SERVICE_ERROR',
+    'A service error occurred while communicating with the Magic API. Check the `data` key of this error object to see nested errors with additional context.',
+  );
+});
+
+test('#06: Creates `SERVICE_ERROR` error with non-empty `data` property', async t => {
+  const error = createServiceError('hello', 'world');
+  errorAssertions(
+    t,
+    error,
+    'SERVICE_ERROR',
+    'A service error occurred while communicating with the Magic API. Check the `data` key of this error object to see nested errors with additional context.',
+    ['hello', 'world'],
   );
 });

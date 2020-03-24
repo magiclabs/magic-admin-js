@@ -5,13 +5,14 @@ import { API_KEY } from '../../../lib/constants';
 import { createApiKeyMissingError, MagicAdminSDKError } from '../../../../src/core/sdk-exceptions';
 import { get } from '../../../../src/utils/rest';
 
+const successRes = Promise.resolve({ issuer: 'foo', public_address: 'bar', email: 'baz' });
+const nullRes = Promise.resolve({});
+
 test('#01: Successfully GETs to metadata endpoint via issuer', async t => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getStub = sinon.stub();
-  getStub.returns(
-    Promise.resolve({ json: () => Promise.resolve({ data: { issuer: 'foo', public_address: 'bar', email: 'baz' } }) }),
-  );
+  getStub.returns(successRes);
   (get as any) = getStub;
 
   const result = await sdk.users.getMetadataByIssuer('did:ethr:0x1234');
@@ -29,7 +30,7 @@ test('#02: Successfully GETs `null` metadata endpoint via issuer', async t => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getStub = sinon.stub();
-  getStub.returns(Promise.resolve({ json: () => Promise.resolve(null) }));
+  getStub.returns(nullRes);
   (get as any) = getStub;
 
   const result = await sdk.users.getMetadataByIssuer('did:ethr:0x1234');

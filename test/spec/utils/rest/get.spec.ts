@@ -4,12 +4,23 @@ import fetch from 'node-fetch';
 import { API_KEY } from '../../../lib/constants';
 import { get } from '../../../../src/utils/rest';
 
+const successRes = Promise.resolve({
+  json: () =>
+    Promise.resolve({
+      data: 'hello world',
+      status: 'ok',
+    }),
+});
+
 test('#01: Successfully GETs to the given endpoint & stringifies query params', async t => {
   const fetchStub = sinon.stub();
-  fetchStub.returns(Promise.resolve());
+  fetchStub.returns(successRes);
   (fetch as any) = fetchStub;
 
-  await t.notThrowsAsync(get('https://example.com/hello/world', API_KEY, { foo: 'hello', bar: 'world' }));
+  await t.notThrowsAsync(async () => {
+    const result = await get('https://example.com/hello/world', API_KEY, { foo: 'hello', bar: 'world' });
+    t.is(result, 'hello world');
+  });
 
   const fetchArguments = fetchStub.args[0];
   t.deepEqual(fetchArguments, [
@@ -21,12 +32,15 @@ test('#01: Successfully GETs to the given endpoint & stringifies query params', 
   ]);
 });
 
-test('#01: Successfully GETs to the given endpoint with no query params', async t => {
+test('#02: Successfully GETs to the given endpoint with no query params', async t => {
   const fetchStub = sinon.stub();
-  fetchStub.returns(Promise.resolve());
+  fetchStub.returns(successRes);
   (fetch as any) = fetchStub;
 
-  await t.notThrowsAsync(get('https://example.com/hello/world', API_KEY));
+  await t.notThrowsAsync(async () => {
+    const result = await get('https://example.com/hello/world', API_KEY);
+    t.is(result, 'hello world');
+  });
 
   const fetchArguments = fetchStub.args[0];
   t.deepEqual(fetchArguments, [

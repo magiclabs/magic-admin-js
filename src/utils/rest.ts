@@ -1,14 +1,51 @@
-import fetch from 'node-fetch';
+import fetch, { RequestInit } from 'node-fetch';
+import { createServiceError } from '../core/sdk-exceptions';
+
+interface MagicAPIResponse<TData = {}> {
+  data?: TData;
+  error_code?: string;
+  message?: string;
+  status?: string | number;
+}
 
 /**
- * HTTP POST to Magic's API.
+ * Performs a `fetch` to the given URL with the configured `init` object.
  */
-export function post<T extends Record<string, string | number | boolean> = {}>(
+async function emitRequest<TResponse extends any = {}>(url: string, init?: RequestInit): Promise<Partial<TResponse>> {
+  const json: MagicAPIResponse<TResponse> = await fetch(url, init)
+    .then(res => res.json())
+    .catch(err => {
+      throw createServiceError(err);
+    });
+
+  if (json.status !== 'ok') {
+    throw createServiceError(json);
+  }
+
+  return json.data ?? {};
+}
+
+/**
+ * Generates an encoded URL with query string from a dictionary of values.
+ */
+function generateQuery<T extends Record<string, string | number | boolean> = {}>(url: string, params?: T) {
+  let query = '?';
+  if (params) {
+    for (const [key, value] of Object.entries(params)) query += `${key}=${encodeURIComponent(value)}&`;
+    query = query.slice(0, -1); // Remove trailing "&"
+  }
+  return params ? `${url}${query}` : url;
+}
+
+/**
+ * POSTs to Magic's API.
+ */
+export function post<TBody extends Record<string, string | number | boolean> = {}, TResponse extends any = {}>(
   url: string,
   secretApiKey: string,
-  body: T,
+  body: TBody,
 ) {
-  return fetch(url, {
+  return emitRequest<TResponse>(url, {
     method: 'POST',
     headers: { 'X-Magic-Secret-key': secretApiKey },
     body: JSON.stringify(body),
@@ -16,21 +53,11 @@ export function post<T extends Record<string, string | number | boolean> = {}>(
 }
 
 /**
- * HTTP GET from Magic's API.
+ * GETs from Magic's API.
  */
-export function get<T extends Record<string, string | number | boolean> = {}>(
-  url: string,
-  secretApiKey: string,
-  params?: T,
-) {
-  let query = '?';
-  if (params) {
-    for (const [key, value] of Object.entries(params)) query += `${key}=${value}&`;
-    query = query.slice(0, -1); // Remove trailing "&"
-  }
-  const urlWithParams = params ? `${url}${query}` : url;
-
-  return fetch(urlWithParams, {
+export function get<TResponse extends any = {}>(url: string, secretApiKey: string, params?: any) {
+  const urlWithParams = generateQuery(url, params);
+  return emitRequest<TResponse>(urlWithParams, {
     method: 'GET',
     headers: { 'X-Magic-Secret-key': secretApiKey },
   });

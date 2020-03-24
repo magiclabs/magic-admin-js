@@ -5,7 +5,7 @@ import { ErrorCode } from '../types';
 export class MagicAdminSDKError extends Error {
   __proto__ = Error;
 
-  constructor(public code: ErrorCode, message: string) {
+  constructor(public code: ErrorCode, message: string, public data: any[] = []) {
     super(`Magic Admin SDK Error: [${code}] ${message}`);
     Object.setPrototypeOf(this, MagicAdminSDKError.prototype);
   }
@@ -40,4 +40,12 @@ export function createApiKeyMissingError() {
 
 export function createMalformedTokenError() {
   return new MagicAdminSDKError(ErrorCode.MalformedTokenError, 'The DID token is malformed or failed to parse.');
+}
+
+export function createServiceError(...nestedErrors: any[]) {
+  return new MagicAdminSDKError(
+    ErrorCode.ServiceError,
+    'A service error occurred while communicating with the Magic API. Check the `data` key of this error object to see nested errors with additional context.',
+    nestedErrors,
+  );
 }
