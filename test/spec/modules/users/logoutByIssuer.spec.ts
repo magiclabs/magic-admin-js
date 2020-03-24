@@ -14,7 +14,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async t => {
   await t.notThrowsAsync(sdk.users.logoutByIssuer('did:ethr:0x1234'));
 
   const postArguments = postStub.args[0];
-  t.deepEqual(postArguments, ['https://example.com/v1/admin/auth/user/logout', API_KEY, { public_address: '0x1234' }]);
+  t.deepEqual(postArguments, ['https://example.com/v2/admin/auth/user/logout', API_KEY, { issuer: 'did:ethr:0x1234' }]);
 });
 
 test('#02: Fails POST if API key is missing', async t => {
@@ -31,4 +31,5 @@ test('#02: Fails POST if API key is missing', async t => {
   t.false(postStub.called);
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
+  t.deepEqual(error.data, []);
 });

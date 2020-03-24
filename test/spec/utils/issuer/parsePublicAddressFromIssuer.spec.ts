@@ -1,5 +1,5 @@
 import test from 'ava';
-import { parsePublicAddressFromIssuer } from '../../../../src/utils/issuer-operations';
+import { parsePublicAddressFromIssuer } from '../../../../src/utils/issuer';
 
 test('#01: Successfully parses public address from issuer string', async t => {
   const result = parsePublicAddressFromIssuer('did:ethr:0x1234');

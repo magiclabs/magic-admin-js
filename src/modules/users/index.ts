@@ -1,28 +1,29 @@
 import { BaseModule } from '../base-module';
 import { createApiKeyMissingError } from '../../core/sdk-exceptions';
 import { post, get } from '../../utils/rest';
-import { generateIssuerFromPublicAddress } from '../../utils/issuer-operations';
+import { generateIssuerFromPublicAddress, parsePublicAddressFromIssuer } from '../../utils/issuer';
 import { MagicUserMetadata } from '../../types';
 
 export class UsersModule extends BaseModule {
+  // --- User logout endpoints
+
   public async logoutByIssuer(issuer: string): Promise<void> {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
-    const body = { public_address: issuer.split(':')[2] };
-    await post(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, this.sdk.secretApiKey, body);
+    const body = { issuer };
+    await post(`${this.sdk.apiBaseUrl}/v2/admin/auth/user/logout`, this.sdk.secretApiKey, body);
   }
 
-  public async logoutByPublicAddress(public_address: string): Promise<void> {
-    if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
-    const body = { public_address };
-    await post(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, this.sdk.secretApiKey, body);
+  public async logoutByPublicAddress(publicAddress: string): Promise<void> {
+    const issuer = generateIssuerFromPublicAddress(publicAddress);
+    await this.logoutByIssuer(issuer);
   }
 
   public async logoutByToken(DIDToken: string): Promise<void> {
-    if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
-    const public_address = this.sdk.token.getPublicAddress(DIDToken);
-    const body = { public_address };
-    await post(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/logout`, this.sdk.secretApiKey, body);
+    const issuer = this.sdk.token.getIssuer(DIDToken);
+    await this.logoutByIssuer(issuer);
   }
+
+  // --- User metadata endpoints
 
   public async getMetadataByIssuer(issuer: string): Promise<MagicUserMetadata> {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
