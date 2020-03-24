@@ -29,7 +29,9 @@ export class UsersModule extends BaseModule {
 
     const data = await get(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, {
       issuer: this.sdk.token.getIssuer(DIDToken),
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .then(json => json?.data);
 
     return {
       issuer: data?.issuer ?? null,
@@ -43,7 +45,9 @@ export class UsersModule extends BaseModule {
 
     const data = await get(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, {
       issuer,
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .then(json => json?.data);
 
     return {
       issuer: data?.issuer ?? null,
@@ -57,7 +61,9 @@ export class UsersModule extends BaseModule {
 
     const data = await get(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, {
       issuer: generateIssuerFromPublicAddress(publicAddress),
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .then(json => json?.data);
 
     return {
       issuer: data?.issuer ?? null,

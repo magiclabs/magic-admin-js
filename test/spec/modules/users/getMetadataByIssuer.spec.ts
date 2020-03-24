@@ -10,7 +10,7 @@ test('#01: Successfully GETs to metadata endpoint via issuer', async t => {
 
   const getStub = sinon.stub();
   getStub.returns(
-    Promise.resolve({ json: () => Promise.resolve({ issuer: 'foo', public_address: 'bar', email: 'baz' }) }),
+    Promise.resolve({ json: () => Promise.resolve({ data: { issuer: 'foo', public_address: 'bar', email: 'baz' } }) }),
   );
   (get as any) = getStub;
 
