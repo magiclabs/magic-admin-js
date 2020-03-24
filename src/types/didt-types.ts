@@ -9,3 +9,5 @@ export interface Claim {
   tid: string; // DID Token ID
   add: string; // Encrypted signature of arbitrary data
 }
+
+export type ParsedDIDToken = [string, Claim];

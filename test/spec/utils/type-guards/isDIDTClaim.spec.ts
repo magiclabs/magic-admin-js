@@ -38,7 +38,7 @@ test('#09: Returns false given without `Claim.tid`', async t => {
 });
 
 test('#10: Returns false given without `Claim.add`', async t => {
-  t.true(isDIDTClaim({ iat: 123, ext: 123, iss: 'asdf', sub: 'asdf', aud: 'asdf', nbf: 123, tid: 'asdf' }));
+  t.false(isDIDTClaim({ iat: 123, ext: 123, iss: 'asdf', sub: 'asdf', aud: 'asdf', nbf: 123, tid: 'asdf' }));
 });
 
 test('#11: Returns true given with all required properties', async t => {

@@ -1,15 +1,15 @@
-import ethSigUtil from 'eth-sig-util';
-import * as ethUtil from 'ethereumjs-util';
+/* eslint-disable prefer-destructuring */
 import { BaseModule } from '../base-module';
-import { Claim } from '../../types';
+import { ParsedDIDToken } from '../../types';
 import {
   createFailedRecoveringProofError,
   createIncorrectSignerAddressError,
   createTokenExpiredError,
   createMalformedTokenError,
 } from '../../core/sdk-exceptions';
-import { isDIDTClaim } from '../../utils/type-guards';
 import { ecRecover } from '../../utils/ec-recover';
+import { parseDIDToken } from '../../utils/parse-didt';
+import { parsePublicAddressFromIssuer } from '../../utils/issuer-operations';
 
 export class TokenModule extends BaseModule {
   public validate(DIDToken: string, attachment = 'none') {
@@ -21,10 +21,10 @@ export class TokenModule extends BaseModule {
     let claim: string;
 
     try {
-      [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
-      parsedClaim = JSON.parse(claim) as Claim;
-      claimedIssuer = parsedClaim.iss.split(':')[2].toLowerCase() ?? '';
-      if (!isDIDTClaim(parsedClaim)) throw new Error();
+      const tokenParseResult = parseDIDToken(DIDToken);
+      [proof, claim] = tokenParseResult.raw;
+      parsedClaim = tokenParseResult.withParsedClaim[1];
+      claimedIssuer = parsePublicAddressFromIssuer(parsedClaim.iss);
     } catch {
       throw createMalformedTokenError();
     }
@@ -50,15 +50,9 @@ export class TokenModule extends BaseModule {
     }
   }
 
-  public decode(DIDToken: string): [string, Claim] {
-    try {
-      const [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
-      const parsedClaim = JSON.parse(claim) as Claim;
-      if (isDIDTClaim(parsedClaim)) return [proof, parsedClaim];
-      throw new Error();
-    } catch {
-      throw createMalformedTokenError();
-    }
+  public decode(DIDToken: string): ParsedDIDToken {
+    const parsedToken = parseDIDToken(DIDToken);
+    return parsedToken.withParsedClaim;
   }
 
   public getPublicAddress(DIDToken: string): string {
