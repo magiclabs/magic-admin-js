@@ -1,3 +1,17 @@
+## Upcoming Changes
+
+#### Fixed
+
+- ...
+
+#### Changed
+
+- ...
+
+#### Added
+
+- ...
+
 ## `1.0.0` - 04/09/2020
 
 This is the first release our changelog records. Future updates will be logged in the following format:
