@@ -1,6 +1,6 @@
 # Magic Authentication Admin Javascript SDK
 
-The Magic Admin SDK lets developers secure endpoints, manage users, and create middlewares via easy-to-use utilities.
+> The Magic Admin SDK lets developers secure endpoints, manage users, and create middlewares via easy-to-use utilities.
 
 <p align="center">
   <a href="./LICENSE">License</a> ·
