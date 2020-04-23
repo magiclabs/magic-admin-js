@@ -29,7 +29,7 @@
     "@types/node": "^13.1.2",
     "@types/node-fetch": "^2.5.4",
     "@types/sinon": "^7.5.2",
-    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
     "ava": "^3.4.0",
     "cli-glob": "^0.1.0",
     "eslint": "^6.7.2",
