@@ -49,3 +49,10 @@ export function createServiceError(...nestedErrors: any[]) {
     nestedErrors,
   );
 }
+
+export function createExpectedBearerStringError() {
+  return new MagicAdminSDKError(
+    ErrorCode.ExpectedBearerString,
+    'Expected argumenet to be a string in the `Bearer {token}` format.',
+  );
+}
