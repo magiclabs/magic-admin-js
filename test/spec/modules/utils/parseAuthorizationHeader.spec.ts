@@ -5,14 +5,14 @@ import { createExpectedBearerStringError, MagicAdminSDKError } from '../../../..
 
 test('#01: Successfully parses raw DIDT from `Bearer` authorization header', async t => {
   const sdk = createMagicAdminSDK();
-  const result = sdk.util.parseTokenFromBearerString(`Bearer ${VALID_DIDT}`);
+  const result = sdk.utils.parseAuthorizationHeader(`Bearer ${VALID_DIDT}`);
   t.deepEqual(result, VALID_DIDT);
 });
 
 test('#02: Raises error if header is in the wrong format', async t => {
   const sdk = createMagicAdminSDK();
   const expectedError = createExpectedBearerStringError();
-  const error: MagicAdminSDKError = t.throws(() => sdk.util.parseTokenFromBearerString(`Ooops ${VALID_DIDT}`));
+  const error: MagicAdminSDKError = t.throws(() => sdk.utils.parseAuthorizationHeader(`Ooops ${VALID_DIDT}`));
   t.is(error.code, expectedError.code);
   t.is(error.message, expectedError.message);
 });

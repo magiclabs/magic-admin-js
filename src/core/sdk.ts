@@ -1,6 +1,6 @@
 import { TokenModule } from '../modules/token';
 import { UsersModule } from '../modules/users';
-import { UtilModule } from '../modules/util';
+import { UtilsModule } from '../modules/utils';
 import { MagicAdminSDKAdditionalConfiguration } from '../types';
 
 export class MagicAdminSDK {
@@ -21,7 +21,7 @@ export class MagicAdminSDK {
   /**
    * Contains general utilities for Magic Admin SDK.
    */
-  public readonly util: UtilModule;
+  public readonly utils: UtilsModule;
 
   constructor(public readonly secretApiKey?: string, options?: MagicAdminSDKAdditionalConfiguration) {
     const endpoint = options?.endpoint ?? 'https://api.magic.link';
@@ -30,6 +30,6 @@ export class MagicAdminSDK {
     // Assign API Modules
     this.token = new TokenModule(this);
     this.users = new UsersModule(this);
-    this.util = new UtilModule(this);
+    this.utils = new UtilsModule(this);
   }
 }
