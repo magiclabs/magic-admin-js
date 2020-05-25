@@ -8,6 +8,7 @@ import {
   createFailedRecoveringProofError,
   createApiKeyMissingError,
   createServiceError,
+  createExpectedBearerStringError,
 } from '../../../../src/core/sdk-exceptions';
 
 function errorAssertions<T extends ExecutionContext<any>>(
@@ -71,5 +72,15 @@ test('#06: Creates `SERVICE_ERROR` error with non-empty `data` property', async 
     'SERVICE_ERROR',
     'A service error occurred while communicating with the Magic API. Check the `data` key of this error object to see nested errors with additional context.',
     ['hello', 'world'],
+  );
+});
+
+test('#07: Creates `EXPECTED_BEARER_STRING` error', async t => {
+  const error = createExpectedBearerStringError();
+  errorAssertions(
+    t,
+    error,
+    'EXPECTED_BEARER_STRING',
+    'Expected argumenet to be a string in the `Bearer {token}` format.',
   );
 });

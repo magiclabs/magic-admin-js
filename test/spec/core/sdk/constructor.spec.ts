@@ -5,6 +5,7 @@ import { MagicAdminSDK } from '../../../../src/core/sdk';
 import { API_FULL_URL, API_KEY } from '../../../lib/constants';
 import { TokenModule } from '../../../../src/modules/token';
 import { UsersModule } from '../../../../src/modules/users';
+import { UtilModule } from '../../../../src/modules/util';
 
 test.serial('#01: Initialize `MagicAdminSDK`', t => {
   const magic = new MagicAdminSDK(API_KEY);
@@ -22,6 +23,7 @@ test.serial('#02: Initialize `MagicAdminSDK` with custom endpoint', t => {
   t.is(magic.apiBaseUrl, 'https://example.com');
   t.true(magic.token instanceof TokenModule);
   t.true(magic.users instanceof UsersModule);
+  t.true(magic.util instanceof UtilModule);
 });
 
 test.serial('#03: Strips trailing slash(es) from custom endpoint argument', t => {

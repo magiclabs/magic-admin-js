@@ -6,4 +6,5 @@ export enum ErrorCode {
   ApiKeyMissing = 'ERROR_SECRET_API_KEY_MISSING',
   MalformedTokenError = 'ERROR_MALFORMED_TOKEN',
   ServiceError = 'SERVICE_ERROR',
+  ExpectedBearerString = 'EXPECTED_BEARER_STRING',
 }
