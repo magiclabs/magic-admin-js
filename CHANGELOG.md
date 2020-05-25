@@ -16,7 +16,7 @@
 
 #### Added
 
-- Introduced `UtilModule` along with a `parseTokenFromBearerString` helper method.
+- Introduced `UtilsModule` along with a `parseAuthorizationHeader` helper method.
 
 ## `1.0.0` - 04/09/2020
 
