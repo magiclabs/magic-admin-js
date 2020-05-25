@@ -12,6 +12,12 @@
 
 - ...
 
+## `1.1.0` - 05/25/2020
+
+#### Added
+
+- Introduced `UtilModule` along with a `parseTokenFromBearerString` helper method.
+
 ## `1.0.0` - 04/09/2020
 
 This is the first release our changelog records. Future updates will be logged in the following format:
