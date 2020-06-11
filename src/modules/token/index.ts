@@ -46,7 +46,7 @@ export class TokenModule extends BaseModule {
     }
 
     const timeSecs = Math.floor(Date.now() / 1000);
-    const nbfTimeSecs = 300; // 5 min grace period
+    const nbfLeeway = 300; // 5 min grace period
 
     // Assert the token is not expired
     if (parsedClaim.ext < timeSecs) {
@@ -54,7 +54,7 @@ export class TokenModule extends BaseModule {
     }
 
     // Assert the token is not used before allowed.
-    if (parsedClaim.nbf - nbfTimeSecs > timeSecs) {
+    if (parsedClaim.nbf - nbfLeeway > timeSecs) {
       throw createTokenCannotBeUsedYetError();
     }
   }
