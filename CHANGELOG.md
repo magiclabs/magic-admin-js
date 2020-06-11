@@ -12,6 +12,12 @@
 
 - ...
 
+## `1.2.1` - 06/11/2020
+
+#### Changed
+
+- Added `"files"` field to `package.json` to make the NPM package less cumbersome.
+
 ## `1.2.0` - 06/11/2020
 
 #### Added
