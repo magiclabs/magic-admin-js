@@ -12,6 +12,12 @@
 
 - ...
 
+## `1.2.2` - 06/11/2020
+
+#### Fixed
+
+- Fixed a logical error that would incorrectly parse the `nbf` field.
+
 ## `1.2.1` - 06/11/2020
 
 #### Changed
