@@ -1,6 +1,6 @@
 # Magic Authentication Admin Javascript SDK
 
-[![<MagicHQ>](https://circleci.com/gh/MagicHQ/magic-admin-js.svg?style=shield)](https://circleci.com/gh/MagicHQ/magic-admin-js)
+[![<MagicHQ>](https://circleci.com/gh/magiclabs/magic-admin-js.svg?style=shield)](https://circleci.com/gh/MagicHQ/magic-admin-js)
 
 > The Magic Admin SDK lets developers secure endpoints, manage users, and create middlewares via easy-to-use utilities.
 
