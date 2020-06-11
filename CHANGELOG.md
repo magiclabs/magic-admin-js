@@ -12,6 +12,12 @@
 
 - ...
 
+## `1.2.0` - 06/11/2020
+
+#### Added
+
+- Enforce the `nbf` field for DID Tokens parsed via `TokenModule.validate`.
+
 ## `1.1.0` - 05/25/2020
 
 #### Added
