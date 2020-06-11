@@ -54,7 +54,7 @@ export class TokenModule extends BaseModule {
     }
 
     // Assert the token is not used before allowed.
-    if (parsedClaim.nbf > timeSecs - nbfTimeSecs) {
+    if (parsedClaim.nbf - nbfTimeSecs > timeSecs) {
       throw createTokenCannotBeUsedYetError();
     }
   }
