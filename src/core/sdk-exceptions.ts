@@ -17,6 +17,13 @@ export function createTokenExpiredError() {
   return new MagicAdminSDKError(ErrorCode.TokenExpired, 'DID Token has expired. Request failed authentication.');
 }
 
+export function createTokenCannotBeUsedYetError() {
+  return new MagicAdminSDKError(
+    ErrorCode.TokenCannotBeUsedYet,
+    'Given DID Token cannot be used at this time. Please check the `nbf` field and regenerate a new token with a suitable value.',
+  );
+}
+
 export function createIncorrectSignerAddressError() {
   return new MagicAdminSDKError(
     ErrorCode.IncorrectSignerAddress,
@@ -47,5 +54,12 @@ export function createServiceError(...nestedErrors: any[]) {
     ErrorCode.ServiceError,
     'A service error occurred while communicating with the Magic API. Check the `data` key of this error object to see nested errors with additional context.',
     nestedErrors,
+  );
+}
+
+export function createExpectedBearerStringError() {
+  return new MagicAdminSDKError(
+    ErrorCode.ExpectedBearerString,
+    'Expected argumenet to be a string in the `Bearer {token}` format.',
   );
 }

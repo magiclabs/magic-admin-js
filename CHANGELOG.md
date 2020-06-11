@@ -12,6 +12,18 @@
 
 - ...
 
+## `1.2.0` - 06/11/2020
+
+#### Added
+
+- Enforce the `nbf` field for DID Tokens parsed via `TokenModule.validate`.
+
+## `1.1.0` - 05/25/2020
+
+#### Added
+
+- Introduced `UtilsModule` along with a `parseAuthorizationHeader` helper method.
+
 ## `1.0.0` - 04/09/2020
 
 This is the first release our changelog records. Future updates will be logged in the following format:

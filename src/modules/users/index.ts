@@ -1,7 +1,7 @@
 import { BaseModule } from '../base-module';
 import { createApiKeyMissingError } from '../../core/sdk-exceptions';
 import { post, get } from '../../utils/rest';
-import { generateIssuerFromPublicAddress, parsePublicAddressFromIssuer } from '../../utils/issuer';
+import { generateIssuerFromPublicAddress } from '../../utils/issuer';
 import { MagicUserMetadata } from '../../types';
 
 export class UsersModule extends BaseModule {
