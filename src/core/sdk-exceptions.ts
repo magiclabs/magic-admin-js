@@ -17,6 +17,13 @@ export function createTokenExpiredError() {
   return new MagicAdminSDKError(ErrorCode.TokenExpired, 'DID Token has expired. Request failed authentication.');
 }
 
+export function createTokenCannotBeUsedYetError() {
+  return new MagicAdminSDKError(
+    ErrorCode.TokenCannotBeUsedYet,
+    'Given DID Token cannot be used at this time. Please check the `nbf` field and regenerate a new token with a suitable value.',
+  );
+}
+
 export function createIncorrectSignerAddressError() {
   return new MagicAdminSDKError(
     ErrorCode.IncorrectSignerAddress,

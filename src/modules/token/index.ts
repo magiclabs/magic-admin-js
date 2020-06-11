@@ -6,6 +6,7 @@ import {
   createIncorrectSignerAddressError,
   createTokenExpiredError,
   createMalformedTokenError,
+  createTokenCannotBeUsedYetError,
 } from '../../core/sdk-exceptions';
 import { ecRecover } from '../../utils/ec-recover';
 import { parseDIDToken } from '../../utils/parse-didt';
@@ -44,9 +45,17 @@ export class TokenModule extends BaseModule {
       throw createIncorrectSignerAddressError();
     }
 
+    const timeSecs = Math.floor(Date.now() / 1000);
+    const nbfTimeSecs = 300; // 5 min grace period
+
     // Assert the token is not expired
-    if (parsedClaim.ext < Math.floor(Date.now() / 1000) - 30) {
+    if (parsedClaim.ext < timeSecs) {
       throw createTokenExpiredError();
+    }
+
+    // Assert the token is not used before allowed.
+    if (parsedClaim.nbf > timeSecs - nbfTimeSecs) {
+      throw createTokenCannotBeUsedYetError();
     }
   }
 

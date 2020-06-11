@@ -25,6 +25,7 @@ function isNil(value: any): value is null | undefined {
   return isNull(value) || isUndefined(value);
 }
 
+/** Assert `value` contains all required DID Token members. */
 export function isDIDTClaim(value: any): value is Claim {
   return (
     !isNil(value) &&
