@@ -10,6 +10,9 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "start": "npm run clean:build && ./scripts/start.sh",
     "build": "npm run clean:build && ./scripts/build.sh",
