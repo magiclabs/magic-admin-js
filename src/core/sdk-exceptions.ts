@@ -60,6 +60,6 @@ export function createServiceError(...nestedErrors: any[]) {
 export function createExpectedBearerStringError() {
   return new MagicAdminSDKError(
     ErrorCode.ExpectedBearerString,
-    'Expected argumenet to be a string in the `Bearer {token}` format.',
+    'Expected argument to be a string in the `Bearer {token}` format.',
   );
 }

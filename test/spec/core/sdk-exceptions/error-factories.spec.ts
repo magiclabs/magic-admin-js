@@ -92,6 +92,6 @@ test('#08: Creates `EXPECTED_BEARER_STRING` error', async t => {
     t,
     error,
     'EXPECTED_BEARER_STRING',
-    'Expected argumenet to be a string in the `Bearer {token}` format.',
+    'Expected argument to be a string in the `Bearer {token}` format.',
   );
 });
