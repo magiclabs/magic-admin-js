@@ -132,17 +132,17 @@ workflows:
     jobs:
       - install-dependencies: *filter-default-branches
 
-      - lint:
+      - build:
           requires:
             - install-dependencies
 
-      - build:
-          requires:
-            - lint
-
       - test:
           requires:
-            - lint
+            - build
+
+      - lint:
+          requires:
+            - build
 
   # Builds modules, verifies code with the linter, runs unit tests, and
   # publishes the built packages to NPM.
