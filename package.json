@@ -2,12 +2,9 @@
   "name": "@magic-sdk/admin",
   "version": "1.2.2",
   "description": "Magic Authentication Admin Javascript SDK.",
-  "author": "Fortmatic <team@fortmatic.com> (https://fortmatic.com/)",
+  "author": "Magic Labs <team@magic.link>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fortmatic/magic-admin-js"
-  },
+  "repository": "magiclabs/magic-admin-js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -33,6 +30,7 @@
     "@types/node-fetch": "^2.5.4",
     "@types/sinon": "^7.5.2",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "auto": "^9.60.1",
     "ava": "^3.4.0",
     "cli-glob": "^0.1.0",
     "eslint": "^6.7.2",
@@ -66,6 +64,12 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --fix"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
   },
   "ava": {
     "require": [

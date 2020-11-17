@@ -17,3 +17,6 @@ package-lock.json
 # Test artifacts
 /coverage
 /.nyc_output
+
+# ENV
+.env
