@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo
-echo "Building Magic Admin SDK for production."
+boxen --border-color cyan --dim-border --padding 1 "🏗 Building Magic Admin SDK for production."
 echo
 
 # Increase memory limit for Node
