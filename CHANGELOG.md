@@ -1,3 +1,20 @@
+# v1.3.1 (Tue Oct 05 2021)
+
+#### 🐛 Bug Fix
+
+- fix: prevent URI encoding [#69](https://github.com/magiclabs/magic-admin-js/pull/69) ([@chiefGui](https://github.com/chiefGui))
+
+#### 🏠 Internal
+
+- Cleanup internal scripts [#47](https://github.com/magiclabs/magic-admin-js/pull/47) ([@smithki](https://github.com/smithki))
+
+#### Authors: 2
+
+- Guilherme Oderdenge ([@chiefGui](https://github.com/chiefGui))
+- Ian K Smith ([@smithki](https://github.com/smithki))
+
+---
+
 # v1.3.0 (Tue Nov 17 2020)
 
 #### 🚀 Enhancement
