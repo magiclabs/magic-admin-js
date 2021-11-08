@@ -28,16 +28,18 @@ export class UsersModule extends BaseModule {
   public async getMetadataByIssuer(issuer: string): Promise<MagicUserMetadata> {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
 
-    const data = await get<{ issuer: string | null; public_address: string | null; email: string | null }>(
-      `${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`,
-      this.sdk.secretApiKey,
-      { issuer },
-    );
+    const data = await get<{
+      issuer: string | null;
+      public_address: string | null;
+      email: string | null;
+      oauth_provider: string | null;
+    }>(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, { issuer });
 
     return {
       issuer: data.issuer ?? null,
       publicAddress: data.public_address ?? null,
       email: data.email ?? null,
+      oauthProvider: data.oauth_provider ?? null,
     };
   }
 
