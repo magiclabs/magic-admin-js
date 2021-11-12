@@ -5,7 +5,7 @@ import { API_KEY } from '../../../lib/constants';
 import { createApiKeyMissingError, MagicAdminSDKError } from '../../../../src/core/sdk-exceptions';
 import { get } from '../../../../src/utils/rest';
 
-const successRes = Promise.resolve({ issuer: 'foo', public_address: 'bar', email: 'baz' });
+const successRes = Promise.resolve({ issuer: 'foo', public_address: 'bar', email: 'baz', oauth_provider: 'foo1' });
 const nullRes = Promise.resolve({});
 
 test('#01: Successfully GETs to metadata endpoint via issuer', async t => {
@@ -23,7 +23,7 @@ test('#01: Successfully GETs to metadata endpoint via issuer', async t => {
     issuer: 'foo',
     publicAddress: 'bar',
     email: 'baz',
-    oauthProvider: null,
+    oauthProvider: 'foo1',
   });
 });
 
