@@ -6,4 +6,5 @@ export interface MagicUserMetadata {
   issuer: string | null;
   publicAddress: string | null;
   email: string | null;
+  oauthProvider: string | null;
 }
