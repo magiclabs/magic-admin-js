@@ -23,6 +23,7 @@ test('#01: Successfully GETs to metadata endpoint via issuer', async t => {
     issuer: 'foo',
     publicAddress: 'bar',
     email: 'baz',
+    oauthProvider: null,
   });
 });
 
@@ -41,6 +42,7 @@ test('#02: Successfully GETs `null` metadata endpoint via issuer', async t => {
     issuer: null,
     publicAddress: null,
     email: null,
+    oauthProvider: null,
   });
 });
 
