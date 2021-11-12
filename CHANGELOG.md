@@ -1,3 +1,15 @@
+# v1.3.2 (Fri Nov 12 2021)
+
+#### 🐛 Bug Fix
+
+- allow getMetadata calls to return social provider [#71](https://github.com/magiclabs/magic-admin-js/pull/71) ([@hcote](https://github.com/hcote))
+
+#### Authors: 1
+
+- Hunter Cote ([@hcote](https://github.com/hcote))
+
+---
+
 # v1.3.1 (Tue Oct 05 2021)
 
 #### 🐛 Bug Fix
