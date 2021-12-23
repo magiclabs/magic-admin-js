@@ -33,6 +33,7 @@ export class UsersModule extends BaseModule {
       public_address: string | null;
       email: string | null;
       oauth_provider: string | null;
+      phone_number: string | null;
     }>(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, { issuer });
 
     return {
@@ -40,6 +41,7 @@ export class UsersModule extends BaseModule {
       publicAddress: data.public_address ?? null,
       email: data.email ?? null,
       oauthProvider: data.oauth_provider ?? null,
+      phoneNumber: data.phone_number ?? null,
     };
   }
 
