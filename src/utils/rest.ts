@@ -31,7 +31,7 @@ async function emitRequest<TResponse extends any = {}>(url: string, init?: Reque
 function generateQuery<T extends Record<string, string | number | boolean> = {}>(url: string, params?: T) {
   let query = '?';
   if (params) {
-    for (const [key, value] of Object.entries(params)) query += `${key}=${encodeURIComponent(value)}&`;
+    for (const [key, value] of Object.entries(params)) query += `${key}=${value}&`;
     query = query.slice(0, -1); // Remove trailing "&"
   }
   return params ? `${url}${query}` : url;
