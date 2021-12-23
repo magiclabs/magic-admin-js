@@ -12,7 +12,7 @@
 
 ## 📖 Documentation
 
-See the [developer documentation](https://docs.magic.link/admin-sdk/node-js) to learn how you can master the Magic Admin SDK in a matter of minutes.
+See the [developer documentation](https://magic.link/docs/api-reference/server-side-sdks/node) to learn how you can master the Magic Admin SDK in a matter of minutes.
 
 ## 🔗 Installation
 
