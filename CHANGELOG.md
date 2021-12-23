@@ -1,3 +1,32 @@
+# v1.3.2 (Fri Nov 12 2021)
+
+#### 🐛 Bug Fix
+
+- allow getMetadata calls to return social provider [#71](https://github.com/magiclabs/magic-admin-js/pull/71) ([@hcote](https://github.com/hcote))
+
+#### Authors: 1
+
+- Hunter Cote ([@hcote](https://github.com/hcote))
+
+---
+
+# v1.3.1 (Tue Oct 05 2021)
+
+#### 🐛 Bug Fix
+
+- fix: prevent URI encoding [#69](https://github.com/magiclabs/magic-admin-js/pull/69) ([@chiefGui](https://github.com/chiefGui))
+
+#### 🏠 Internal
+
+- Cleanup internal scripts [#47](https://github.com/magiclabs/magic-admin-js/pull/47) ([@smithki](https://github.com/smithki))
+
+#### Authors: 2
+
+- Guilherme Oderdenge ([@chiefGui](https://github.com/chiefGui))
+- Ian K Smith ([@smithki](https://github.com/smithki))
+
+---
+
 # v1.3.0 (Tue Nov 17 2020)
 
 #### 🚀 Enhancement
