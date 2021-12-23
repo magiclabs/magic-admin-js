@@ -7,4 +7,5 @@ export interface MagicUserMetadata {
   publicAddress: string | null;
   email: string | null;
   oauthProvider: string | null;
+  phoneNumber: string | null;
 }
