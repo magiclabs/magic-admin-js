@@ -1,3 +1,15 @@
+# v1.3.3 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- getMetadata calls now return phone number [#74](https://github.com/magiclabs/magic-admin-js/pull/74) ([@hcote](https://github.com/hcote))
+
+#### Authors: 1
+
+- Hunter Cote ([@hcote](https://github.com/hcote))
+
+---
+
 # v1.3.2 (Fri Nov 12 2021)
 
 #### 🐛 Bug Fix
