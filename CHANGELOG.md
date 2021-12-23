@@ -1,3 +1,29 @@
+# v1.3.4 (Thu Dec 23 2021)
+
+#### 🐛 Bug Fix
+
+- Fixed broken docs link in README [#72](https://github.com/magiclabs/magic-admin-js/pull/72) ([@lukecarr](https://github.com/lukecarr) [@smithki](https://github.com/smithki))
+
+#### 🔩 Dependency Updates
+
+- Bump path-parse from 1.0.6 to 1.0.7 [#63](https://github.com/magiclabs/magic-admin-js/pull/63) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump glob-parent from 5.1.0 to 5.1.2 [#61](https://github.com/magiclabs/magic-admin-js/pull/61) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump normalize-url from 4.5.0 to 4.5.1 [#60](https://github.com/magiclabs/magic-admin-js/pull/60) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump hosted-git-info from 2.8.7 to 2.8.9 [#59](https://github.com/magiclabs/magic-admin-js/pull/59) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump lodash from 4.17.19 to 4.17.21 [#58](https://github.com/magiclabs/magic-admin-js/pull/58) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump gitlog from 4.0.3 to 4.0.4 [#57](https://github.com/magiclabs/magic-admin-js/pull/57) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump y18n from 4.0.0 to 4.0.1 [#56](https://github.com/magiclabs/magic-admin-js/pull/56) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump elliptic from 6.5.3 to 6.5.4 [#53](https://github.com/magiclabs/magic-admin-js/pull/53) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+- Bump ini from 1.3.5 to 1.3.8 [#51](https://github.com/magiclabs/magic-admin-js/pull/51) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@smithki](https://github.com/smithki))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Ian K Smith ([@smithki](https://github.com/smithki))
+- Luke Carr ([@lukecarr](https://github.com/lukecarr))
+
+---
+
 # v1.3.3 (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix
