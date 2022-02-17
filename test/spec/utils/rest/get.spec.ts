@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import { fetch } from '../../../../src/utils/fetch';
 import { API_KEY } from '../../../lib/constants';
 import { get } from '../../../../src/utils/rest';
 

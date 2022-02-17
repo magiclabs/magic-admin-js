@@ -1,5 +1,6 @@
-import fetch, { RequestInit } from 'node-fetch';
+import { RequestInit } from 'node-fetch';
 import { createServiceError } from '../core/sdk-exceptions';
+import { fetch } from './fetch';
 
 interface MagicAPIResponse<TData = {}> {
   data?: TData;
