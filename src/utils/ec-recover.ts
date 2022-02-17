@@ -40,9 +40,7 @@ export function ecRecover(data: string, signature: string) {
   const hash = hashPersonalMessage(msg);
 
   const publicKey = ecdsaRecover(sig.slice(0, 64), recovery, hash, false);
+  const assertPublicKey = publicKeyConvert(publicKey, false);
 
-  // may not be needed
-  const pub = publicKeyConvert(publicKey, false).slice(1);
-
-  return publicKeyToAddress(publicKey);
+  return publicKeyToAddress(assertPublicKey);
 }
