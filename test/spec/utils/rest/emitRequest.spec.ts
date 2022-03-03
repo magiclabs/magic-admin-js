@@ -1,9 +1,7 @@
-import test from 'ava';
-import sinon from 'sinon';
 import fetch from 'node-fetch';
 import { API_KEY } from '../../../lib/constants';
 import { get } from '../../../../src/utils/rest';
-import { createServiceError, MagicAdminSDKError } from '../../../../src/core/sdk-exceptions';
+import { createServiceError } from '../../../../src/core/sdk-exceptions';
 
 /*
   We test remaining code paths to the private function `emitRequest` via the
@@ -37,61 +35,38 @@ const successResEmptyData = Promise.resolve({
     }),
 });
 
-test('#01: Fails with TypeError if `res.json` is undefined', async t => {
+test('#01: Fails with TypeError if `res.json` is undefined', async () => {
   // This test allow us to force `fetch` to catch. This test is primarily for
   // coverage purposes. This case should likely never happen.
 
-  const fetchStub = sinon.stub();
-  fetchStub.returns(failWithTypeError);
+  const fetchStub = jest.fn().mockImplementation(() => failWithTypeError);
   (fetch as any) = fetchStub;
 
   const expectedError = createServiceError({ status: 'qwerty' });
 
-  const err: MagicAdminSDKError = await t.throwsAsync(get(URL, API_KEY));
-
-  t.true(err instanceof MagicAdminSDKError);
-  t.is(err.code, expectedError.code);
-  t.is(err.message, expectedError.message);
-  t.true(err.data[0] instanceof TypeError);
+  await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });
 
-test('#02: Fails with non-OK status in response JSON', async t => {
-  const fetchStub = sinon.stub();
-  fetchStub.returns(failWithBadStatus);
+test('#02: Fails with non-OK status in response JSON', async () => {
+  const fetchStub = jest.fn().mockImplementation(() => failWithBadStatus);
   (fetch as any) = fetchStub;
 
   const expectedError = createServiceError({ status: 'qwerty' });
 
-  const err: MagicAdminSDKError = await t.throwsAsync(get(URL, API_KEY));
-
-  t.true(err instanceof MagicAdminSDKError);
-  t.is(err.code, expectedError.code);
-  t.is(err.message, expectedError.message);
-  t.deepEqual(err.data, [{ status: 'qwerty' }]);
+  await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });
 
-test('#03: Succeeds with empty data in response JSON, returning `{}` as fallback', async t => {
-  const fetchStub = sinon.stub();
-  fetchStub.returns(successResEmptyData);
+test('#03: Succeeds with empty data in response JSON, returning `{}` as fallback', async () => {
+  const fetchStub = jest.fn().mockImplementation(() => successResEmptyData);
   (fetch as any) = fetchStub;
-
-  await t.notThrowsAsync(async () => {
-    const result = await get(URL, API_KEY);
-    t.deepEqual(result, {});
-  });
+  await expect(get(URL, API_KEY)).resolves.toEqual({});
 });
 
-test('#04: Fails with empty status in response', async t => {
-  const fetchStub = sinon.stub();
-  fetchStub.returns(failWithEmptyStatus);
+test('#04: Fails with empty status in response', async () => {
+  const fetchStub = jest.fn().mockImplementation(() => failWithEmptyStatus);
   (fetch as any) = fetchStub;
 
   const expectedError = createServiceError({ status: 'qwerty' });
 
-  const err: MagicAdminSDKError = await t.throwsAsync(get(URL, API_KEY));
-
-  t.true(err instanceof MagicAdminSDKError);
-  t.is(err.code, expectedError.code);
-  t.is(err.message, expectedError.message);
-  t.deepEqual(err.data, [{}]);
+  expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });

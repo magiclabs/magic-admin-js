@@ -1,16 +1,13 @@
-import test from 'ava';
-import sinon from 'sinon';
 import { createMagicAdminSDK } from '../../../lib/factories';
 
-test('#01: Successfully GETs to metadata endpoint via public address', async t => {
+test('#01: Successfully GETs to metadata endpoint via public address', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
-  const logoutStub = sinon.stub();
-  logoutStub.returns(Promise.resolve());
+  const logoutStub = jest.fn().mockImplementation(() => Promise.resolve());
   (sdk.users.logoutByIssuer as any) = logoutStub;
 
-  await t.notThrowsAsync(sdk.users.logoutByPublicAddress('0x1234'));
+  await expect(sdk.users.logoutByPublicAddress('0x1234')).resolves.not.toThrow();
 
-  const logoutArguments = logoutStub.args[0];
-  t.deepEqual(logoutArguments, ['did:ethr:0x1234']);
+  const logoutArguments = logoutStub.mock.calls[0];
+  expect(logoutArguments).toEqual(['did:ethr:0x1234']);
 });

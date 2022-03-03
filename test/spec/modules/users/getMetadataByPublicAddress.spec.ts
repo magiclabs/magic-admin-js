@@ -1,16 +1,13 @@
-import test from 'ava';
-import sinon from 'sinon';
 import { createMagicAdminSDK } from '../../../lib/factories';
 
-test('#01: Successfully GETs to metadata endpoint via public address', async t => {
+test('#01: Successfully GETs to metadata endpoint via public address', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
-  const getMetadataStub = sinon.stub();
-  getMetadataStub.returns(Promise.resolve());
+  const getMetadataStub = jest.fn().mockImplementation(() => Promise.resolve());
   (sdk.users.getMetadataByIssuer as any) = getMetadataStub;
 
-  await t.notThrowsAsync(sdk.users.getMetadataByPublicAddress('0x1234'));
+  await expect(sdk.users.getMetadataByPublicAddress('0x1234')).resolves.not.toThrow();
 
-  const getMetadataArguments = getMetadataStub.args[0];
-  t.deepEqual(getMetadataArguments, ['did:ethr:0x1234']);
+  const getMetadataArguments = getMetadataStub.mock.calls[0];
+  expect(getMetadataArguments).toEqual(['did:ethr:0x1234']);
 });
