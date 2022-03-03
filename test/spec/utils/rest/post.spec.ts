@@ -1,5 +1,3 @@
-import test from 'ava';
-import sinon from 'sinon';
 import fetch from 'node-fetch';
 import { API_KEY } from '../../../lib/constants';
 import { post } from '../../../../src/utils/rest';
@@ -12,18 +10,16 @@ const successRes = Promise.resolve({
     }),
 });
 
-test('#01: Successfully POSTs to the given endpoint & stringifies body', async t => {
-  const fetchStub = sinon.stub();
-  fetchStub.returns(successRes);
+test('#01: Successfully POSTs to the given endpoint & stringifies body', async () => {
+  const fetchStub = jest.fn().mockImplementation(() => successRes);
   (fetch as any) = fetchStub;
 
-  await t.notThrowsAsync(async () => {
-    const result = await post('https://example.com/hello/world', API_KEY, { public_address: '0x0123' });
-    t.is(result, 'hello world');
-  });
+  await expect(post('https://example.com/hello/world', API_KEY, { public_address: '0x0123' })).resolves.toBe(
+    'hello world',
+  );
 
-  const fetchArguments = fetchStub.args[0];
-  t.deepEqual(fetchArguments, [
+  const fetchArguments = fetchStub.mock.calls[0];
+  expect(fetchArguments).toEqual([
     'https://example.com/hello/world',
     {
       method: 'POST',

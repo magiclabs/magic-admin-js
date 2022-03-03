@@ -1,5 +1,3 @@
-import test from 'ava';
-import sinon from 'sinon';
 import { recoverPersonalSignature } from 'eth-sig-util';
 import { createMagicAdminSDK } from '../../../lib/factories';
 import {
@@ -11,60 +9,53 @@ import {
 } from '../../../lib/constants';
 import {
   createIncorrectSignerAddressError,
-  MagicAdminSDKError,
   createTokenExpiredError,
   createFailedRecoveringProofError,
   createMalformedTokenError,
   createTokenCannotBeUsedYetError,
 } from '../../../../src/core/sdk-exceptions';
 
-test.serial('#01: Successfully validates DIDT', async t => {
+test('#01: Successfully validates DIDT', async () => {
   const sdk = createMagicAdminSDK();
-  t.notThrows(() => sdk.token.validate(VALID_DIDT));
+  expect(() => sdk.token.validate(VALID_DIDT)).not.toThrow();
 });
 
-test.serial('#02: Fails when signer address mismatches signature', async t => {
+test('#02: Fails when signer address mismatches signature', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createIncorrectSignerAddressError();
-  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(INVALID_SIGNER_DIDT));
-  t.is(error.code, expectedError.code);
-  t.is(error.message, expectedError.message);
+  expect(() => sdk.token.validate(INVALID_SIGNER_DIDT)).toThrow(expectedError);
 });
 
-test.serial('#03: Fails when given expired token', async t => {
+test('#03: Fails when given expired token', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createTokenExpiredError();
-  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(EXPIRED_DIDT));
-  t.is(error.code, expectedError.code);
-  t.is(error.message, expectedError.message);
+  expect(() => sdk.token.validate(EXPIRED_DIDT)).toThrow(expectedError);
 });
 
-test.serial('#04: Fails when given a token with a future `nbf` timestamp', async t => {
+test('#04: Fails when given a token with a future `nbf` timestamp', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createTokenCannotBeUsedYetError();
-  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(VALID_FUTURE_MARKED_DIDT));
-  t.is(error.code, expectedError.code);
-  t.is(error.message, expectedError.message);
+  expect(() => sdk.token.validate(VALID_FUTURE_MARKED_DIDT)).toThrow(expectedError);
 });
 
-test.serial('#05: Fails if signature recovery rejects', async t => {
-  const recoverStub = sinon.stub().throws();
+test('#05: Fails if signature recovery rejects', async () => {
+  const recoverStub = jest.fn().mockImplementation(() => {
+    throw new Error();
+  });
   (recoverPersonalSignature as any) = recoverStub;
 
   const sdk = createMagicAdminSDK();
   const expectedError = createFailedRecoveringProofError();
-  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(VALID_DIDT));
-  t.is(error.code, expectedError.code);
-  t.is(error.message, expectedError.message);
+  expect(() => sdk.token.validate(VALID_DIDT)).toThrow(expectedError);
 });
 
-test.serial('#06: Fails if decoding token fails', async t => {
-  const recoverStub = sinon.stub().throws();
+test('#06: Fails if decoding token fails', async () => {
+  const recoverStub = jest.fn().mockImplementation(() => {
+    throw new Error();
+  });
   (recoverPersonalSignature as any) = recoverStub;
 
   const sdk = createMagicAdminSDK();
   const expectedError = createMalformedTokenError();
-  const error: MagicAdminSDKError = t.throws(() => sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM));
-  t.is(error.code, expectedError.code);
-  t.is(error.message, expectedError.message);
+  expect(() => sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM)).toThrow(expectedError);
 });

@@ -1,18 +1,17 @@
-import test from 'ava';
 import { MagicAdminSDKError } from '../../../../../src/core/sdk-exceptions';
 
-test('#01: Instantiates `MagicAdminSDKError` with empty `data` property', t => {
+test('#01: Instantiates `MagicAdminSDKError` with empty `data` property', () => {
   const error = new MagicAdminSDKError('TEST_CODE' as any, 'test message');
-  t.true(error instanceof MagicAdminSDKError);
-  t.is(error.message, 'Magic Admin SDK Error: [TEST_CODE] test message');
-  t.is(error.code, 'TEST_CODE');
-  t.deepEqual(error.data, []);
+  expect(error instanceof MagicAdminSDKError).toBe(true);
+  expect(error.message).toBe('Magic Admin SDK Error: [TEST_CODE] test message');
+  expect(error.code).toBe('TEST_CODE');
+  expect(error.data).toEqual([]);
 });
 
-test('#01: Instantiates `MagicAdminSDKError` with non-empty `data` property', t => {
+test('#01: Instantiates `MagicAdminSDKError` with non-empty `data` property', () => {
   const error = new MagicAdminSDKError('TEST_CODE' as any, 'test message', ['hello world']);
-  t.true(error instanceof MagicAdminSDKError);
-  t.is(error.message, 'Magic Admin SDK Error: [TEST_CODE] test message');
-  t.is(error.code, 'TEST_CODE');
-  t.deepEqual(error.data, ['hello world']);
+  expect(error instanceof MagicAdminSDKError).toBe(true);
+  expect(error.message).toBe('Magic Admin SDK Error: [TEST_CODE] test message');
+  expect(error.code).toBe('TEST_CODE');
+  expect(error.data).toEqual(['hello world']);
 });

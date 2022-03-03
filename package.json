@@ -16,7 +16,7 @@
     "test": "npm run clean:test-artifacts && ./scripts/test.sh",
     "lint": "eslint --fix src/**/*.ts",
     "clean": "npm-run-all -s clean:*",
-    "clean:test-artifacts": "rimraf coverage && rimraf .nyc_output",
+    "clean:test-artifacts": "rimraf coverage",
     "clean:build": "rimraf dist",
     "clean_node_modules": "rimraf node_modules"
   },
@@ -26,12 +26,11 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/eth-sig-util": "^2.1.0",
     "@types/express": "^4.17.2",
+    "@types/jest": "^27.4.1",
     "@types/node": "^13.1.2",
     "@types/node-fetch": "^2.5.4",
-    "@types/sinon": "^7.5.2",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "auto": "^9.60.1",
-    "ava": "^3.4.0",
     "boxen-cli": "^1.0.0",
     "eslint": "^6.7.2",
     "eslint-import-resolver-typescript": "^2.0.0",
@@ -41,15 +40,15 @@
     "eslint-plugin-react": "^7.15.1",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^4.2.3",
+    "jest": "^27.5.1",
     "lint-staged": "^10.0.8",
     "npm-run-all": "~4.1.5",
-    "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "rimraf": "~3.0.0",
-    "sinon": "^9.0.0",
     "ts-node": "~8.5.2",
     "tslint": "~5.20.1",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "ts-jest": "^27.1.3"
   },
   "dependencies": {
     "eth-sig-util": "2.1.2",
@@ -69,32 +68,6 @@
     "plugins": [
       "npm",
       "released"
-    ]
-  },
-  "ava": {
-    "require": [
-      "ts-node/register"
-    ],
-    "files": [
-      "test/**/*.spec.ts"
-    ],
-    "extensions": [
-      "ts"
-    ],
-    "verbose": true
-  },
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "all": false,
-    "check-coverage": true,
-    "per-file": true,
-    "lines": 99,
-    "statements": 99,
-    "functions": 99,
-    "branches": 99,
-    "reporter": [
-      "html",
-      "lcov"
     ]
   }
 }
