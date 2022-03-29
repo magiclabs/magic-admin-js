@@ -9,4 +9,5 @@ export NODE_OPTIONS=--max_old_space_size=4096
 
 export NODE_ENV=production
 
-npx tsc -p ./config/tsconfig.sdk.json
+npx tsc -p ./config/tsconfig.sdk.esm.json
+npx tsc -p ./config/tsconfig.sdk.cjs.json

@@ -1,7 +1,7 @@
-import { recoverPersonalSignature } from 'eth-sig-util';
 import { createMagicAdminSDK } from '../../../lib/factories';
 import {
   VALID_DIDT,
+  VALID_DIDT_WITH_INVALID_RECOVERY_BIT,
   INVALID_SIGNER_DIDT,
   EXPIRED_DIDT,
   INVALID_DIDT_MALFORMED_CLAIM,
@@ -39,22 +39,12 @@ test('#04: Fails when given a token with a future `nbf` timestamp', async () => 
 });
 
 test('#05: Fails if signature recovery rejects', async () => {
-  const recoverStub = jest.fn().mockImplementation(() => {
-    throw new Error();
-  });
-  (recoverPersonalSignature as any) = recoverStub;
-
   const sdk = createMagicAdminSDK();
   const expectedError = createFailedRecoveringProofError();
-  expect(() => sdk.token.validate(VALID_DIDT)).toThrow(expectedError);
+  expect(() => sdk.token.validate(VALID_DIDT_WITH_INVALID_RECOVERY_BIT)).toThrow(expectedError);
 });
 
 test('#06: Fails if decoding token fails', async () => {
-  const recoverStub = jest.fn().mockImplementation(() => {
-    throw new Error();
-  });
-  (recoverPersonalSignature as any) = recoverStub;
-
   const sdk = createMagicAdminSDK();
   const expectedError = createMalformedTokenError();
   expect(() => sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM)).toThrow(expectedError);

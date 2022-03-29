@@ -12,7 +12,7 @@ interface ParseDIDTokenResult {
  */
 export function parseDIDToken(DIDToken: string): ParseDIDTokenResult {
   try {
-    const [proof, claim] = JSON.parse(Buffer.from(DIDToken, 'base64').toString('binary')) as [string, string];
+    const [proof, claim] = JSON.parse(globalThis.atob(DIDToken)) as [string, string];
     const parsedClaim = JSON.parse(claim) as Claim;
     if (isDIDTClaim(parsedClaim)) return { raw: [proof, claim], withParsedClaim: [proof, parsedClaim] };
     throw new Error();
