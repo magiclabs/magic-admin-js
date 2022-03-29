@@ -53,7 +53,7 @@ aliases: [
 executors:
   default:
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:16-browsers
 
 # --- Job definitions -------------------------------------------------------- #
 
