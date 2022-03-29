@@ -1,3 +1,25 @@
+# v1.4.0 (Tue Mar 29 2022)
+
+#### 🚀 Enhancement
+
+- feature: make package environment agnostic [#81](https://github.com/magiclabs/magic-admin-js/pull/81) ([@f5io](https://github.com/f5io))
+
+#### ⚠️ Pushed to `master`
+
+- Update CircleCI to use Node 16 ([@smithki](https://github.com/smithki))
+
+#### 🏠 Internal
+
+- Converted all Ava and Sinon testing to Jest [#83](https://github.com/magiclabs/magic-admin-js/pull/83) ([@mushfichowdhury-magic](https://github.com/mushfichowdhury-magic))
+
+#### Authors: 3
+
+- [@mushfichowdhury-magic](https://github.com/mushfichowdhury-magic)
+- Ian K Smith ([@smithki](https://github.com/smithki))
+- Joe Harlow ([@f5io](https://github.com/f5io))
+
+---
+
 # v1.3.4 (Thu Dec 23 2021)
 
 #### 🐛 Bug Fix
