@@ -1,3 +1,15 @@
+# v1.4.1 (Sat Apr 16 2022)
+
+#### 🐛 Bug Fix
+
+- Add shims for atob [#88](https://github.com/magiclabs/magic-admin-js/pull/88) ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 1
+
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v1.4.0 (Tue Mar 29 2022)
 
 #### 🚀 Enhancement
