@@ -1,3 +1,4 @@
+import '../utils/shim';
 import { TokenModule } from '../modules/token';
 import { UsersModule } from '../modules/users';
 import { UtilsModule } from '../modules/utils';
