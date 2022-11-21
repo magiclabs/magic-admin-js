@@ -10,6 +10,7 @@
 npm-debug.log*
 yarn-error.log*
 .DS_Store
+.vscode
 
 # Use Yarn!
 package-lock.json
