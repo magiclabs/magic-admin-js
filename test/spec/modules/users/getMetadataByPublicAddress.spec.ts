@@ -1,7 +1,7 @@
 import { WalletType } from '../../../../src/types/wallet-types';
 import { createMagicAdminSDK } from '../../../lib/factories';
 
-test('#01: Successfully GETs to metadata endpoint via public address', async () => {
+test('Successfully GETs to metadata endpoint via public address', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getMetadataStub = jest.fn().mockImplementation(() => Promise.resolve());
@@ -13,7 +13,7 @@ test('#01: Successfully GETs to metadata endpoint via public address', async () 
   expect(getMetadataArguments).toEqual(['did:ethr:0x1234']);
 });
 
-test('#02: Successfully GETs to metadata endpoint via public address and wallet type', async () => {
+test('Successfully GETs to metadata endpoint via public address and wallet type', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getMetadataStub = jest.fn().mockImplementation(() => Promise.resolve());

@@ -15,36 +15,36 @@ import {
   createTokenCannotBeUsedYetError,
 } from '../../../../src/core/sdk-exceptions';
 
-test('#01: Successfully validates DIDT', async () => {
+test('Successfully validates DIDT', async () => {
   const sdk = createMagicAdminSDK();
   expect(() => sdk.token.validate(VALID_DIDT)).not.toThrow();
 });
 
-test('#02: Fails when signer address mismatches signature', async () => {
+test('Fails when signer address mismatches signature', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createIncorrectSignerAddressError();
   expect(() => sdk.token.validate(INVALID_SIGNER_DIDT)).toThrow(expectedError);
 });
 
-test('#03: Fails when given expired token', async () => {
+test('Fails when given expired token', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createTokenExpiredError();
   expect(() => sdk.token.validate(EXPIRED_DIDT)).toThrow(expectedError);
 });
 
-test('#04: Fails when given a token with a future `nbf` timestamp', async () => {
+test('Fails when given a token with a future `nbf` timestamp', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createTokenCannotBeUsedYetError();
   expect(() => sdk.token.validate(VALID_FUTURE_MARKED_DIDT)).toThrow(expectedError);
 });
 
-test('#05: Fails if signature recovery rejects', async () => {
+test('Fails if signature recovery rejects', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createFailedRecoveringProofError();
   expect(() => sdk.token.validate(VALID_DIDT_WITH_INVALID_RECOVERY_BIT)).toThrow(expectedError);
 });
 
-test('#06: Fails if decoding token fails', async () => {
+test('Fails if decoding token fails', async () => {
   const sdk = createMagicAdminSDK();
   const expectedError = createMalformedTokenError();
   expect(() => sdk.token.validate(INVALID_DIDT_MALFORMED_CLAIM)).toThrow(expectedError);

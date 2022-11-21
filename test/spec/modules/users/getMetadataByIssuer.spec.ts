@@ -27,7 +27,7 @@ const successResWithWallets = Promise.resolve({
 });
 const nullRes = Promise.resolve({});
 
-test('#01: Successfully GETs to metadata endpoint via issuer', async () => {
+test('Successfully GETs to metadata endpoint via issuer', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getStub = jest.fn().mockImplementation(() => successRes);
@@ -51,7 +51,7 @@ test('#01: Successfully GETs to metadata endpoint via issuer', async () => {
   });
 });
 
-test('#02: Successfully GETs `null` metadata endpoint via issuer', async () => {
+test('Successfully GETs `null` metadata endpoint via issuer', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getStub = jest.fn().mockImplementation(() => nullRes);
@@ -75,7 +75,7 @@ test('#02: Successfully GETs `null` metadata endpoint via issuer', async () => {
   });
 });
 
-test('#03: Fails GET if API key is missing', async () => {
+test('Fails GET if API key is missing', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
   (sdk as any).secretApiKey = undefined;
 
@@ -88,7 +88,7 @@ test('#03: Fails GET if API key is missing', async () => {
   expect(getStub).not.toBeCalled();
 });
 
-test('#04: Successfully GETs to metadata endpoint via issuer and wallet type', async () => {
+test('Successfully GETs to metadata endpoint via issuer and wallet type', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const getStub = jest.fn().mockImplementation(() => successResWithWallets);

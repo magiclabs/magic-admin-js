@@ -3,7 +3,7 @@ import { API_KEY } from '../../../lib/constants';
 import { createApiKeyMissingError } from '../../../../src/core/sdk-exceptions';
 import { post } from '../../../../src/utils/rest';
 
-test('#01: Successfully POSTs to logout endpoint via DIDT', async () => {
+test('Successfully POSTs to logout endpoint via DIDT', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const postStub = jest.fn();
@@ -19,7 +19,7 @@ test('#01: Successfully POSTs to logout endpoint via DIDT', async () => {
   ]);
 });
 
-test('#02: Fails POST if API key is missing', async () => {
+test('Fails POST if API key is missing', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
   (sdk as any).secretApiKey = undefined;
 
