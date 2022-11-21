@@ -2,7 +2,7 @@ import { MagicAdminSDK } from '../../../../src/core/sdk';
 import { BaseModule } from '../../../../src/modules/base-module';
 import { createMagicAdminSDK } from '../../../lib/factories';
 
-test('#01: Initializes `BaseModule`', () => {
+test('Initializes `BaseModule`', () => {
   const sdk = createMagicAdminSDK();
 
   const baseModule: any = new (BaseModule as any)(sdk);

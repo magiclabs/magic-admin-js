@@ -1,6 +1,6 @@
 import atob from 'atob';
 
-test('#01: Shim overwrites undefined global atob', async () => {
+test('Shim overwrites undefined global atob', async () => {
   globalThis.atob = undefined;
 
   expect(globalThis.atob).toBeUndefined();
@@ -11,7 +11,7 @@ test('#01: Shim overwrites undefined global atob', async () => {
   expect(globalThis.atob).toBe(atob);
 });
 
-test('#02: Shim does not overwrite exisiting atob', async () => {
+test('Shim does not overwrite exisiting atob', async () => {
   const dummyFunc = () => '';
   globalThis.atob = dummyFunc;
 

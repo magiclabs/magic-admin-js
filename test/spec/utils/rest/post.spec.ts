@@ -10,7 +10,7 @@ const successRes = Promise.resolve({
     }),
 });
 
-test('#01: Successfully POSTs to the given endpoint & stringifies body', async () => {
+test('Successfully POSTs to the given endpoint & stringifies body', async () => {
   const fetchStub = jest.fn().mockImplementation(() => successRes);
   (fetch as any) = fetchStub;
 

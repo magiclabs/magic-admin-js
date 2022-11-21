@@ -5,7 +5,7 @@ import { TokenModule } from '../../../../src/modules/token';
 import { UsersModule } from '../../../../src/modules/users';
 import { UtilsModule } from '../../../../src/modules/utils';
 
-test('#01: Initialize `MagicAdminSDK`', () => {
+test('Initialize `MagicAdminSDK`', () => {
   const magic = new Magic(API_KEY);
 
   expect(magic.secretApiKey).toBe(API_KEY);
@@ -14,7 +14,7 @@ test('#01: Initialize `MagicAdminSDK`', () => {
   expect(magic.users instanceof UsersModule).toBe(true);
 });
 
-test('#02: Initialize `MagicAdminSDK` with custom endpoint', () => {
+test('Initialize `MagicAdminSDK` with custom endpoint', () => {
   const magic = new Magic(API_KEY, { endpoint: 'https://example.com' });
 
   expect(magic.secretApiKey).toBe(API_KEY);
@@ -24,7 +24,7 @@ test('#02: Initialize `MagicAdminSDK` with custom endpoint', () => {
   expect(magic.utils instanceof UtilsModule).toBe(true);
 });
 
-test('#03: Strips trailing slash(es) from custom endpoint argument', () => {
+test('Strips trailing slash(es) from custom endpoint argument', () => {
   const magicA = new Magic(API_KEY, { endpoint: 'https://example.com/' });
   const magicB = new Magic(API_KEY, { endpoint: 'https://example.com//' });
   const magicC = new Magic(API_KEY, { endpoint: 'https://example.com///' });

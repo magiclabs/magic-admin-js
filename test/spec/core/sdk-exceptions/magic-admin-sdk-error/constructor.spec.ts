@@ -1,6 +1,6 @@
 import { MagicAdminSDKError } from '../../../../../src/core/sdk-exceptions';
 
-test('#01: Instantiates `MagicAdminSDKError` with empty `data` property', () => {
+test('Instantiates `MagicAdminSDKError` with empty `data` property', () => {
   const error = new MagicAdminSDKError('TEST_CODE' as any, 'test message');
   expect(error instanceof MagicAdminSDKError).toBe(true);
   expect(error.message).toBe('Magic Admin SDK Error: [TEST_CODE] test message');
@@ -8,7 +8,7 @@ test('#01: Instantiates `MagicAdminSDKError` with empty `data` property', () => 
   expect(error.data).toEqual([]);
 });
 
-test('#01: Instantiates `MagicAdminSDKError` with non-empty `data` property', () => {
+test('Instantiates `MagicAdminSDKError` with non-empty `data` property', () => {
   const error = new MagicAdminSDKError('TEST_CODE' as any, 'test message', ['hello world']);
   expect(error instanceof MagicAdminSDKError).toBe(true);
   expect(error.message).toBe('Magic Admin SDK Error: [TEST_CODE] test message');

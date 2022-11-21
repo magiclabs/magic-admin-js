@@ -10,7 +10,7 @@ const successRes = Promise.resolve({
     }),
 });
 
-test('#01: Successfully GETs to the given endpoint & stringifies query params', async () => {
+test('Successfully GETs to the given endpoint & stringifies query params', async () => {
   const fetchStub = jest.fn().mockImplementation(() => successRes);
   (fetch as any) = fetchStub;
   await expect(get('https://example.com/hello/world', API_KEY, { foo: 'hello', bar: 'world' })).resolves.toBe(
@@ -27,7 +27,7 @@ test('#01: Successfully GETs to the given endpoint & stringifies query params', 
   ]);
 });
 
-test('#02: Successfully GETs to the given endpoint with no query params', async () => {
+test('Successfully GETs to the given endpoint with no query params', async () => {
   const fetchStub = jest.fn().mockImplementation(() => successRes);
   (fetch as any) = fetchStub;
 

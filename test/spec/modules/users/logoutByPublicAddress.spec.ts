@@ -1,6 +1,6 @@
 import { createMagicAdminSDK } from '../../../lib/factories';
 
-test('#01: Successfully GETs to metadata endpoint via public address', async () => {
+test('Successfully GETs to metadata endpoint via public address', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
 
   const logoutStub = jest.fn().mockImplementation(() => Promise.resolve());

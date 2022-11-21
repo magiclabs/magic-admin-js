@@ -22,12 +22,12 @@ function errorAssertions(
   expect(error.data).toEqual(expectedData);
 }
 
-test('#01: Creates `ERROR_DIDT_EXPIRED` error', async () => {
+test('Creates `ERROR_DIDT_EXPIRED` error', async () => {
   const error = createTokenExpiredError();
   errorAssertions(error, 'ERROR_DIDT_EXPIRED', 'DID Token has expired. Request failed authentication.');
 });
 
-test('#02: Creates `ERROR_DIDT_CANNOT_BE_USED_YET` error', async () => {
+test('Creates `ERROR_DIDT_CANNOT_BE_USED_YET` error', async () => {
   const error = createTokenCannotBeUsedYetError();
   errorAssertions(
     error,
@@ -36,7 +36,7 @@ test('#02: Creates `ERROR_DIDT_CANNOT_BE_USED_YET` error', async () => {
   );
 });
 
-test('#03: Creates `ERROR_INCORRECT_SIGNER_ADDR` error', async () => {
+test('Creates `ERROR_INCORRECT_SIGNER_ADDR` error', async () => {
   const error = createIncorrectSignerAddressError();
   errorAssertions(
     error,
@@ -45,12 +45,12 @@ test('#03: Creates `ERROR_INCORRECT_SIGNER_ADDR` error', async () => {
   );
 });
 
-test('#04: Creates `ERROR_FAILED_RECOVERING_PROOF` error', async () => {
+test('Creates `ERROR_FAILED_RECOVERING_PROOF` error', async () => {
   const error = createFailedRecoveringProofError();
   errorAssertions(error, 'ERROR_FAILED_RECOVERING_PROOF', 'Failed to recover proof. Request failed authentication.');
 });
 
-test('#05: Creates `ERROR_SECRET_API_KEY_MISSING` error', async () => {
+test('Creates `ERROR_SECRET_API_KEY_MISSING` error', async () => {
   const error = createApiKeyMissingError();
   errorAssertions(
     error,
@@ -59,7 +59,7 @@ test('#05: Creates `ERROR_SECRET_API_KEY_MISSING` error', async () => {
   );
 });
 
-test('#06: Creates `SERVICE_ERROR` error with empty `data` property', async () => {
+test('Creates `SERVICE_ERROR` error with empty `data` property', async () => {
   const error = createServiceError();
   errorAssertions(
     error,
@@ -68,7 +68,7 @@ test('#06: Creates `SERVICE_ERROR` error with empty `data` property', async () =
   );
 });
 
-test('#07: Creates `SERVICE_ERROR` error with non-empty `data` property', async () => {
+test('Creates `SERVICE_ERROR` error with non-empty `data` property', async () => {
   const error = createServiceError('hello', 'world');
   errorAssertions(
     error,
@@ -78,7 +78,7 @@ test('#07: Creates `SERVICE_ERROR` error with non-empty `data` property', async 
   );
 });
 
-test('#08: Creates `EXPECTED_BEARER_STRING` error', async () => {
+test('Creates `EXPECTED_BEARER_STRING` error', async () => {
   const error = createExpectedBearerStringError();
   errorAssertions(error, 'EXPECTED_BEARER_STRING', 'Expected argument to be a string in the `Bearer {token}` format.');
 });

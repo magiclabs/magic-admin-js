@@ -35,7 +35,7 @@ const successResEmptyData = Promise.resolve({
     }),
 });
 
-test('#01: Fails with TypeError if `res.json` is undefined', async () => {
+test('Fails with TypeError if `res.json` is undefined', async () => {
   // This test allow us to force `fetch` to catch. This test is primarily for
   // coverage purposes. This case should likely never happen.
 
@@ -47,7 +47,7 @@ test('#01: Fails with TypeError if `res.json` is undefined', async () => {
   await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });
 
-test('#02: Fails with non-OK status in response JSON', async () => {
+test('Fails with non-OK status in response JSON', async () => {
   const fetchStub = jest.fn().mockImplementation(() => failWithBadStatus);
   (fetch as any) = fetchStub;
 
@@ -56,13 +56,13 @@ test('#02: Fails with non-OK status in response JSON', async () => {
   await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });
 
-test('#03: Succeeds with empty data in response JSON, returning `{}` as fallback', async () => {
+test('Succeeds with empty data in response JSON, returning `{}` as fallback', async () => {
   const fetchStub = jest.fn().mockImplementation(() => successResEmptyData);
   (fetch as any) = fetchStub;
   await expect(get(URL, API_KEY)).resolves.toEqual({});
 });
 
-test('#04: Fails with empty status in response', async () => {
+test('Fails with empty status in response', async () => {
   const fetchStub = jest.fn().mockImplementation(() => failWithEmptyStatus);
   (fetch as any) = fetchStub;
 
