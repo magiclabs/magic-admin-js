@@ -8,10 +8,12 @@ jobs:
   publish:
     runs-on: ubuntu-20.04
     name: Publish
-    container:
-      image: node:16-slim
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     steps:
       - uses: actions/checkout@v3
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
 
       - name: Setup node
         uses: actions/setup-node@v3
@@ -22,9 +24,10 @@ jobs:
           yarn -v
           yarn
 
-      - name: Publish to NPM
-        run: |
-          apt-get update && apt-get install -y git
-          yarn auto shipit
+      - name: Create Release
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          yarn
+          yarn auto shipit
