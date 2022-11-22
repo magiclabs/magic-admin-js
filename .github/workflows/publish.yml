@@ -7,7 +7,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-20.04
-    name: Run style/security checks & tests
+    name: Publish
     container:
       image: node:16-slim
     steps:
@@ -23,6 +23,8 @@ jobs:
           yarn
 
       - name: Publish to NPM
-        run: yarn auto shipit
+        run: |
+          apt-get update && apt-get install -y git
+          yarn auto shipit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
