@@ -1,3 +1,22 @@
+# v1.5.0 (Tue Nov 22 2022)
+
+#### 🚀 Enhancement
+
+- Support new multi-chain wallet functionality [#92](https://github.com/magiclabs/magic-admin-js/pull/92) (justin@magic.link)
+
+#### 🐛 Bug Fix
+
+- Fix publish stage issues with git history [#96](https://github.com/magiclabs/magic-admin-js/pull/96) ([@kgrubb](https://github.com/kgrubb))
+- Fix publish stage to allow for npm publishing [#95](https://github.com/magiclabs/magic-admin-js/pull/95) ([@kgrubb](https://github.com/kgrubb))
+- Replace circle-ci with github actions [#93](https://github.com/magiclabs/magic-admin-js/pull/93) ([@kgrubb](https://github.com/kgrubb))
+
+#### Authors: 2
+
+- Justin Herrera ([@justinnout](https://github.com/justinnout))
+- Keli (Madison) Grubb ([@kgrubb](https://github.com/kgrubb))
+
+---
+
 # v1.4.1 (Sat Apr 16 2022)
 
 #### 🐛 Bug Fix
