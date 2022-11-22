@@ -24,3 +24,5 @@ jobs:
 
       - name: Publish to NPM
         run: yarn auto shipit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
