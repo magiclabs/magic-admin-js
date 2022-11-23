@@ -2,8 +2,7 @@ import { BaseModule } from '../base-module';
 import { createApiKeyMissingError } from '../../core/sdk-exceptions';
 import { post, get } from '../../utils/rest';
 import { generateIssuerFromPublicAddress } from '../../utils/issuer';
-import { MagicUserMetadata, MagicWallet } from '../../types';
-import { WalletType } from '../../types/wallet-types';
+import { MagicUserMetadata, MagicWallet, WalletType } from '../../types';
 
 export class UsersModule extends BaseModule {
   // --- User logout endpoints
