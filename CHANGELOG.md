@@ -1,3 +1,14 @@
+# v1.8.0 (Fri Feb 17 2023)
+
+#### 🚀 Enhancement
+
+- Support new multi-chain wallet functionality [#100](https://github.com/magiclabs/magic-admin-js/pull/100) ([@justinnout](https://github.com/justinnout))
+
+#### Authors: 1
+
+- Justin Herrera ([@justinnout](https://github.com/justinnout))
+
+---
 # v1.4.1 (Sat Apr 16 2022)
 
 #### 🐛 Bug Fix
