@@ -42,5 +42,5 @@ export function isDIDTClaim(value: any): value is Claim {
 
 /** Assert `request_id` exists  */
 export function isMintRequest(value: any): value is MintRequest {
-  return value.hasOwnProperty('request_id')
+  return !isNil(value.request_id)
 }
