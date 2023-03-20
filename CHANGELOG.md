@@ -1,3 +1,14 @@
+# v1.9.0 (Mon Mar 20 2023)
+
+#### 🚀 Enhancement
+
+- New module for NFT minting + delivery [#100](https://github.com/magiclabs/magic-admin-js/pull/101) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### Authors: 1
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+
+---
 # v1.8.0 (Fri Feb 17 2023)
 
 #### 🚀 Enhancement

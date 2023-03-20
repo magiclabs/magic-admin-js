@@ -8,7 +8,7 @@
   https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types
  */
 
-import { Claim } from '../types';
+import { Claim, MintRequest } from '../types';
 
 /** Assert `value` is `undefined`. */
 function isUndefined(value: any): value is undefined {
@@ -38,4 +38,9 @@ export function isDIDTClaim(value: any): value is Claim {
     !isNil(value.tid) &&
     !isNil(value.add)
   );
+}
+
+/** Assert `request_id` exists  */
+export function isMintRequest(value: any): value is MintRequest {
+  return value.hasOwnProperty('request_id')
 }
