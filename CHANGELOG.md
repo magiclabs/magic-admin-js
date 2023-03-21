@@ -2,7 +2,7 @@
 
 #### 🚀 Enhancement
 
-- New module for NFT minting + delivery [#?](https://github.com/magiclabs/magic-admin-js/pull/?) ([@bengriffin1](https://github.com/bengriffin1))
+- New module for NFT minting + delivery [#105](https://github.com/magiclabs/magic-admin-js/pull/105) ([@bengriffin1](https://github.com/bengriffin1))
 
 #### Authors: 1
 

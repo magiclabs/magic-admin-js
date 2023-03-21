@@ -67,6 +67,6 @@ export function createExpectedBearerStringError() {
 export function mintingError() {
   return new MagicAdminSDKError(
     ErrorCode.MintingError,
-    'There was an error while minting. Check your contract ID and token ID (ERC1155 only)'
-  )
+    'There was an error while minting. Check your contract ID, and token ID if using ERC1155',
+  );
 }

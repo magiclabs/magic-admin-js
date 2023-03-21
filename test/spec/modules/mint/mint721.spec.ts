@@ -4,11 +4,11 @@ import { createApiKeyMissingError, mintingError } from '../../../../src/core/sdk
 import { post } from '../../../../src/utils/rest';
 
 const successReq = Promise.resolve({
-    request_id: 'foo_123'
+  request_id: 'foo_123',
 });
 
 const failReq = Promise.resolve({
-    error: 'bar_456'
+  error: 'bar_456',
 });
 
 test('Successfully POSTs to 721 minting endpoint', async () => {
@@ -17,7 +17,7 @@ test('Successfully POSTs to 721 minting endpoint', async () => {
   const postStub = jest.fn().mockImplementation(() => successReq);
   (post as any) = postStub;
 
-  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).resolves.not.toThrow();
+  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).resolves.toEqual({ request_id: 'foo_123' });
 
   const postArguments = postStub.mock.calls[0];
   expect(postArguments).toEqual([
@@ -28,14 +28,14 @@ test('Successfully POSTs to 721 minting endpoint', async () => {
 });
 
 test('Throws an error if Minting API was unsuccessful', async () => {
-    const sdk = createMagicAdminSDK('https://example.com');
-  
-    const postStub = jest.fn().mockImplementation(() => failReq);
-    (post as any) = postStub;
+  const sdk = createMagicAdminSDK('https://example.com');
 
-    const expectedError = mintingError();
-  
-    await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
+  const postStub = jest.fn().mockImplementation(() => failReq);
+  (post as any) = postStub;
+
+  const expectedError = mintingError();
+
+  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
 });
 
 test('Fails POST if API key is missing', async () => {
