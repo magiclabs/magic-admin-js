@@ -1,3 +1,20 @@
+# v1.9.0 (Wed Mar 22 2023)
+
+#### 🚀 Enhancement
+
+- Adding mint module for minting NFTs [#105](https://github.com/magiclabs/magic-admin-js/pull/105) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### 🐛 Bug Fix
+
+- Update CHANGELOG.md [#104](https://github.com/magiclabs/magic-admin-js/pull/104) ([@justinnout](https://github.com/justinnout))
+
+#### Authors: 2
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+- Justin Herrera ([@justinnout](https://github.com/justinnout))
+
+---
+
 # v1.9.0 (Mon Mar 20 2023)
 
 #### 🚀 Enhancement
