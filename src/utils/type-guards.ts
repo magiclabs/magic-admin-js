@@ -40,7 +40,14 @@ export function isDIDTClaim(value: any): value is Claim {
   );
 }
 
-/** Assert `request_id` exists  */
+/** Assert `value` contains all required MintRequest members  */
 export function isMintRequest(value: any): value is MintRequest {
-  return !isNil(value.request_id)
+  return (
+    !isNil(value) &&
+    !isNil(value.data) &&
+    !isNil(value.error_code) &&
+    !isNil(value.message) &&
+    !isNil(value.status) &&
+    !isNil(value.data.request_id)
+  );
 }

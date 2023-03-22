@@ -1,3 +1,10 @@
+export interface MintRequestData {
+  requestId: string;
+}
+
 export interface MintRequest {
-    requestId: string;
+  data: MintRequestData;
+  error_code: string;
+  message: string;
+  status: string;
 }
