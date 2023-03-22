@@ -63,3 +63,10 @@ export function createExpectedBearerStringError() {
     'Expected argument to be a string in the `Bearer {token}` format.',
   );
 }
+
+export function mintingError() {
+  return new MagicAdminSDKError(
+    ErrorCode.MintingError,
+    'There was an error while minting. Check your contract ID, and token ID if using ERC1155',
+  );
+}
