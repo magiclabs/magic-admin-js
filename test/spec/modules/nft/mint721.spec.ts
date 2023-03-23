@@ -31,7 +31,7 @@ test('Successfully POSTs to 721 minting endpoint', async () => {
   const postStub = jest.fn().mockImplementation(() => successReq);
   (post as any) = postStub;
 
-  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).resolves.toEqual({
+  await expect(sdk.nft.startMint721('0xfoo', 1, '0xbar')).resolves.toEqual({
     data: {
       request_id: 'foo_123',
     },
@@ -56,7 +56,7 @@ test('Throws an error if Minting API returns well formed error', async () => {
 
   const expectedError = mintingError();
 
-  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
+  await expect(sdk.nft.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
 });
 
 test('Throws an error if Minting API returns unexpected response', async () => {
@@ -67,7 +67,7 @@ test('Throws an error if Minting API returns unexpected response', async () => {
 
   const expectedError = mintingError();
 
-  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
+  await expect(sdk.nft.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
 });
 
 test('Fails POST if API key is missing', async () => {
@@ -79,7 +79,7 @@ test('Fails POST if API key is missing', async () => {
 
   const expectedError = createApiKeyMissingError();
 
-  await expect(sdk.mint.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
+  await expect(sdk.nft.startMint721('0xfoo', 1, '0xbar')).rejects.toThrow(expectedError);
 
   expect(postStub).not.toBeCalled();
 });

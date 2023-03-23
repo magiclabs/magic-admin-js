@@ -1,3 +1,15 @@
+# v1.9.1 (Wed Mar 22 2023)
+
+#### 🐛 Bug Fix
+
+- Update modules/mint/index.ts to account for new API response format [#106](https://github.com/magiclabs/magic-admin-js/pull/106) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### Authors: 1
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+
+---
+
 # v1.9.0 (Wed Mar 22 2023)
 
 #### 🚀 Enhancement

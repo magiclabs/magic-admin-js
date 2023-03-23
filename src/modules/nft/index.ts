@@ -9,7 +9,7 @@ const v1StartMint721Path = '/v1/admin/nft/mint/721_mint';
 const v1StartMint1155Path = '/v1/admin/nft/mint/1155_mint';
 const successStatus = 'ok';
 
-export class MintModule extends BaseModule {
+export class NFTModule extends BaseModule {
   public async startMint721(contractId: string, quantity: number, destinationAddress: string): Promise<MintRequest> {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
     const body = {
