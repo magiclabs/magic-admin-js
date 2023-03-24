@@ -45,6 +45,7 @@ test('Successfully POSTs to 721 minting endpoint', async () => {
     'https://example.com/v1/admin/nft/mint/721_mint',
     API_KEY,
     { contract_id: '0xfoo', quantity: 1, destination_address: '0xbar' },
+    true,
   ]);
 });
 
