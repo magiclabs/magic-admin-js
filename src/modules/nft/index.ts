@@ -7,8 +7,9 @@ import { isMintRequest } from '../../utils/type-guards';
 
 const v1StartMint721Path = '/v1/admin/nft/mint/721_mint';
 const v1StartMint1155Path = '/v1/admin/nft/mint/1155_mint';
+const successStatus = 'ok';
 
-export class MintModule extends BaseModule {
+export class NFTModule extends BaseModule {
   public async startMint721(contractId: string, quantity: number, destinationAddress: string): Promise<MintRequest> {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
     const body = {
@@ -17,7 +18,7 @@ export class MintModule extends BaseModule {
       destination_address: destinationAddress,
     };
     const response = await post(`${this.sdk.apiBaseUrl}${v1StartMint721Path}`, this.sdk.secretApiKey, body, true);
-    if (!isMintRequest(response)) throw mintingError();
+    if (!isMintRequest(response) || response.status !== successStatus) throw mintingError();
     const request: MintRequest = response;
     return request;
   }
@@ -36,7 +37,7 @@ export class MintModule extends BaseModule {
       token_id: tokenId,
     };
     const response = await post(`${this.sdk.apiBaseUrl}${v1StartMint1155Path}`, this.sdk.secretApiKey, body, true);
-    if (!isMintRequest(response)) throw mintingError();
+    if (!isMintRequest(response) || response.status !== successStatus) throw mintingError();
     const request: MintRequest = response;
     return request;
   }
