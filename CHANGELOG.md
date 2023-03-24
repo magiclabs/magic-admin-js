@@ -1,3 +1,15 @@
+# v1.9.2 (Fri Mar 24 2023)
+
+#### 🐛 Bug Fix
+
+- [FIX]: adding json header [#107](https://github.com/magiclabs/magic-admin-js/pull/107) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### Authors: 1
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+
+---
+
 # v1.9.1 (Fri Mar 24 2023)
 
 #### 🐛 Bug Fix
