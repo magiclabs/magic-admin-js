@@ -9,6 +9,10 @@ interface MagicAPIResponse<TData = {}> {
   status?: string | number;
 }
 
+interface Headers {
+  [key: string]: any;
+}
+
 /**
  * Performs a `fetch` to the given URL with the configured `init` object.
  */
@@ -45,13 +49,13 @@ export function post<TBody extends Record<string, string | number | boolean> = {
   url: string,
   secretApiKey: string,
   body: TBody,
+  addJsonHeader = false,
 ) {
+  const headers: Headers = { 'X-Magic-Secret-key': secretApiKey };
+  if (addJsonHeader) headers['Content-Type'] = 'application/json';
   return emitRequest<TResponse>(url, {
     method: 'POST',
-    headers: {
-      'X-Magic-Secret-key': secretApiKey,
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify(body),
   });
 }
