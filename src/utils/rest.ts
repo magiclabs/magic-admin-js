@@ -49,10 +49,12 @@ export function post<TBody extends Record<string, string | number | boolean> = {
   url: string,
   secretApiKey: string,
   body: TBody,
-  addJsonHeader = false,
+  additionalHeaders?: Headers,
 ) {
-  const headers: Headers = { 'X-Magic-Secret-key': secretApiKey };
-  if (addJsonHeader) headers['Content-Type'] = 'application/json';
+  let headers: Headers = { 'X-Magic-Secret-key': secretApiKey };
+  if (additionalHeaders) {
+    headers = { ...headers, ...additionalHeaders };
+  }
   return emitRequest<TResponse>(url, {
     method: 'POST',
     headers,
