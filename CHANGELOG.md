@@ -1,3 +1,15 @@
+# v1.9.1 (Fri Mar 24 2023)
+
+#### 🐛 Bug Fix
+
+- [FIX]: updating response from API server to fit new schema [#106](https://github.com/magiclabs/magic-admin-js/pull/106) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### Authors: 1
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+
+---
+
 # v1.9.1 (Wed Mar 22 2023)
 
 #### 🐛 Bug Fix
