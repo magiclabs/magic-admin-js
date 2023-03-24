@@ -17,7 +17,9 @@ export class NFTModule extends BaseModule {
       quantity,
       destination_address: destinationAddress,
     };
-    const response = await post(`${this.sdk.apiBaseUrl}${v1StartMint721Path}`, this.sdk.secretApiKey, body);
+    const response = await post(`${this.sdk.apiBaseUrl}${v1StartMint721Path}`, this.sdk.secretApiKey, body, {
+      'Content-Type': 'application/json',
+    });
     if (!isMintRequest(response) || response.status !== successStatus) throw mintingError();
     const request: MintRequest = response;
     return request;
@@ -36,7 +38,9 @@ export class NFTModule extends BaseModule {
       destination_address: destinationAddress,
       token_id: tokenId,
     };
-    const response = await post(`${this.sdk.apiBaseUrl}${v1StartMint1155Path}`, this.sdk.secretApiKey, body);
+    const response = await post(`${this.sdk.apiBaseUrl}${v1StartMint1155Path}`, this.sdk.secretApiKey, body, {
+      'Content-Type': 'application/json',
+    });
     if (!isMintRequest(response) || response.status !== successStatus) throw mintingError();
     const request: MintRequest = response;
     return request;
