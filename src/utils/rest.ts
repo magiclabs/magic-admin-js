@@ -45,7 +45,6 @@ export function post<TBody extends Record<string, string | number | boolean> = {
   url: string,
   secretApiKey: string,
   body: TBody,
-  additionalHeaders?: Headers,
 ) {
   return emitRequest<TResponse>(url, {
     method: 'POST',
