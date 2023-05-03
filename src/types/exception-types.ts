@@ -8,5 +8,4 @@ export enum ErrorCode {
   MalformedTokenError = 'ERROR_MALFORMED_TOKEN',
   ServiceError = 'SERVICE_ERROR',
   ExpectedBearerString = 'EXPECTED_BEARER_STRING',
-  MintingError = 'MINTING_ERROR',
 }
