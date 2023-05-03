@@ -1,3 +1,15 @@
+# v1.10.0 (Wed May 03 2023)
+
+#### 🚀 Enhancement
+
+- [FIX]: removing unneeded NFT module and related code [#108](https://github.com/magiclabs/magic-admin-js/pull/108) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### Authors: 1
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+
+---
+
 # v1.9.2 (Fri Mar 24 2023)
 
 #### 🐛 Bug Fix
