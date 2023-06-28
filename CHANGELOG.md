@@ -1,3 +1,19 @@
+# v2.0.0 (Wed May 03 2023)
+
+#### 🚀 Enhancement
+
+- Add Magic Connect Admin SDK support for Token Resource [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
+  - [Security Enhancement]: Validate `aud` using Magic client ID. 
+  - Add new `init` async method to create Magic instance and pull client ID from Magic servers if not provided.
+  - Deprecate regular constructor.
+  - Skip validation of attachment if 'none' is passed in `validate`.
+
+#### Authors: 1
+
+- Ravi Bhankharia ([@magic-ravi](https://github.com/magic-ravi))
+
+---
+
 # v1.10.0 (Wed May 03 2023)
 
 #### 🚀 Enhancement

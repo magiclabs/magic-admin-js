@@ -32,7 +32,9 @@ Sign up or log in to the [developer dashboard](https://dashboard.magic.link) to 
 ```ts
 const { Magic } = require('@magic-sdk/admin');
 
-const magic = new Magic('YOUR_SECRET_API_KEY');
-
+// In async function:
+const magic = await Magic.init('YOUR_SECRET_API_KEY');
+// OR
+Magic.init('YOUR_SECRET_API_KEY').then((magic) => magic);
 // Read the docs to learn about next steps! 🚀
 ```

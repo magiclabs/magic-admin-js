@@ -1,5 +1,6 @@
 export interface MagicAdminSDKAdditionalConfiguration {
   endpoint?: string;
+  clientId?: string | null;
 }
 
 export interface MagicWallet {

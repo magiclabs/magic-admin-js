@@ -41,7 +41,7 @@ export function createFailedRecoveringProofError() {
 export function createApiKeyMissingError() {
   return new MagicAdminSDKError(
     ErrorCode.ApiKeyMissing,
-    'Please provide a secret Fortmatic API key that you acquired from the developer dashboard.',
+    'Please provide a secret Magic API key that you acquired from the developer dashboard.',
   );
 }
 
@@ -61,5 +61,12 @@ export function createExpectedBearerStringError() {
   return new MagicAdminSDKError(
     ErrorCode.ExpectedBearerString,
     'Expected argument to be a string in the `Bearer {token}` format.',
+  );
+}
+
+export function createAudienceMismatchError() {
+  return new MagicAdminSDKError(
+    ErrorCode.AudienceMismatch,
+    'Audience does not match client ID. Please ensure your secret key matches the application which generated the DID token.',
   );
 }
