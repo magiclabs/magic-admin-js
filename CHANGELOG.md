@@ -1,3 +1,15 @@
+# v1.10.1 (Fri Jul 07 2023)
+
+#### 🐛 Bug Fix
+
+- * add file extension [#112](https://github.com/magiclabs/magic-admin-js/pull/112) ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 1
+
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v1.10.0 (Wed May 03 2023)
 
 #### 🚀 Enhancement
