@@ -35,6 +35,19 @@ const { Magic } = require('@magic-sdk/admin');
 // In async function:
 const magic = await Magic.init('YOUR_SECRET_API_KEY');
 // OR
-Magic.init('YOUR_SECRET_API_KEY').then((magic) => magic);
-// Read the docs to learn about next steps! 🚀
+Magic.init('YOUR_SECRET_API_KEY').then((magic) => {
+  magic
+});
+// Validate a token
+try {
+  magic.token.validate("DIDToken");
+} catch (e) {
+  console.log(e);
+}
+// Magic Auth - Get User Email
+try {
+  await magic.users.getMetadataByToken("DIDToken");
+} catch (e) {
+  console.log(e);
+}
 ```
