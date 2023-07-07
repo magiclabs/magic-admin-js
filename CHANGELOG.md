@@ -1,4 +1,4 @@
-# v2.0.0 (July 03, 2023)
+# v2.0.0 (July 10, 2023)
 
 ## Summary
 - 🚀 **Added:** Magic Connect developers can now use the Admin SDK to validate DID tokens. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
@@ -72,6 +72,16 @@ None, all changes are fully backwards compatiable.
 ### Authors: 1
 
 - Ravi Bhankharia ([@magic-ravi](https://github.com/magic-ravi))
+
+# v1.10.1 (Fri Jul 07 2023)
+
+#### 🐛 Bug Fix
+
+- * add file extension [#112](https://github.com/magiclabs/magic-admin-js/pull/112) ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 1
+
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
 
 ---
 
