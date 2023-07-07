@@ -1,6 +1,6 @@
-import { keccak256 } from 'ethereum-cryptography/keccak';
-import { ecdsaRecover, publicKeyConvert } from 'ethereum-cryptography/secp256k1-compat';
-import { utf8ToBytes, bytesToHex, hexToBytes } from 'ethereum-cryptography/utils';
+import { keccak256 } from 'ethereum-cryptography/keccak.js';
+import { ecdsaRecover, publicKeyConvert } from 'ethereum-cryptography/secp256k1-compat.js';
+import { utf8ToBytes, bytesToHex, hexToBytes } from 'ethereum-cryptography/utils.js';
 
 function hashPersonalMessage(message: Uint8Array): Uint8Array {
   const prefix = utf8ToBytes(`\u0019Ethereum Signed Message:\n${message.length}`);
