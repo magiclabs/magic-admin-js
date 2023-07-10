@@ -8,6 +8,7 @@ import {
   createServiceError,
   createExpectedBearerStringError,
   createTokenCannotBeUsedYetError,
+  createAudienceMismatchError,
 } from '../../../../src/core/sdk-exceptions';
 
 function errorAssertions(
@@ -55,7 +56,7 @@ test('Creates `ERROR_SECRET_API_KEY_MISSING` error', async () => {
   errorAssertions(
     error,
     'ERROR_SECRET_API_KEY_MISSING',
-    'Please provide a secret Fortmatic API key that you acquired from the developer dashboard.',
+    'Please provide a secret Magic API key that you acquired from the developer dashboard.',
   );
 });
 
@@ -81,4 +82,13 @@ test('Creates `SERVICE_ERROR` error with non-empty `data` property', async () =>
 test('Creates `EXPECTED_BEARER_STRING` error', async () => {
   const error = createExpectedBearerStringError();
   errorAssertions(error, 'EXPECTED_BEARER_STRING', 'Expected argument to be a string in the `Bearer {token}` format.');
+});
+
+test('Creates `AUDIENCE_MISMATCH` error', async () => {
+  const error = createAudienceMismatchError();
+  errorAssertions(
+    error,
+    'ERROR_AUDIENCE_MISMATCH',
+    'Audience does not match client ID. Please ensure your secret key matches the application which generated the DID token.',
+  );
 });

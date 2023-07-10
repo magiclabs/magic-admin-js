@@ -7,6 +7,7 @@ import {
   createTokenExpiredError,
   createMalformedTokenError,
   createTokenCannotBeUsedYetError,
+  createAudienceMismatchError,
 } from '../../core/sdk-exceptions';
 import { ecRecover } from '../../utils/ec-recover';
 import { parseDIDToken } from '../../utils/parse-didt';
@@ -15,7 +16,7 @@ import { parsePublicAddressFromIssuer } from '../../utils/issuer';
 export class TokenModule extends BaseModule {
   public validate(DIDToken: string, attachment = 'none') {
     let tokenSigner = '';
-    let attachmentSigner = '';
+    let attachmentSigner: string | null = null;
     let claimedIssuer = '';
     let parsedClaim;
     let proof: string;
@@ -35,13 +36,15 @@ export class TokenModule extends BaseModule {
       tokenSigner = ecRecover(claim, proof).toLowerCase();
 
       // Recover the attachment signer
-      attachmentSigner = ecRecover(attachment, parsedClaim.add).toLowerCase();
+      if (attachment && attachment !== 'none') {
+        attachmentSigner = ecRecover(attachment, parsedClaim.add).toLowerCase();
+      }
     } catch {
       throw createFailedRecoveringProofError();
     }
 
     // Assert the expected signer
-    if (claimedIssuer !== tokenSigner || claimedIssuer !== attachmentSigner) {
+    if (claimedIssuer !== tokenSigner || (attachmentSigner && claimedIssuer !== attachmentSigner)) {
       throw createIncorrectSignerAddressError();
     }
 
@@ -56,6 +59,11 @@ export class TokenModule extends BaseModule {
     // Assert the token is not used before allowed.
     if (parsedClaim.nbf - nbfLeeway > timeSecs) {
       throw createTokenCannotBeUsedYetError();
+    }
+
+    // Assert the audience matches the client ID.
+    if (this.sdk.clientId && parsedClaim.aud !== this.sdk.clientId) {
+      throw createAudienceMismatchError();
     }
   }
 

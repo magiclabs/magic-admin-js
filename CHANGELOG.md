@@ -1,3 +1,78 @@
+# v2.0.0 (July 10, 2023)
+
+## Summary
+- 🚀 **Added:** Magic Connect developers can now use the Admin SDK to validate DID tokens. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
+- ⚠️ **Changed:** After creating the Magic instance, it is now necessary to call a new initialize method for Magic Connect developers that want to utilize the Admin SDK. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
+- 🛡️ **Security:** Additional validation of `aud` (client ID) is now being done during initialization of the SDK. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
+
+## Developer Notes
+
+### 🚀 Added
+
+#### Admin SDK for MC
+Magic Connect developers can now use the Admin SDK to validate DID tokens.
+
+**Details**
+There is full support for all `TokenResource` SDK methods for MC. This is intended to be used with client side `magic-js` SDK which will now emit an `id-token-created` event with a DID token upon login via the `connectWithUI` method.
+
+This functionality is replicated on our other SDKs on Python and Ruby.
+
+### ⚠️ Changed
+
+#### Constructor initialization
+
+The existing constructor has been deprecated in place of a new async `init` method.
+The `init` method will pull clientId from Magic servers if one is not provided in the `options` parameter.
+
+**Previous Version**
+```javascript
+const magic = new Magic(secretKey);
+try {
+  magic.token.validate(DIDT);
+} catch (e) {
+  console.log(e);
+}
+try {
+  await magic.users.getMetadataByToken(DIDT);
+} catch (e) {
+  console.log(e);
+}
+```
+
+**Current Version**
+```javascript
+const magic = await Magic.init(mcSecretKey);
+try {
+    magic.token.validate(DIDT);
+} catch (e) {
+   console.log(e);
+}
+try {
+    await magic.users.getMetadataByToken(DIDT);
+} catch (e) {
+    console.log(e);
+}
+```
+
+#### Attachment Validation
+
+- Skip validation of attachment if 'none' is passed in `validate`.
+
+### 🛡️ Security
+
+#### Client ID Validation
+
+Additional validation of `aud` (client ID) is now being done during initialization of the SDK. This is for both Magic Connect and Magic Auth developers.
+
+
+### 🚨 Breaking
+
+None, all changes are fully backwards compatiable.
+
+### Authors: 1
+
+- Ravi Bhankharia ([@magic-ravi](https://github.com/magic-ravi))
+
 # v1.10.1 (Fri Jul 07 2023)
 
 #### 🐛 Bug Fix
