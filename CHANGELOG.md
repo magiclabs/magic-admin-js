@@ -13,7 +13,7 @@
 Magic Connect developers can now use the Admin SDK to validate DID tokens.
 
 **Details**
-There is full support for all `TokenResource` SDK methods for MC. This is intended to be used with client side [`magic-js`](#) SDK which will now emit an `id-token-created` event with a DID token upon login via the [`connectWithUI`](#) method.
+There is full support for all `TokenResource` SDK methods for MC. This is intended to be used with client side `magic-js` SDK which will now emit an `id-token-created` event with a DID token upon login via the `connectWithUI` method.
 
 This functionality is replicated on our other SDKs on Python and Ruby.
 
@@ -21,8 +21,8 @@ This functionality is replicated on our other SDKs on Python and Ruby.
 
 #### Constructor initialization
 
-The existing constructor has been deprecated in place of a new async `initialize` method.
-The `initialize` method will pull clientId from Magic servers if one is not provided in the `options` parameter.
+The existing constructor has been deprecated in place of a new async `init` method.
+The `init` method will pull clientId from Magic servers if one is not provided in the `options` parameter.
 
 **Previous Version**
 ```javascript
