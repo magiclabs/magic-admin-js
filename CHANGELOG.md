@@ -1,3 +1,15 @@
+# v2.0.0 (Mon Jul 10 2023)
+
+#### 💥 Breaking Change
+
+- Validate 'aud' in DID Token [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
+
+#### Authors: 1
+
+- Ravi Bhankharia ([@magic-ravi](https://github.com/magic-ravi))
+
+---
+
 # v2.0.0 (July 10, 2023)
 
 ## Summary
