@@ -1,4 +1,3 @@
-import '../../../src/utils/shim';
 import { VALID_DIDT, VALID_DIDT_DECODED, INVALID_DIDT_MALFORMED_CLAIM } from '../../lib/constants';
 import { createMalformedTokenError } from '../../../src/core/sdk-exceptions';
 import { parseDIDToken } from '../../../src/utils/parse-didt';
