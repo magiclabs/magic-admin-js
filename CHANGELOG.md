@@ -1,3 +1,16 @@
+# v2.0.1 (Wed Oct 04 2023)
+
+#### 🐛 Bug Fix
+
+- update yarn.lock [#117](https://github.com/magiclabs/magic-admin-js/pull/117) ([@Ethella](https://github.com/Ethella))
+- Remove dependencies of atob [#116](https://github.com/magiclabs/magic-admin-js/pull/116) ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 1
+
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v2.0.0 (Mon Jul 10 2023)
 
 #### 💥 Breaking Change
