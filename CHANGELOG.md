@@ -1,3 +1,15 @@
+# v2.1.0 (Fri Jan 19 2024)
+
+#### 🚀 Enhancement
+
+- Fix ESM bundle generation and imports [#119](https://github.com/magiclabs/magic-admin-js/pull/119) ([@romin-halltari](https://github.com/romin-halltari))
+
+#### Authors: 1
+
+- [@romin-halltari](https://github.com/romin-halltari)
+
+---
+
 # v2.0.1 (Wed Oct 04 2023)
 
 #### 🐛 Bug Fix
