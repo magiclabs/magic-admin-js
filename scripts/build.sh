@@ -9,5 +9,11 @@ export NODE_OPTIONS=--max_old_space_size=4096
 
 export NODE_ENV=production
 
-npx tsc -p ./config/tsconfig.sdk.esm.json
+# Generate type declarations
+npx tsc -p ./config/tsconfig.sdk.esm.json --declaration --emitDeclarationOnly
+
+# Build ESM bundle
+npm run build-esm
+
+#Build CJS bundle
 npx tsc -p ./config/tsconfig.sdk.cjs.json

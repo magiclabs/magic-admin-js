@@ -4,7 +4,7 @@
     "lib": ["es2020", "dom"],
     "target": "esnext",
     "module": "esnext",
-    "outDir": "../dist/esm",
+    "outDir": "../dist/esm"
   },
   "include": ["../src/**/*.ts"]
 }
