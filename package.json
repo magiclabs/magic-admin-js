@@ -20,6 +20,7 @@
   "scripts": {
     "start": "npm run clean:build && ./scripts/start.sh",
     "build": "npm run clean:build && ./scripts/build.sh",
+    "build-esm": "esbuild src/index.ts --bundle --outdir=dist/esm --platform=node --target=esnext",
     "test": "npm run clean:test-artifacts && ./scripts/test.sh",
     "lint": "eslint --fix src/**/*.ts",
     "clean": "npm-run-all -s clean:*",
@@ -37,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "auto": "^9.60.1",
     "boxen-cli": "^1.0.0",
+    "esbuild": "^0.14.54",
     "eslint": "^6.7.2",
     "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.18.2",
