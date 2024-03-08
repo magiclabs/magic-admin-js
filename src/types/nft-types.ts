@@ -8,3 +8,9 @@ export interface MintRequest {
   message: string;
   status: string;
 }
+
+export interface ValidateTokenOwnershipResponse {
+  valid: boolean;
+  error_code: string;
+  message: string;
+}
