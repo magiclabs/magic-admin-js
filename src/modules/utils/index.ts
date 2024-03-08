@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import { BaseModule } from '../base-module';
-import { createExpectedBearerStringError } from '../../core/sdk-exceptions';
+import {createExpectedBearerStringError, MagicAdminSDKError} from '../../core/sdk-exceptions';
 import { ValidateTokenOwnershipResponse } from '../../types';
 import { ERC1155ContractABI, ERC721ContractABI } from './ownershipABIs';
 
@@ -33,14 +33,14 @@ export class UtilsModule extends BaseModule {
       await this.sdk.token.validate(didToken);
     } catch (e) {
       // Check if code is malformed token
-      if (e.code === 'ERROR_MALFORMED_TOKEN') {
+      if ((e as MagicAdminSDKError).code === 'ERROR_MALFORMED_TOKEN') {
         return {
           valid: false,
           error_code: 'UNAUTHORIZED',
           message: 'Invalid DID token: ERROR_MALFORMED_TOKEN',
         };
       }
-      throw new Error(e.code);
+      throw new Error((e as MagicAdminSDKError).code);
     }
     const { email, publicAddress: walletAddress } = await this.sdk.users.getMetadataByToken(didToken);
     if (!email || !walletAddress) {
