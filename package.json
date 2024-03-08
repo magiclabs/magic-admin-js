@@ -59,7 +59,8 @@
   },
   "dependencies": {
     "ethereum-cryptography": "^1.0.1",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "web3": "^4.6.0"
   },
   "husky": {
     "hooks": {
