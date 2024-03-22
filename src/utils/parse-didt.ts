@@ -1,7 +1,7 @@
-import { Claim, ParsedDIDToken } from '../types';
+import { decodeValue } from './codec';
 import { isDIDTClaim } from './type-guards';
 import { createMalformedTokenError } from '../core/sdk-exceptions';
-import { decodeValue } from './codec';
+import { Claim, ParsedDIDToken } from '../types';
 
 interface ParseDIDTokenResult {
   raw: [string, string];

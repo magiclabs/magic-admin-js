@@ -5,7 +5,11 @@ import { ErrorCode } from '../types';
 export class MagicAdminSDKError extends Error {
   __proto__ = Error;
 
-  constructor(public code: ErrorCode, message: string, public data: any[] = []) {
+  constructor(
+    public code: ErrorCode,
+    message: string,
+    public data: any[] = [],
+  ) {
     super(`Magic Admin SDK Error: [${code}] ${message}`);
     Object.setPrototypeOf(this, MagicAdminSDKError.prototype);
   }

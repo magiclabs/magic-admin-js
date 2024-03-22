@@ -1,8 +1,9 @@
 import { RequestInit } from 'node-fetch';
-import { createServiceError } from '../core/sdk-exceptions';
-import { fetch } from './fetch';
 
-interface MagicAPIResponse<TData = {}> {
+import { fetch } from './fetch';
+import { createServiceError } from '../core/sdk-exceptions';
+
+interface MagicAPIResponse<TData> {
   data?: TData;
   error_code?: string;
   message?: string;
@@ -12,10 +13,10 @@ interface MagicAPIResponse<TData = {}> {
 /**
  * Performs a `fetch` to the given URL with the configured `init` object.
  */
-async function emitRequest<TResponse extends any = {}>(url: string, init?: RequestInit): Promise<Partial<TResponse>> {
+async function emitRequest<TResponse>(url: string, init?: RequestInit): Promise<Partial<TResponse>> {
   const json: MagicAPIResponse<TResponse> = await fetch(url, init)
-    .then(res => res.json())
-    .catch(err => {
+    .then((res) => res.json())
+    .catch((err) => {
       throw createServiceError(err);
     });
 
@@ -29,7 +30,7 @@ async function emitRequest<TResponse extends any = {}>(url: string, init?: Reque
 /**
  * Generates an encoded URL with query string from a dictionary of values.
  */
-function generateQuery<T extends Record<string, string | number | boolean> = {}>(url: string, params?: T) {
+function generateQuery<T extends Record<string, string | number | boolean>>(url: string, params?: T) {
   let query = '?';
   if (params) {
     for (const [key, value] of Object.entries(params)) query += `${key}=${value}&`;
@@ -41,7 +42,7 @@ function generateQuery<T extends Record<string, string | number | boolean> = {}>
 /**
  * POSTs to Magic's API.
  */
-export function post<TBody extends Record<string, string | number | boolean> = {}, TResponse extends any = {}>(
+export function post<TBody extends Record<string, string | number | boolean>, TResponse>(
   url: string,
   secretApiKey: string,
   body: TBody,
@@ -56,7 +57,7 @@ export function post<TBody extends Record<string, string | number | boolean> = {
 /**
  * GETs from Magic's API.
  */
-export function get<TResponse extends any = {}>(url: string, secretApiKey: string, params?: any) {
+export function get<TResponse>(url: string, secretApiKey: string, params?: any) {
   const urlWithParams = generateQuery(url, params);
   return emitRequest<TResponse>(urlWithParams, {
     method: 'GET',
