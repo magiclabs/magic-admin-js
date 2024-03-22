@@ -29,6 +29,7 @@
     "clean_node_modules": "rimraf node_modules"
   },
   "devDependencies": {
+    "@ikscodes/eslint-config": "^8.4.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/jest": "^27.4.1",
     "@types/node": "^13.1.2",
