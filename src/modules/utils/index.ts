@@ -32,7 +32,7 @@ export class UtilsModule extends BaseModule {
     // Validate DID token
     try {
       this.sdk.token.validate(didToken);
-    } catch (e) {
+    } catch (e: any) {
       // Check if code is malformed token
       if ((e as MagicAdminSDKError).code === 'ERROR_MALFORMED_TOKEN') {
         return {
