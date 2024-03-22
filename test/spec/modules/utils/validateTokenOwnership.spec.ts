@@ -24,6 +24,20 @@ test('Returns an error if DID token is malformed', async () => {
   });
 });
 
+test('Returns an error if DID token is expired', async () => {
+  const sdk = createMagicAdminSDK('https://example.com');
+  const web3 = new Web3('https://example.com');
+
+  // Mock the magic token validation by setting the code to ERROR_DIDT_EXPIRED
+  sdk.token.validate = jest.fn().mockRejectedValue({ code: 'ERROR_DIDT_EXPIRED' });
+
+  await expect(sdk.utils.validateTokenOwnership('did:ethr:0x123', '0xfoo', 'ERC1155', web3, '1')).resolves.toEqual({
+    valid: false,
+    error_code: 'UNAUTHORIZED',
+    message: 'Invalid DID token: ERROR_DIDT_EXPIRED',
+  });
+});
+
 test('Throws an error if DID token validation returns unexpected error code', async () => {
   const sdk = createMagicAdminSDK('https://example.com');
   const web3 = new Web3('https://example.com');

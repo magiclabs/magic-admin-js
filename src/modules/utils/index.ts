@@ -3,6 +3,7 @@ import { BaseModule } from '../base-module';
 import {createExpectedBearerStringError, MagicAdminSDKError} from '../../core/sdk-exceptions';
 import { ValidateTokenOwnershipResponse } from '../../types';
 import { ERC1155ContractABI, ERC721ContractABI } from './ownershipABIs';
+import { ErrorCode } from '../../types';
 
 export class UtilsModule extends BaseModule {
   /**
@@ -28,28 +29,28 @@ export class UtilsModule extends BaseModule {
     if (contractType === 'ERC1155' && !tokenId) {
       throw new Error('ERC1155 requires a tokenId');
     }
-    // Call magic and validate DID token
+    // Validate DID token
     try {
-      await this.sdk.token.validate(didToken);
+      this.sdk.token.validate(didToken);
     } catch (e) {
       // Check if code is malformed token
       if ((e as MagicAdminSDKError).code === 'ERROR_MALFORMED_TOKEN') {
         return {
           valid: false,
           error_code: 'UNAUTHORIZED',
-          message: 'Invalid DID token: ERROR_MALFORMED_TOKEN',
+          message: 'Invalid DID token: ' + ErrorCode.MalformedTokenError,
+        };
+      }
+      if (e.code === ErrorCode.TokenExpired) {
+        return {
+          valid: false,
+          error_code: 'UNAUTHORIZED',
+          message: 'Invalid DID token: ' + ErrorCode.TokenExpired,
         };
       }
       throw new Error((e as MagicAdminSDKError).code);
     }
-    const { email, publicAddress: walletAddress } = await this.sdk.users.getMetadataByToken(didToken);
-    if (!email || !walletAddress) {
-      return {
-        valid: false,
-        error_code: 'UNAUTHORIZED',
-        message: 'Invalid DID token. May be expired or malformed.',
-      };
-    }
+    const walletAddress = this.sdk.token.getPublicAddress(didToken);
 
     // Check on-chain if user owns NFT by calling contract with web3
     let balance = BigInt(0);
