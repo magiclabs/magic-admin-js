@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import { BaseModule } from '../base-module';
-import {createExpectedBearerStringError, MagicAdminSDKError} from '../../core/sdk-exceptions';
+import {createExpectedBearerStringError} from '../../core/sdk-exceptions';
 import { ValidateTokenOwnershipResponse } from '../../types';
 import { ERC1155ContractABI, ERC721ContractABI } from './ownershipABIs';
 import { ErrorCode } from '../../types';
@@ -30,11 +30,13 @@ export class UtilsModule extends BaseModule {
       throw new Error('ERC1155 requires a tokenId');
     }
     // Validate DID token
+    let walletAddress;
     try {
-      this.sdk.token.validate(didToken);
+      await this.sdk.token.validate(didToken);
+      walletAddress = this.sdk.token.getPublicAddress(didToken);
     } catch (e: any) {
       // Check if code is malformed token
-      if ((e as MagicAdminSDKError).code === 'ERROR_MALFORMED_TOKEN') {
+      if (e.code && e.code === 'ERROR_MALFORMED_TOKEN') {
         return {
           valid: false,
           error_code: 'UNAUTHORIZED',
@@ -48,9 +50,9 @@ export class UtilsModule extends BaseModule {
           message: 'Invalid DID token: ' + ErrorCode.TokenExpired,
         };
       }
-      throw new Error((e as MagicAdminSDKError).code);
+      throw new Error(e);
     }
-    const walletAddress = this.sdk.token.getPublicAddress(didToken);
+    
 
     // Check on-chain if user owns NFT by calling contract with web3
     let balance = BigInt(0);
