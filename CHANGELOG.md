@@ -1,3 +1,20 @@
+# v2.2.0 (Wed Apr 03 2024)
+
+#### 🚀 Enhancement
+
+- Adding type and abis [#122](https://github.com/magiclabs/magic-admin-js/pull/122) ([@bengriffin1](https://github.com/bengriffin1) [@Ethella](https://github.com/Ethella))
+
+#### 🐛 Bug Fix
+
+- Pdeexp 594 update admin sdk dependency versions to support web 3 [#123](https://github.com/magiclabs/magic-admin-js/pull/123) ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 2
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v2.1.0 (Fri Jan 19 2024)
 
 #### 🚀 Enhancement
