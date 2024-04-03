@@ -1,9 +1,9 @@
+import { createApiKeyMissingError } from './sdk-exceptions';
 import { TokenModule } from '../modules/token';
 import { UsersModule } from '../modules/users';
 import { UtilsModule } from '../modules/utils';
 import { MagicAdminSDKAdditionalConfiguration } from '../types';
 import { get } from '../utils/rest';
-import { createApiKeyMissingError } from './sdk-exceptions';
 
 export class MagicAdminSDK {
   public readonly apiBaseUrl: string;
@@ -35,7 +35,10 @@ export class MagicAdminSDK {
    * @param secretApiKey
    * @param options
    */
-  constructor(public readonly secretApiKey?: string, options?: MagicAdminSDKAdditionalConfiguration) {
+  constructor(
+    public readonly secretApiKey?: string,
+    options?: MagicAdminSDKAdditionalConfiguration,
+  ) {
     const endpoint = options?.endpoint ?? 'https://api.magic.link';
     this.apiBaseUrl = endpoint.replace(/\/+$/, '');
     this.clientId = options?.clientId ?? null;
