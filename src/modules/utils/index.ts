@@ -59,11 +59,9 @@ export class UtilsModule extends BaseModule {
     const provider = new ethers.JsonRpcProvider();
     if (contractType === 'ERC721') {
       const contract = new ethers.Contract(contractAddress, ERC721ContractABI, provider);
-      // const contract = new web3.eth.Contract(ERC721ContractABI, contractAddress);
       balance = BigInt(await contract.balanceOf(walletAddress));
     } else {
       const contract = new ethers.Contract(contractAddress, ERC1155ContractABI, provider);
-      // const contract = new web3.eth.Contract(ERC1155ContractABI, contractAddress);
       balance = BigInt(await contract.balanceOf(walletAddress, tokenId));
     }
     if (balance > BigInt(0)) {
