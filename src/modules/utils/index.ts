@@ -62,7 +62,6 @@ export class UtilsModule extends BaseModule {
       balance = BigInt(await contract.balanceOf(walletAddress));
     } else {
       const contract = new ethers.Contract(contractAddress, ERC1155ContractABI, provider);
-      console.log(Object.keys(contract))
       balance = BigInt(await contract.balanceOf(walletAddress, tokenId));
     }
     if (balance > BigInt(0)) {
