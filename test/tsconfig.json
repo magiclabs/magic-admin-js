@@ -1,3 +1,10 @@
 {
-  "extends": "../config/tsconfig.test.json"
+  "extends": "../config/tsconfig.test.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+  }
 }

@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+import { ethers } from "ethers";
 import { BaseModule } from '../base-module';
 import {createExpectedBearerStringError} from '../../core/sdk-exceptions';
 import { ValidateTokenOwnershipResponse } from '../../types';
@@ -22,7 +22,7 @@ export class UtilsModule extends BaseModule {
     didToken: string,
     contractAddress: string,
     contractType: 'ERC721' | 'ERC1155',
-    web3: Web3,
+    rpcURL: string,
     tokenId?: string,
   ): Promise<ValidateTokenOwnershipResponse> {
     // Make sure if ERC1155 has a tokenId
@@ -56,12 +56,15 @@ export class UtilsModule extends BaseModule {
 
     // Check on-chain if user owns NFT by calling contract with web3
     let balance = BigInt(0);
+    const provider = new ethers.JsonRpcProvider();
     if (contractType === 'ERC721') {
-      const contract = new web3.eth.Contract(ERC721ContractABI, contractAddress);
-      balance = BigInt(await contract.methods.balanceOf(walletAddress).call());
+      const contract = new ethers.Contract(contractAddress, ERC721ContractABI, provider);
+      // const contract = new web3.eth.Contract(ERC721ContractABI, contractAddress);
+      balance = BigInt(await contract.balanceOf(walletAddress));
     } else {
-      const contract = new web3.eth.Contract(ERC1155ContractABI, contractAddress);
-      balance = BigInt(await contract.methods.balanceOf(walletAddress, tokenId).call());
+      const contract = new ethers.Contract(contractAddress, ERC1155ContractABI, provider);
+      // const contract = new web3.eth.Contract(ERC1155ContractABI, contractAddress);
+      balance = BigInt(await contract.balanceOf(walletAddress, tokenId));
     }
     if (balance > BigInt(0)) {
       return {
