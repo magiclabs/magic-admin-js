@@ -3,7 +3,7 @@
     "lib": ["es2018", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,

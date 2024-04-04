@@ -1,3 +1,6 @@
 {
-  "extends": "../config/tsconfig.test.json"
+  "extends": "../config/tsconfig.test.json",
+  "compilerOptions": {
+    "target": "es5"
+  }
 }
