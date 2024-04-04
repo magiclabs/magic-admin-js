@@ -56,12 +56,13 @@ export class UtilsModule extends BaseModule {
 
     // Check on-chain if user owns NFT by calling contract with web3
     let balance = BigInt(0);
-    const provider = new ethers.JsonRpcProvider();
+    const provider = new ethers.JsonRpcProvider(rpcURL);
     if (contractType === 'ERC721') {
       const contract = new ethers.Contract(contractAddress, ERC721ContractABI, provider);
       balance = BigInt(await contract.balanceOf(walletAddress));
     } else {
       const contract = new ethers.Contract(contractAddress, ERC1155ContractABI, provider);
+      console.log(Object.keys(contract))
       balance = BigInt(await contract.balanceOf(walletAddress, tokenId));
     }
     if (balance > BigInt(0)) {
