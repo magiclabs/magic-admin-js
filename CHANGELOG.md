@@ -1,3 +1,17 @@
+# v2.3.0 (Thu Apr 04 2024)
+
+#### 🚀 Enhancement
+
+- Updating yarn.lock [#125](https://github.com/magiclabs/magic-admin-js/pull/125) ([@bengriffin1](https://github.com/bengriffin1))
+- Switching to use ethers and accept RPC url for token gating validation [#124](https://github.com/magiclabs/magic-admin-js/pull/124) ([@bengriffin1](https://github.com/bengriffin1) [@Ethella](https://github.com/Ethella))
+
+#### Authors: 2
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v2.2.0 (Wed Apr 03 2024)
 
 #### 🚀 Enhancement
