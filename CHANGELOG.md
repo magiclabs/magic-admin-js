@@ -1,3 +1,15 @@
+# v2.4.0 (Thu Apr 04 2024)
+
+#### 🚀 Enhancement
+
+- Fixing ABIs [#126](https://github.com/magiclabs/magic-admin-js/pull/126) ([@bengriffin1](https://github.com/bengriffin1))
+
+#### Authors: 1
+
+- Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
+
+---
+
 # v2.3.0 (Thu Apr 04 2024)
 
 #### 🚀 Enhancement
