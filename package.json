@@ -26,7 +26,8 @@
     "clean": "npm-run-all -s clean:*",
     "clean:test-artifacts": "rimraf coverage",
     "clean:build": "rimraf dist",
-    "clean_node_modules": "rimraf node_modules"
+    "clean_node_modules": "rimraf node_modules",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@ikscodes/eslint-config": "^8.4.1",
@@ -58,11 +59,6 @@
     "ethereum-cryptography": "^1.0.1",
     "ethers": "^6.11.1",
     "node-fetch": "^2.6.7"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --fix"
