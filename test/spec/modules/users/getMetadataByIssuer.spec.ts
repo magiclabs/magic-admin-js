@@ -1,8 +1,8 @@
-import { createMagicAdminSDK } from '../../../lib/factories';
-import { API_KEY } from '../../../lib/constants';
 import { createApiKeyMissingError } from '../../../../src/core/sdk-exceptions';
-import { get } from '../../../../src/utils/rest';
 import { WalletType } from '../../../../src/types/wallet-types';
+import { get } from '../../../../src/utils/rest';
+import { API_KEY } from '../../../lib/constants';
+import { createMagicAdminSDK } from '../../../lib/factories';
 
 const successRes = Promise.resolve({
   issuer: 'foo',
@@ -10,6 +10,7 @@ const successRes = Promise.resolve({
   email: 'baz',
   oauth_provider: 'foo1',
   phone_number: '+1234',
+  username: 'buzz',
 });
 const successResWithWallets = Promise.resolve({
   issuer: 'foo',
@@ -17,13 +18,14 @@ const successResWithWallets = Promise.resolve({
   email: 'baz',
   oauth_provider: 'foo1',
   phone_number: '+1234',
+  username: 'buzz',
   wallets: [
     {
       wallet_type: 'SOLANA',
       network: 'MAINNET',
-      public_address: 'barxyz'
-    }
-  ]
+      public_address: 'barxyz',
+    },
+  ],
 });
 const nullRes = Promise.resolve({});
 
@@ -35,18 +37,22 @@ test('Successfully GETs to metadata endpoint via issuer', async () => {
 
   const result = await sdk.users.getMetadataByIssuer('did:ethr:0x1234');
 
+  console.log(result);
+
   const getArguments = getStub.mock.calls[0];
   expect(getArguments).toEqual([
     'https://example.com/v1/admin/auth/user/get',
     API_KEY,
-    { issuer: 'did:ethr:0x1234', wallet_type: 'NONE'},
+    { issuer: 'did:ethr:0x1234', wallet_type: 'NONE' },
   ]);
+
   expect(result).toEqual({
     issuer: 'foo',
     publicAddress: 'bar',
     email: 'baz',
     oauthProvider: 'foo1',
     phoneNumber: '+1234',
+    username: 'buzz',
     wallets: null,
   });
 });
@@ -71,6 +77,7 @@ test('Successfully GETs `null` metadata endpoint via issuer', async () => {
     email: null,
     oauthProvider: null,
     phoneNumber: null,
+    username: null,
     wallets: null,
   });
 });
@@ -108,10 +115,13 @@ test('Successfully GETs to metadata endpoint via issuer and wallet type', async 
     email: 'baz',
     oauthProvider: 'foo1',
     phoneNumber: '+1234',
-    wallets: [{
-      wallet_type: 'SOLANA',
-      network: 'MAINNET',
-      public_address: 'barxyz'
-    }],
+    username: 'buzz',
+    wallets: [
+      {
+        wallet_type: 'SOLANA',
+        network: 'MAINNET',
+        public_address: 'barxyz',
+      },
+    ],
   });
 });

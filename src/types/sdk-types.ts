@@ -15,5 +15,6 @@ export interface MagicUserMetadata {
   email: string | null;
   oauthProvider: string | null;
   phoneNumber: string | null;
+  username: string | null;
   wallets: MagicWallet[] | null;
 }
