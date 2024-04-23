@@ -61,6 +61,7 @@ export class UsersModule extends BaseModule {
       email: string | null;
       oauth_provider: string | null;
       phone_number: string | null;
+      username: string | null;
       wallets: MagicWallet[] | null;
     }>(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, { issuer, wallet_type: walletType });
 
@@ -70,6 +71,7 @@ export class UsersModule extends BaseModule {
       email: data.email ?? null,
       oauthProvider: data.oauth_provider ?? null,
       phoneNumber: data.phone_number ?? null,
+      username: data.username ?? null,
       wallets: data.wallets ?? null,
     };
   }
