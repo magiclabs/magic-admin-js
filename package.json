@@ -1,6 +1,6 @@
 {
   "name": "@magic-sdk/admin",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Magic Authentication Admin Javascript SDK.",
   "author": "Magic Labs <team@magic.link>",
   "license": "MIT",
