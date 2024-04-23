@@ -1,3 +1,15 @@
+# v2.4.1 (Tue Apr 23 2024)
+
+#### 🐛 Bug Fix
+
+- feat: add username data field to metadata call response [#127](https://github.com/magiclabs/magic-admin-js/pull/127) ([@am-hernandez](https://github.com/am-hernandez))
+
+#### Authors: 1
+
+- A.M. Hernandez ([@am-hernandez](https://github.com/am-hernandez))
+
+---
+
 # v2.4.0 (Thu Apr 04 2024)
 
 #### 🚀 Enhancement
