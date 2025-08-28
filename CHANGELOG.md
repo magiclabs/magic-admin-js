@@ -1,3 +1,15 @@
+# v2.5.0 (Thu Aug 28 2025)
+
+#### 🚀 Enhancement
+
+- Updated backend URL endpoints for improved connectivity and reliability.
+
+#### Authors: 1
+
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+
+---
+
 # v2.4.1 (Tue Apr 23 2024)
 
 #### 🐛 Bug Fix
@@ -93,6 +105,7 @@
 # v2.0.0 (July 10, 2023)
 
 ## Summary
+
 - 🚀 **Added:** Magic Connect developers can now use the Admin SDK to validate DID tokens. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
 - ⚠️ **Changed:** After creating the Magic instance, it is now necessary to call a new initialize method for Magic Connect developers that want to utilize the Admin SDK. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
 - 🛡️ **Security:** Additional validation of `aud` (client ID) is now being done during initialization of the SDK. [#111](https://github.com/magiclabs/magic-admin-js/pull/111) ([@magic-ravi](https://github.com/magic-ravi))
@@ -102,6 +115,7 @@
 ### 🚀 Added
 
 #### Admin SDK for MC
+
 Magic Connect developers can now use the Admin SDK to validate DID tokens.
 
 **Details**
@@ -117,6 +131,7 @@ The existing constructor has been deprecated in place of a new async `init` meth
 The `init` method will pull clientId from Magic servers if one is not provided in the `options` parameter.
 
 **Previous Version**
+
 ```javascript
 const magic = new Magic(secretKey);
 try {
@@ -132,17 +147,18 @@ try {
 ```
 
 **Current Version**
+
 ```javascript
 const magic = await Magic.init(mcSecretKey);
 try {
-    magic.token.validate(DIDT);
+  magic.token.validate(DIDT);
 } catch (e) {
-   console.log(e);
+  console.log(e);
 }
 try {
-    await magic.users.getMetadataByToken(DIDT);
+  await magic.users.getMetadataByToken(DIDT);
 } catch (e) {
-    console.log(e);
+  console.log(e);
 }
 ```
 
@@ -156,7 +172,6 @@ try {
 
 Additional validation of `aud` (client ID) is now being done during initialization of the SDK. This is for both Magic Connect and Magic Auth developers.
 
-
 ### 🚨 Breaking
 
 None, all changes are fully backwards compatiable.
@@ -169,7 +184,7 @@ None, all changes are fully backwards compatiable.
 
 #### 🐛 Bug Fix
 
-- * add file extension [#112](https://github.com/magiclabs/magic-admin-js/pull/112) ([@Ethella](https://github.com/Ethella))
+- - add file extension [#112](https://github.com/magiclabs/magic-admin-js/pull/112) ([@Ethella](https://github.com/Ethella))
 
 #### Authors: 1
 
@@ -253,6 +268,7 @@ None, all changes are fully backwards compatiable.
 - Ben Griffin ([@bengriffin1](https://github.com/bengriffin1))
 
 ---
+
 # v1.8.0 (Fri Feb 17 2023)
 
 #### 🚀 Enhancement
@@ -264,6 +280,7 @@ None, all changes are fully backwards compatiable.
 - Justin Herrera ([@justinnout](https://github.com/justinnout))
 
 ---
+
 # v1.4.1 (Sat Apr 16 2022)
 
 #### 🐛 Bug Fix
@@ -380,7 +397,7 @@ None, all changes are fully backwards compatiable.
 - Add vulnerabilities and circleci badges [#35](https://github.com/magiclabs/magic-admin-js/pull/35) ([@FYJen](https://github.com/FYJen))
 - Add issue templates and contributing guide [#26](https://github.com/magiclabs/magic-admin-js/pull/26) ([@smithki](https://github.com/smithki))
 - Encode query URI components and implement logout v2 [#22](https://github.com/magiclabs/magic-admin-js/pull/22) ([@smithki](https://github.com/smithki))
-- Add 'getUserBy*' methods and generalize REST API services [#18](https://github.com/magiclabs/magic-admin-js/pull/18) ([@smithki](https://github.com/smithki))
+- Add 'getUserBy\*' methods and generalize REST API services [#18](https://github.com/magiclabs/magic-admin-js/pull/18) ([@smithki](https://github.com/smithki))
 - Validate `nbf` field [#40](https://github.com/magiclabs/magic-admin-js/pull/40) ([@smithki](https://github.com/smithki))
 - fix name of logout request body [#14](https://github.com/magiclabs/magic-admin-js/pull/14) ([@Dizigen](https://github.com/Dizigen))
 - Add logoutByIssuer method [#13](https://github.com/magiclabs/magic-admin-js/pull/13) ([@smithki](https://github.com/smithki))
