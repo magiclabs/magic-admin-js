@@ -38,7 +38,7 @@ test('Fails with TypeError if `res.json` is undefined', async () => {
   const fetchStub = jest.fn().mockImplementation(() => failWithTypeError);
   (fetch as any) = fetchStub;
 
-  const expectedError = createServiceError({ status: 'qwerty' });
+  const expectedError = createServiceError('TypeError: Cannot read properties of undefined (reading \'json\')');
 
   await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });
