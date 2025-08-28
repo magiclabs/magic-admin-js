@@ -17,22 +17,18 @@ const failWithTypeError = Promise.resolve({
 const failWithBadStatus = Promise.resolve({
   json: () =>
     Promise.resolve({
-      status: 'qwerty', // Only 'ok' with succeed
+      error: 'Something went wrong',
     }),
 });
 
 const failWithEmptyStatus = Promise.resolve({
   json: () =>
-    Promise.resolve({
-      // No status defined will assume non-'ok'
-    }),
+    Promise.resolve({}),
 });
 
 const successResEmptyData = Promise.resolve({
   json: () =>
-    Promise.resolve({
-      status: 'ok',
-    }),
+    Promise.resolve({}),
 });
 
 test('Fails with TypeError if `res.json` is undefined', async () => {
@@ -42,31 +38,29 @@ test('Fails with TypeError if `res.json` is undefined', async () => {
   const fetchStub = jest.fn().mockImplementation(() => failWithTypeError);
   (fetch as any) = fetchStub;
 
-  const expectedError = createServiceError({ status: 'qwerty' });
+  const expectedError = createServiceError('TypeError: Cannot read properties of undefined (reading \'json\')');
 
   await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
 });
 
-test('Fails with non-OK status in response JSON', async () => {
+test('Returns response with error field', async () => {
   const fetchStub = jest.fn().mockImplementation(() => failWithBadStatus);
   (fetch as any) = fetchStub;
 
-  const expectedError = createServiceError({ status: 'qwerty' });
-
-  await expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
+  await expect(get(URL, API_KEY)).resolves.toEqual({
+    error: 'Something went wrong',
+  });
 });
 
-test('Succeeds with empty data in response JSON, returning `{}` as fallback', async () => {
+test('Succeeds with empty data in response JSON, returning response without status', async () => {
   const fetchStub = jest.fn().mockImplementation(() => successResEmptyData);
   (fetch as any) = fetchStub;
   await expect(get(URL, API_KEY)).resolves.toEqual({});
 });
 
-test('Fails with empty status in response', async () => {
+test('Returns empty response object', async () => {
   const fetchStub = jest.fn().mockImplementation(() => failWithEmptyStatus);
   (fetch as any) = fetchStub;
 
-  const expectedError = createServiceError({ status: 'qwerty' });
-
-  expect(get(URL, API_KEY)).rejects.toThrow(expectedError);
+  await expect(get(URL, API_KEY)).resolves.toEqual({});
 });

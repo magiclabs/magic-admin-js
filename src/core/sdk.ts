@@ -39,7 +39,7 @@ export class MagicAdminSDK {
     public readonly secretApiKey?: string,
     options?: MagicAdminSDKAdditionalConfiguration,
   ) {
-    const endpoint = options?.endpoint ?? 'https://api.magic.link';
+    const endpoint = options?.endpoint ?? 'https://api.toaster.magic.link';
     this.apiBaseUrl = endpoint.replace(/\/+$/, '');
     this.clientId = options?.clientId ?? null;
     // Assign API Modules
@@ -53,7 +53,7 @@ export class MagicAdminSDK {
 
     let hydratedOptions = options ?? {};
 
-    const endpoint = hydratedOptions.endpoint ?? 'https://api.magic.link';
+    const endpoint = hydratedOptions.endpoint ?? 'https://api.toaster.magic.link';
     const apiBaseUrl = endpoint.replace(/\/+$/, '');
 
     if (!hydratedOptions.clientId) {
