@@ -41,7 +41,7 @@ test('Successfully GETs to metadata endpoint via issuer', async () => {
 
   const getArguments = getStub.mock.calls[0];
   expect(getArguments).toEqual([
-    'https://example.com/v1/admin/auth/user/get',
+    'https://example.com/v1/admin/user',
     API_KEY,
     { issuer: 'did:ethr:0x1234', wallet_type: 'NONE' },
   ]);
@@ -67,7 +67,7 @@ test('Successfully GETs `null` metadata endpoint via issuer', async () => {
 
   const getArguments = getStub.mock.calls[0];
   expect(getArguments).toEqual([
-    'https://example.com/v1/admin/auth/user/get',
+    'https://example.com/v1/admin/user',
     API_KEY,
     { issuer: 'did:ethr:0x1234', wallet_type: 'NONE' },
   ]);
@@ -105,7 +105,7 @@ test('Successfully GETs to metadata endpoint via issuer and wallet type', async 
 
   const getArguments = getStub.mock.calls[0];
   expect(getArguments).toEqual([
-    'https://example.com/v1/admin/auth/user/get',
+    'https://example.com/v1/admin/user',
     API_KEY,
     { issuer: 'did:ethr:0x1234', wallet_type: 'SOLANA'},
   ]);

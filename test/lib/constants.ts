@@ -1,4 +1,4 @@
-export const API_FULL_URL = 'https://api.magic.link';
+export const API_FULL_URL = 'https://api.toaster.magic.link';
 export const API_KEY = 'sk_test_123';
 
 export const VALID_DIDT =

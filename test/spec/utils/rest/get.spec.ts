@@ -5,17 +5,16 @@ import { get } from '../../../../src/utils/rest';
 const successRes = Promise.resolve({
   json: () =>
     Promise.resolve({
-      data: 'hello world',
-      status: 'ok',
+      message: 'hello world',
     }),
 });
 
 test('Successfully GETs to the given endpoint & stringifies query params', async () => {
   const fetchStub = jest.fn().mockImplementation(() => successRes);
   (fetch as any) = fetchStub;
-  await expect(get('https://example.com/hello/world', API_KEY, { foo: 'hello', bar: 'world' })).resolves.toBe(
-    'hello world',
-  );
+  await expect(get('https://example.com/hello/world', API_KEY, { foo: 'hello', bar: 'world' })).resolves.toEqual({
+    message: 'hello world',
+  });
 
   const fetchArguments = fetchStub.mock.calls[0];
   expect(fetchArguments).toEqual([
@@ -31,7 +30,9 @@ test('Successfully GETs to the given endpoint with no query params', async () =>
   const fetchStub = jest.fn().mockImplementation(() => successRes);
   (fetch as any) = fetchStub;
 
-  await expect(get('https://example.com/hello/world', API_KEY)).resolves.toBe('hello world');
+  await expect(get('https://example.com/hello/world', API_KEY)).resolves.toEqual({
+    message: 'hello world',
+  });
 
   const fetchArguments = fetchStub.mock.calls[0];
   expect(fetchArguments).toEqual([

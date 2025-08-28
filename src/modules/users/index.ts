@@ -10,7 +10,7 @@ export class UsersModule extends BaseModule {
   public async logoutByIssuer(issuer: string): Promise<void> {
     if (!this.sdk.secretApiKey) throw createApiKeyMissingError();
     const body = { issuer };
-    await post(`${this.sdk.apiBaseUrl}/v2/admin/auth/user/logout`, this.sdk.secretApiKey, body);
+    await post(`${this.sdk.apiBaseUrl}/v1/admin/user/logout`, this.sdk.secretApiKey, body);
   }
 
   public async logoutByPublicAddress(publicAddress: string): Promise<void> {
@@ -63,7 +63,7 @@ export class UsersModule extends BaseModule {
       phone_number: string | null;
       username: string | null;
       wallets: MagicWallet[] | null;
-    }>(`${this.sdk.apiBaseUrl}/v1/admin/auth/user/get`, this.sdk.secretApiKey, { issuer, wallet_type: walletType });
+    }>(`${this.sdk.apiBaseUrl}/v1/admin/user`, this.sdk.secretApiKey, { issuer, wallet_type: walletType });
 
     return {
       issuer: data.issuer ?? null,

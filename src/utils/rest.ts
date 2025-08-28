@@ -3,28 +3,17 @@ import { RequestInit } from 'node-fetch';
 import { fetch } from './fetch';
 import { createServiceError } from '../core/sdk-exceptions';
 
-interface MagicAPIResponse<TData> {
-  data?: TData;
-  error_code?: string;
-  message?: string;
-  status?: string | number;
-}
-
 /**
  * Performs a `fetch` to the given URL with the configured `init` object.
  */
 async function emitRequest<TResponse>(url: string, init?: RequestInit): Promise<Partial<TResponse>> {
-  const json: MagicAPIResponse<TResponse> = await fetch(url, init)
+  const response = await fetch(url, init)
     .then((res) => res.json())
     .catch((err) => {
       throw createServiceError(err);
     });
 
-  if (json.status !== 'ok') {
-    throw createServiceError(json);
-  }
-
-  return json.data ?? {};
+  return response;
 }
 
 /**
