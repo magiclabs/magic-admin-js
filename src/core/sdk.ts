@@ -60,7 +60,7 @@ export class MagicAdminSDK {
       const resp = await get<{
         client_id: string | null;
         app_scope: string | null;
-      }>(`${apiBaseUrl}/v1/admin/client/get`, secretApiKey);
+      }>(`${apiBaseUrl}/v1/admin/client`, secretApiKey);
       hydratedOptions = { ...hydratedOptions, clientId: resp.client_id };
     }
 
