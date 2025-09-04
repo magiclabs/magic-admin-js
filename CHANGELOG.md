@@ -1,3 +1,15 @@
+# v2.5.1 (Thu Sep 04 2025)
+
+#### 🐛 Bug Fix
+
+- Fixed backend URL for retrieving the client.
+
+#### Authors: 1
+
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+
+---
+
 # v2.5.0 (Thu Aug 28 2025)
 
 #### 🚀 Enhancement
