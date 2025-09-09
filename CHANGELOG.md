@@ -1,3 +1,16 @@
+# v2.7.0 (Tue Sep 09 2025)
+
+#### 🚀 Enhancement
+
+- Bump esbuild from 0.14.54 to 0.25.0 [#135](https://github.com/magiclabs/magic-admin-js/pull/135) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@damianjachyra](https://github.com/damianjachyra))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+
+---
+
 # v2.6.0 (Tue Sep 09 2025)
 
 #### 🚀 Enhancement
