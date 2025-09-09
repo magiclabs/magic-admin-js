@@ -1,3 +1,29 @@
+# v2.6.0 (Tue Sep 09 2025)
+
+#### 🚀 Enhancement
+
+- Bump @babel/traverse from 7.17.3 to 7.28.3 [#132](https://github.com/magiclabs/magic-admin-js/pull/132) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### 🐛 Bug Fix
+
+- Bump form-data from 3.0.0 to 3.0.4 [#134](https://github.com/magiclabs/magic-admin-js/pull/134) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump braces from 3.0.2 to 3.0.3 [#133](https://github.com/magiclabs/magic-admin-js/pull/133) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- bump checkout version [#138](https://github.com/magiclabs/magic-admin-js/pull/138) ([@Ethella](https://github.com/Ethella))
+- update: /v1/admin/client [#137](https://github.com/magiclabs/magic-admin-js/pull/137) ([@damianjachyra](https://github.com/damianjachyra))
+- update CHANGELOG.md [#136](https://github.com/magiclabs/magic-admin-js/pull/136) ([@damianjachyra](https://github.com/damianjachyra))
+
+#### ⚠️ Pushed to `master`
+
+- bump version ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v2.5.1 (Thu Sep 04 2025)
 
 #### 🐛 Bug Fix
