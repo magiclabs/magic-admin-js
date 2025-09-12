@@ -1,3 +1,15 @@
+# v2.8.0 (Fri Sep 12 2025)
+
+#### 🚀 Enhancement
+
+- Bump shell-quote from 1.7.2 to 1.8.3 [#139](https://github.com/magiclabs/magic-admin-js/pull/139) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v2.7.0 (Tue Sep 09 2025)
 
 #### 🚀 Enhancement
