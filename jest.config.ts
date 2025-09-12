@@ -15,11 +15,11 @@ const config: Config.InitialOptions = {
       branches: 99,
     }
   },
-  globals: {
-    'ts-jest': {
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
       tsconfig: './test/tsconfig.json',
       isolatedModules: true,
-    },
+    }],
   },
 };
 
