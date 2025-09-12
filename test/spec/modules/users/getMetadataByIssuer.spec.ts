@@ -92,7 +92,7 @@ test('Fails GET if API key is missing', async () => {
   const expectedError = createApiKeyMissingError();
   expect(sdk.users.getMetadataByIssuer('did:ethr:0x1234')).rejects.toThrow(expectedError);
 
-  expect(getStub).not.toBeCalled();
+  expect(getStub).not.toHaveBeenCalled();
 });
 
 test('Successfully GETs to metadata endpoint via issuer and wallet type', async () => {

@@ -26,5 +26,5 @@ test('Fails POST if API key is missing', async () => {
 
   await expect(sdk.users.logoutByIssuer('did:ethr:0x1234')).rejects.toThrow(expectedError);
 
-  expect(postStub).not.toBeCalled();
+  expect(postStub).not.toHaveBeenCalled();
 });
