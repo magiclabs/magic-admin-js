@@ -24,13 +24,13 @@ jobs:
           cache: 'yarn'
       - run: |
           yarn -v
-          yarn
+          yarn install --frozen-lockfile
 
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          yarn
+          yarn install --frozen-lockfile
           yarn build
           yarn auto shipit
