@@ -1,4 +1,4 @@
-# Magic Authentication Admin Javascript SDK
+# Magic Admin Node SDK
 
 [![Publish](https://github.com/magiclabs/magic-admin-js/actions/workflows/publish.yml/badge.svg?branch=master)](https://github.com/magiclabs/magic-admin-js/actions/workflows/publish.yml)
 > The Magic Admin SDK lets developers secure endpoints, manage users, and create middlewares via easy-to-use utilities.
@@ -11,7 +11,7 @@
 
 ## 📖 Documentation
 
-See the [developer documentation](https://magic.link/docs/api-reference/server-side-sdks/node) to learn how you can master the Magic Admin SDK in a matter of minutes.
+See the [developer documentation](https://docs.magic.link/embedded-wallets/sdk/server-side/node) to learn how you can master the Magic Admin SDK in a matter of minutes.
 
 ## 🔗 Installation
 
