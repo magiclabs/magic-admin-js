@@ -2,6 +2,21 @@
 
 #### 🐛 Bug Fix
 
+- fix: add missing Content-Type header to POST requests [#144](https://github.com/magiclabs/magic-admin-js/pull/144) ([@damianjachyra](https://github.com/damianjachyra))
+- Update URLs [#143](https://github.com/magiclabs/magic-admin-js/pull/143) ([@damianjachyra](https://github.com/damianjachyra))
+- fix: use --frozen-lockfile in CI to prevent yarn.lock modifications [#142](https://github.com/magiclabs/magic-admin-js/pull/142) ([@damianjachyra](https://github.com/damianjachyra))
+- Update All Deps [#141](https://github.com/magiclabs/magic-admin-js/pull/141) ([@damianjachyra](https://github.com/damianjachyra))
+
+#### Authors: 1
+
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+
+---
+
+# v2.8.1 (Thu Oct 02 2025)
+
+#### 🐛 Bug Fix
+
 - Add missing Content-Type header to POST requests to fix 422 errors ([@damianjachyra](https://github.com/damianjachyra))
 - Fix header casing from X-Magic-Secret-key to X-Magic-Secret-Key ([@damianjachyra](https://github.com/damianjachyra))
 
