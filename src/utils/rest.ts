@@ -38,7 +38,10 @@ export function post<TBody extends Record<string, string | number | boolean>, TR
 ) {
   return emitRequest<TResponse>(url, {
     method: 'POST',
-    headers: { 'X-Magic-Secret-key': secretApiKey },
+    headers: { 
+      'X-Magic-Secret-Key': secretApiKey,
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(body),
   });
 }
@@ -50,6 +53,6 @@ export function get<TResponse>(url: string, secretApiKey: string, params?: any) 
   const urlWithParams = generateQuery(url, params);
   return emitRequest<TResponse>(urlWithParams, {
     method: 'GET',
-    headers: { 'X-Magic-Secret-key': secretApiKey },
+    headers: { 'X-Magic-Secret-Key': secretApiKey },
   });
 }
