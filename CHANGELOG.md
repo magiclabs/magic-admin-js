@@ -1,3 +1,16 @@
+# v2.8.1 (Thu Oct 02 2025)
+
+#### 🐛 Bug Fix
+
+- Add missing Content-Type header to POST requests to fix 422 errors ([@damianjachyra](https://github.com/damianjachyra))
+- Fix header casing from X-Magic-Secret-key to X-Magic-Secret-Key ([@damianjachyra](https://github.com/damianjachyra))
+
+#### Authors: 1
+
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+
+---
+
 # v2.8.0 (Fri Sep 12 2025)
 
 #### 🚀 Enhancement
