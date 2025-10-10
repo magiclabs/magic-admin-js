@@ -1,3 +1,16 @@
+# v2.8.2 (Fri Oct 10 2025)
+
+#### 🐛 Bug Fix
+
+- fix: logoutByIssuer [#147](https://github.com/magiclabs/magic-admin-js/pull/147) ([@damianjachyra](https://github.com/damianjachyra))
+- Remove Duplicate Changelog Entry [#145](https://github.com/magiclabs/magic-admin-js/pull/145) ([@damianjachyra](https://github.com/damianjachyra))
+
+#### Authors: 1
+
+- Damian Jachyra ([@damianjachyra](https://github.com/damianjachyra))
+
+---
+
 # v2.8.1 (Thu Oct 02 2025)
 
 #### 🐛 Bug Fix
