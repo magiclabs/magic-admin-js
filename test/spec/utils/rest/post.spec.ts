@@ -26,10 +26,7 @@ test('Successfully POSTs to the given endpoint & stringifies body', async () => 
     'https://example.com/hello/world',
     {
       method: 'POST',
-      headers: { 
-        'X-Magic-Secret-Key': API_KEY,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'X-Magic-Secret-Key': API_KEY },
       body: '{"public_address":"0x0123"}',
     },
   ]);
