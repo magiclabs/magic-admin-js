@@ -38,10 +38,7 @@ export function post<TBody extends Record<string, string | number | boolean>, TR
 ) {
   return emitRequest<TResponse>(url, {
     method: 'POST',
-    headers: { 
-      'X-Magic-Secret-Key': secretApiKey,
-      'Content-Type': 'application/json'
-    },
+    headers: { 'X-Magic-Secret-Key': secretApiKey },
     body: JSON.stringify(body),
   });
 }
