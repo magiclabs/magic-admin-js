@@ -29,8 +29,7 @@
     "clean": "npm-run-all -s clean:*",
     "clean:test-artifacts": "rimraf coverage",
     "clean:build": "rimraf dist",
-    "clean_node_modules": "rimraf node_modules",
-    "prepare": "husky install"
+    "clean_node_modules": "rimraf node_modules"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
@@ -47,7 +46,6 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.4",
-    "husky": "^9.1.7",
     "jest": "^30.1.3",
     "lint-staged": "^16.1.6",
     "npm-run-all": "~4.1.5",
