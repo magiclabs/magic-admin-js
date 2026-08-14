@@ -25,16 +25,21 @@ function isNil(value: any): value is null | undefined {
   return isNull(value) || isUndefined(value);
 }
 
+/** Unix-second claim fields must be finite numbers. Strings/NaN fail-open in `<` / `-`. */
+function isFiniteNumber(value: any): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
 /** Assert `value` contains all required DID Token members. */
 export function isDIDTClaim(value: any): value is Claim {
   return (
     !isNil(value) &&
-    !isNil(value.iat) &&
-    !isNil(value.ext) &&
+    isFiniteNumber(value.iat) &&
+    isFiniteNumber(value.ext) &&
     !isNil(value.iss) &&
     !isNil(value.sub) &&
     !isNil(value.aud) &&
-    !isNil(value.nbf) &&
+    isFiniteNumber(value.nbf) &&
     !isNil(value.tid) &&
     !isNil(value.add)
   );

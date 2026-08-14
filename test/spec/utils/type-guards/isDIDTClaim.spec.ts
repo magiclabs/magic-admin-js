@@ -59,3 +59,63 @@ test('Returns true given with all required properties', async () => {
     isDIDTClaim({ iat: 123, ext: 123, iss: 'asdf', sub: 'asdf', aud: 'asdf', nbf: 123, tid: 'asdf', add: '0x0123' }),
   ).toBe(true);
 });
+
+test('Returns false given non-numeric `Claim.ext`', async () => {
+  expect(
+    isDIDTClaim({
+      iat: 123,
+      ext: 'never',
+      iss: 'asdf',
+      sub: 'asdf',
+      aud: 'asdf',
+      nbf: 123,
+      tid: 'asdf',
+      add: '0x0123',
+    }),
+  ).toBe(false);
+});
+
+test('Returns false given non-numeric `Claim.nbf`', async () => {
+  expect(
+    isDIDTClaim({
+      iat: 123,
+      ext: 123,
+      iss: 'asdf',
+      sub: 'asdf',
+      aud: 'asdf',
+      nbf: 'later',
+      tid: 'asdf',
+      add: '0x0123',
+    }),
+  ).toBe(false);
+});
+
+test('Returns false given non-numeric `Claim.iat`', async () => {
+  expect(
+    isDIDTClaim({
+      iat: 'yesterday',
+      ext: 123,
+      iss: 'asdf',
+      sub: 'asdf',
+      aud: 'asdf',
+      nbf: 123,
+      tid: 'asdf',
+      add: '0x0123',
+    }),
+  ).toBe(false);
+});
+
+test('Returns false given non-finite `Claim.ext`', async () => {
+  expect(
+    isDIDTClaim({
+      iat: 123,
+      ext: Number.NaN,
+      iss: 'asdf',
+      sub: 'asdf',
+      aud: 'asdf',
+      nbf: 123,
+      tid: 'asdf',
+      add: '0x0123',
+    }),
+  ).toBe(false);
+});
