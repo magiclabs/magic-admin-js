@@ -1,3 +1,17 @@
+# v2.8.3 (Tue Oct 20 2026)
+
+#### 🐛 Bug Fix
+
+- Add Nautilus SecureSDLC workflow [#157](https://github.com/magiclabs/magic-admin-js/pull/157) ([@jkosik-832gh8qwebc8](https://github.com/jkosik-832gh8qwebc8))
+- update token [#149](https://github.com/magiclabs/magic-admin-js/pull/149) ([@Ethella](https://github.com/Ethella))
+
+#### Authors: 2
+
+- [@jkosik-832gh8qwebc8](https://github.com/jkosik-832gh8qwebc8)
+- Jerry Liu ([@Ethella](https://github.com/Ethella))
+
+---
+
 # v2.8.2 (Fri Oct 10 2025)
 
 #### 🐛 Bug Fix
