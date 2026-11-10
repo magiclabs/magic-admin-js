@@ -1,3 +1,4 @@
+import { Wallet } from 'ethers';
 import { createMagicAdminSDK } from '../../../lib/factories';
 import {
   VALID_DIDT,
@@ -66,4 +67,25 @@ test('Fails if aud is incorrect', async () => {
   const sdk = createMagicAdminSDK(undefined, 'different');
   const expectedError = createAudienceMismatchError();
   expect(() => sdk.token.validate(VALID_DIDT)).toThrow(expectedError);
+});
+
+test('Fails when `ext` is present but not a finite number', async () => {
+  const wallet = Wallet.createRandom();
+  const now = Math.floor(Date.now() / 1000);
+  const claim = JSON.stringify({
+    iat: now,
+    ext: 'never',
+    iss: `did:ethr:${wallet.address}`,
+    sub: 'test-sub',
+    aud: 'did:magic:test',
+    nbf: now,
+    tid: 'test-tid',
+    add: '0x00',
+  });
+  const proof = await wallet.signMessage(claim);
+  const didToken = Buffer.from(JSON.stringify([proof, claim])).toString('base64');
+
+  const sdk = createMagicAdminSDK();
+  const expectedError = createMalformedTokenError();
+  expect(() => sdk.token.validate(didToken)).toThrow(expectedError);
 });

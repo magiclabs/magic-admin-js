@@ -11,3 +11,19 @@ test('Throws error if token is malformed', async () => {
   const expectedError = createMalformedTokenError();
   expect(() => parseDIDToken(INVALID_DIDT_MALFORMED_CLAIM)).toThrow(expectedError);
 });
+
+test('Throws error if `ext` is not a finite number', async () => {
+  const claim = JSON.stringify({
+    iat: 123,
+    ext: 'never',
+    iss: 'did:ethr:0x0000000000000000000000000000000000000001',
+    sub: 'sub',
+    aud: 'aud',
+    nbf: 123,
+    tid: 'tid',
+    add: '0x00',
+  });
+  const token = Buffer.from(JSON.stringify(['0x00', claim])).toString('base64');
+  const expectedError = createMalformedTokenError();
+  expect(() => parseDIDToken(token)).toThrow(expectedError);
+});
