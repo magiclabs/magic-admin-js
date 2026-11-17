@@ -1,7 +1,7 @@
 import { BaseModule } from '../base-module';
-import { createApiKeyMissingError } from '../../core/sdk-exceptions';
+import { createApiKeyMissingError, createIncorrectSignerAddressError } from '../../core/sdk-exceptions';
 import { post, get } from '../../utils/rest';
-import { generateIssuerFromPublicAddress } from '../../utils/issuer';
+import { generateIssuerFromPublicAddress, parsePublicAddressFromIssuer } from '../../utils/issuer';
 import { MagicUserMetadata, MagicWallet, WalletType } from '../../types';
 
 export class UsersModule extends BaseModule {
@@ -30,8 +30,11 @@ export class UsersModule extends BaseModule {
   }
 
   public async getMetadataByToken(DIDToken: string): Promise<MagicUserMetadata> {
+    this.sdk.token.validate(DIDToken);
     const issuer = this.sdk.token.getIssuer(DIDToken);
-    return this.getMetadataByIssuer(issuer);
+    const metadata = await this.getMetadataByIssuer(issuer);
+    this.assertMetadataMatchesIssuer(metadata, issuer);
+    return metadata;
   }
 
   public async getMetadataByPublicAddress(publicAddress: string): Promise<MagicUserMetadata> {
@@ -40,8 +43,11 @@ export class UsersModule extends BaseModule {
   }
 
   public async getMetadataByTokenAndWallet(DIDToken: string, walletType: WalletType): Promise<MagicUserMetadata> {
+    this.sdk.token.validate(DIDToken);
     const issuer = this.sdk.token.getIssuer(DIDToken);
-    return this.getMetadataByIssuerAndWallet(issuer, walletType);
+    const metadata = await this.getMetadataByIssuerAndWallet(issuer, walletType);
+    this.assertMetadataMatchesIssuer(metadata, issuer);
+    return metadata;
   }
 
   public async getMetadataByPublicAddressAndWallet(
@@ -74,5 +80,13 @@ export class UsersModule extends BaseModule {
       username: data.username ?? null,
       wallets: data.wallets ?? null,
     };
+  }
+
+  private assertMetadataMatchesIssuer(metadata: MagicUserMetadata, issuer: string): void {
+    if (
+      parsePublicAddressFromIssuer(metadata.issuer ?? '') !== parsePublicAddressFromIssuer(issuer)
+    ) {
+      throw createIncorrectSignerAddressError();
+    }
   }
 }

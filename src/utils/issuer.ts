@@ -3,5 +3,8 @@ export function generateIssuerFromPublicAddress(publicAddress: string, method = 
 }
 
 export function parsePublicAddressFromIssuer(issuer: string) {
-  return issuer.split(':')[2]?.toLowerCase() ?? '';
+  if (typeof issuer !== 'string') return '';
+
+  const match = /^did:ethr:(0x[a-fA-F0-9]{40})$/.exec(issuer);
+  return match?.[0] === issuer ? match[1].toLowerCase() : '';
 }

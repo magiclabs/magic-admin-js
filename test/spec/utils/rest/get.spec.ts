@@ -43,3 +43,23 @@ test('Successfully GETs to the given endpoint with no query params', async () =>
     },
   ]);
 });
+
+test('Successfully GETs to the given endpoint with empty query params', async () => {
+  const fetchStub = jest.fn().mockImplementation(() => successRes);
+  (fetch as any) = fetchStub;
+
+  await get('https://example.com/hello/world', API_KEY, {});
+
+  expect(fetchStub.mock.calls[0][0]).toBe('https://example.com/hello/world');
+});
+
+test('Encodes reserved characters in query parameter values', async () => {
+  const fetchStub = jest.fn().mockImplementation(() => successRes);
+  (fetch as any) = fetchStub;
+
+  await get('https://example.com/hello/world', API_KEY, { issuer: 'did:ethr:0x1234:&issuer=value#fragment%+ ' });
+
+  expect(fetchStub.mock.calls[0][0]).toBe(
+    'https://example.com/hello/world?issuer=did%3Aethr%3A0x1234%3A%26issuer%3Dvalue%23fragment%25%2B+',
+  );
+});

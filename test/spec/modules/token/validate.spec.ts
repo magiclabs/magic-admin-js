@@ -1,4 +1,5 @@
 import { createMagicAdminSDK } from '../../../lib/factories';
+import { Wallet } from 'ethers';
 import {
   VALID_DIDT,
   VALID_DIDT_WITH_INVALID_RECOVERY_BIT,
@@ -32,9 +33,9 @@ test('Successfully validates DIDT with attachment', async () => {
   expect(() => sdk.token.validate(VALID_ATTACHMENT_DIDT, 'ravi@magic.link')).not.toThrow();
 });
 
-test('Fails when signer address mismatches signature', async () => {
+test('Fails when the token issuer is malformed', async () => {
   const sdk = createMagicAdminSDK();
-  const expectedError = createIncorrectSignerAddressError();
+  const expectedError = createMalformedTokenError();
   expect(() => sdk.token.validate(INVALID_SIGNER_DIDT)).toThrow(expectedError);
 });
 
@@ -66,4 +67,64 @@ test('Fails if aud is incorrect', async () => {
   const sdk = createMagicAdminSDK(undefined, 'different');
   const expectedError = createAudienceMismatchError();
   expect(() => sdk.token.validate(VALID_DIDT)).toThrow(expectedError);
+});
+
+test('Fails a correctly signed token with an issuer suffix', async () => {
+  const wallet = Wallet.createRandom();
+  const now = Math.floor(Date.now() / 1000);
+  const claim = JSON.stringify({
+    iat: now,
+    ext: now + 3600,
+    iss: `did:ethr:${wallet.address}:&issuer=did:ethr:0x2222222222222222222222222222222222222222`,
+    sub: 'subject',
+    aud: 'audience',
+    nbf: now,
+    tid: 'token-id',
+    add: 'none',
+  });
+  const proof = await wallet.signMessage(claim);
+  const didToken = Buffer.from(JSON.stringify([proof, claim])).toString('base64');
+
+  const sdk = createMagicAdminSDK(undefined, 'audience');
+  expect(() => sdk.token.validate(didToken)).toThrow(createMalformedTokenError());
+});
+
+test('Validates a correctly signed token with a mixed-case issuer and matching audience', async () => {
+  const wallet = Wallet.createRandom();
+  const now = Math.floor(Date.now() / 1000);
+  const claim = JSON.stringify({
+    iat: now,
+    ext: now + 3600,
+    iss: `did:ethr:${wallet.address}`,
+    sub: 'subject',
+    aud: 'audience',
+    nbf: now,
+    tid: 'token-id',
+    add: 'none',
+  });
+  const proof = await wallet.signMessage(claim);
+  const didToken = Buffer.from(JSON.stringify([proof, claim])).toString('base64');
+
+  const sdk = createMagicAdminSDK(undefined, 'audience');
+  expect(() => sdk.token.validate(didToken)).not.toThrow();
+});
+
+test('Fails a correctly signed token whose valid issuer belongs to another wallet', async () => {
+  const signer = Wallet.createRandom();
+  const now = Math.floor(Date.now() / 1000);
+  const claim = JSON.stringify({
+    iat: now,
+    ext: now + 3600,
+    iss: 'did:ethr:0x2222222222222222222222222222222222222222',
+    sub: 'subject',
+    aud: 'audience',
+    nbf: now,
+    tid: 'token-id',
+    add: 'none',
+  });
+  const proof = await signer.signMessage(claim);
+  const didToken = Buffer.from(JSON.stringify([proof, claim])).toString('base64');
+
+  const sdk = createMagicAdminSDK();
+  expect(() => sdk.token.validate(didToken)).toThrow(createIncorrectSignerAddressError());
 });
