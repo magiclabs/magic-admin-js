@@ -46,6 +46,8 @@ try {
 }
 // Magic Auth - Get User Email
 try {
+  // Token metadata helpers validate the DID token and verify that the returned
+  // metadata belongs to the token signer.
   await magic.users.getMetadataByToken("DIDToken");
 } catch (e) {
   console.log(e);

@@ -20,12 +20,11 @@ async function emitRequest<TResponse>(url: string, init?: RequestInit): Promise<
  * Generates an encoded URL with query string from a dictionary of values.
  */
 function generateQuery<T extends Record<string, string | number | boolean>>(url: string, params?: T) {
-  let query = '?';
-  if (params) {
-    for (const [key, value] of Object.entries(params)) query += `${key}=${value}&`;
-    query = query.slice(0, -1); // Remove trailing "&"
-  }
-  return params ? `${url}${query}` : url;
+  if (!params || Object.keys(params).length === 0) return url;
+
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) query.append(key, String(value));
+  return `${url}?${query.toString()}`;
 }
 
 /**

@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import { BaseModule } from '../base-module';
 import { ParsedDIDToken } from '../../types';
 import {
@@ -27,6 +26,7 @@ export class TokenModule extends BaseModule {
       [proof, claim] = tokenParseResult.raw;
       parsedClaim = tokenParseResult.withParsedClaim[1];
       claimedIssuer = parsePublicAddressFromIssuer(parsedClaim.iss);
+      if (!claimedIssuer) throw createMalformedTokenError();
     } catch {
       throw createMalformedTokenError();
     }
@@ -74,8 +74,8 @@ export class TokenModule extends BaseModule {
 
   public getPublicAddress(DIDToken: string): string {
     const claim = this.decode(DIDToken)[1];
-    const claimedIssuer = claim.iss.split(':')[2];
-    return claimedIssuer;
+    if (!parsePublicAddressFromIssuer(claim.iss)) return '';
+    return claim.iss.split(':')[2];
   }
 
   public getIssuer(DIDToken: string): string {
