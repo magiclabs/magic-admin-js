@@ -22,7 +22,9 @@ async function emitRequest<TResponse>(url: string, init?: RequestInit): Promise<
 function generateQuery<T extends Record<string, string | number | boolean>>(url: string, params?: T) {
   let query = '?';
   if (params) {
-    for (const [key, value] of Object.entries(params)) query += `${key}=${value}&`;
+    for (const [key, value] of Object.entries(params)) {
+      query += `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}&`;
+    }
     query = query.slice(0, -1); // Remove trailing "&"
   }
   return params ? `${url}${query}` : url;
